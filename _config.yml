@@ -116,9 +116,9 @@ author:
   name             : "JINGYO-LIM"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "M.S. Candidate in Dept. of AI Applications, SeoulTech.<br>B.S. in **Electrical & Information Engineering**, SeoulTech.<br><br>Interested in:<br>- Deep Learning for Audio<br>- 3D Scene Reconstruction"
-  location         : "Seoul, South Korea""
+  location         : "Seoul, South Korea"
   location         : "Somewhere"
-  email            :  "qjsro08@seoultech.ac.kr"
+  email            : "qjsro08@seoultech.ac.kr"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
