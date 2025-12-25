@@ -20,7 +20,7 @@ rtl                      : # true, false (default) # turns direction of the page
 title                    : "Site Title"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
+name                     : "JINGYO-LIM"
 description              : "An amazing website."
 url                      : "https://qjsro08-source.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
