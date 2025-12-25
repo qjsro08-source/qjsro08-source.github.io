@@ -19,9 +19,9 @@ locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "Site Title"
 title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+subtitle                 : "AI Researcher"
 name                     : "JINGYO-LIM"
-description              : "An amazing website."
+description              : "M.S. Student in AI at SeoulTech. Researching Deep Learning for Audio and 3D Scene Reconstruction."
 url                      : "https://qjsro08-source.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -113,11 +113,12 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "JINGYO-LIM"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "M.S. Candidate in Dept. of AI Applications, SeoulTech.<br>B.S. in **Electrical & Information Engineering**, SeoulTech.<br><br>Interested in:<br>- Deep Learning for Audio<br>- 3D Scene Reconstruction"
+  location         : "Seoul, South Korea""
   location         : "Somewhere"
-  email            :
+  email            :  "qjsro08@seoultech.ac.kr"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
