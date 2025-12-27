@@ -9,3 +9,9 @@ search: false
 @import "minimal-mistakes"; // main partials
 
 
+/* --- 프로필 사진 사각형으로 만들고 크기 키우기 --- */
+.author__avatar img {
+  border-radius: 0 !important; /* 사각형 모양 유지 */
+  width: 250px !important;     /* 너비를 250px로 키움 (원하는 크기로 숫자 조절 가능) */
+  max-width: none;             /* 테마의 기본 최대 너비 제한을 해제 */
+}
