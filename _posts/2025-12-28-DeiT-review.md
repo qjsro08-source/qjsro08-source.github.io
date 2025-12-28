@@ -1,5 +1,5 @@
 ---
-title:  "Training data-efficient image transformers & distillation through attention"
+title:  "[Review] Training data-efficient image transformers & distillation through attention"
 excerpt: "DeiT - Review."
 categories:
   - Paper Review

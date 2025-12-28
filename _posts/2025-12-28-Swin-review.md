@@ -1,5 +1,5 @@
 ---
-title:  "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows"
+title:  "[Review] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows"
 excerpt: "SwinTransformer-Review."
 categories:
   - Paper Review
