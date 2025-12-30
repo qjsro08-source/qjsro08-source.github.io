@@ -18,6 +18,10 @@ mathjax: true
 
 ---
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 ## 1. VAE의 목적과 난제
 
 VAE의 목표는 데이터 $x$가 주어졌을 때, 이를 잘 설명하는 잠재 변수(Latent Variable) $z$를 찾는 것임. 즉, 우리가 알고 싶은 것은 **Posterior 분포 $p(z|x)$**임.
