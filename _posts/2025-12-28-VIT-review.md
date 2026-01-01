@@ -2,7 +2,7 @@
 title:  "[Review] An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale"
 excerpt: "ViT - Review."
 categories:
-  - Paper Review
+  - Vision Transformer
 tags:
   - Deep Learning
   - Transformer

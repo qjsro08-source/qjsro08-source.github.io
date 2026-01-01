@@ -2,7 +2,7 @@
 title:  "[Paper Review] Auto-Encoding Variational Bayes"
 excerpt: "VAE"
 categories:
-  - Paper Review
+  - Generative Model
 tags:
   - Deep Learning
   - Generative Model

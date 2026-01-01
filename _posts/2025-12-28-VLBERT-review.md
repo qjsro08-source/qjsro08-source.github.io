@@ -2,7 +2,7 @@
 title:  "[Review] VL-BERT: PRE-TRAINING OF GENERIC VISUALLINGUISTIC REPRESENTATIONS"
 excerpt: "VL-BERT."
 categories:
-  - Paper Review
+  - Multi-Modal Learning
 tags:
   - Deep Learning
   - Transformer

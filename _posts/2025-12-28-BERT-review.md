@@ -2,7 +2,7 @@
 title:  "[Review] BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
 excerpt: "BERT - Review."
 categories:
-  - Paper Review
+  - Multi-Modal Learning
 tags:
   - Deep Learning
   - LLM

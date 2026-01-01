@@ -2,7 +2,7 @@
 title:  "[Paper Review] VideoBERT: A Joint Model for Video and Language Representation Learning"
 excerpt: "VL-BERT."
 categories:
-  - Paper Review
+  - Multi-Modal Learning
 tags:
   - Deep Learning
   - Transformer

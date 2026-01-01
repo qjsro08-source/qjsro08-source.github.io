@@ -2,7 +2,7 @@
 title:  "[Review] Swin Transformer: Hierarchical Vision Transformer using Shifted Windows"
 excerpt: "SwinTransformer-Review."
 categories:
-  - Paper Review
+  - Vision Transformer
 tags:
   - Deep Learning
   - Transformer

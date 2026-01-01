@@ -2,7 +2,7 @@
 title:  "[Review] Training data-efficient image transformers & distillation through attention"
 excerpt: "DeiT - Review."
 categories:
-  - Paper Review
+  - Vision Transformer
 tags:
   - Deep Learning
   - Transformer
