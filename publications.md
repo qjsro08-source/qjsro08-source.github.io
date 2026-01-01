@@ -18,6 +18,7 @@ toc: true
 1. **J. Lim** and S.-E. Kim*, "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection," Applied Science, vol. 15, no. 13, 7622, Jul. 2025.
 
 ### Under Review
+DiceFormer: Spiking Audio Transformer with Density-Aware Dice Attention - Under Review
 
 </div>
 ---
