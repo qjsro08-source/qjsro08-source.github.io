@@ -11,11 +11,12 @@ toc: true
 <div style="font-size: 15px;" markdown="1">
 
 ### International Conferences
-1. **J. Lim** and S.-E. Kim*, "SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting," Proc. Interspeech Aug 17-21, Rotterdam, The Netherlands, pp. 2665-2669 (2025).
-2. **J. Lim** and S.-E. Kim*, "Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification," Proc. ICEIC, Jan 19-22, Osaka, Japan (2025).
+1. **J. Lim** and S.-E. Kim*, "[SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting](https://www.isca-archive.org/interspeech_2025/lim25_interspeech.pdf)," Proc. Interspeech Aug 17-21, Rotterdam, The Netherlands, pp. 2665-2669 (2025).
+2. **J. Lim** and S.-E. Kim*, "[Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification](https://ieeexplore.ieee.org/document/10879689)," Proc. ICEIC, Jan 19-22, Osaka, Japan (2025).
 
 ### International Journals (SCI/SCIE)
-1. **J. Lim** and S.-E. Kim*, "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection," Applied Science, vol. 15, no. 13, 7622, Jul. 2025.
+1. **J. Lim** and S.-E. Kim*, "[Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection](https://www.mdpi.com/2076-3417/15/13/7622)," Applied Science, vol. 15, no. 13, 7622, Jul. 2025.
+
 
 ### Under Review
 DiceFormer: Spiking Audio Transformer with Density-Aware Dice Attention - Under Review
