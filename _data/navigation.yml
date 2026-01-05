@@ -1,6 +1,6 @@
 main:
   - title: "Publications & Projects"
-    url: /                        # 여기가 핵심! 이제 여기가 메인이므로 '/'로 변경
+    url: /                       
     
   - title: "Paper Review"
     url: /paper-review/
