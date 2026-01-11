@@ -1,9 +1,13 @@
 main:
   - title: "Publications & Projects"
     url: /                       
-    
+  
+  - title: "Personal Projects"     
+    url: /personal-projects/
+  
   - title: "Paper Review"
     url: /paper-review/
   
   - title: "GitHub"
     url: "https://github.com/qjsro08-source"
+
