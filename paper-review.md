@@ -67,7 +67,7 @@ toc: true
 <details>
   <summary>📂 Object detection </summary>
   <div markdown="1">
-  {% for post in site.categories['Object detection'] %}
+  {% for post in site.categories['Object-detection'] %}
     {% include archive-single.html type=entries_layout %}
   {% endfor %}
   </div>
