@@ -15,9 +15,6 @@ toc: true
 
 <div markdown="1">
 
-### [Project 1] On-Device Real-time KWS & SE Optimization
-**주제:** 모바일 구동을 위한 초경량 실시간 노이즈 캔슬링 및 음성 인식 모델 최적화
-
 
 <br>
 </div>

@@ -17,9 +17,10 @@ toc: true
 ### International Journals (SCI/SCIE)
 1. **J. Lim** and S.-E. Kim*, "[Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection](https://www.mdpi.com/2076-3417/15/13/7622)," Applied Science, vol. 15, no. 13, 7622, Jul. 2025.
 
+2. T. Kang, M. Kallel, **J. Lim**, J.-J. Lee, and S.-E. Kim*, "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications," IEEE Transactions on Instrumentation and Measurement (IF 9.9 , JCR Top 8.2 %)
 
 ### Under Review
-DiceFormer: Spiking Audio Transformer with Density-Aware Dice Attention - Under Review
+Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity - Under Review
 
 </div>
 ---

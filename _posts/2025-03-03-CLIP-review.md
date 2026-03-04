@@ -1,6 +1,6 @@
 ---
 title:  "[Review] Learning Transferable Visual Models From Natural Language Supervision"
-excerpt: "CLIP"
+excerpt: "BLIP"
 categories:
   - Multi-Modal Learning
 tags:
