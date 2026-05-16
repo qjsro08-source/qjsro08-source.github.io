@@ -1,6 +1,6 @@
 ---
-title:  "[Review] BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation"
-excerpt: "BLIP"
+title:  "[Review] BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models"
+excerpt: "BLIP-2"
 categories:
   - Multi-Modal Learning
 tags:
