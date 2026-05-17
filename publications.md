@@ -11,7 +11,7 @@ toc: true
 <div style="font-size: 15px;" markdown="1">
 
 ### International Conferences
-1. **J. LIM**, Seung Jeong and S.-E. Kim* "[Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity]", ICML 2026
+1. **J. Lim**, Seung Jeong and S.-E. Kim*, "Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity," to appear in *Proc. International Conference on Machine Learning (ICML)*, Jul 6-11, Seoul, South Korea (2026).
 
 2. **J. Lim** and S.-E. Kim*, "[SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting](https://www.isca-archive.org/interspeech_2025/lim25_interspeech.pdf)," Proc. Interspeech Aug 17-21, Rotterdam, The Netherlands, pp. 2665-2669 (2025).
 3. **J. Lim** and S.-E. Kim*, "[Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification](https://ieeexplore.ieee.org/document/10879689)," Proc. ICEIC, Jan 19-22, Osaka, Japan (2025).
@@ -36,9 +36,9 @@ toc: true
 * **Agency:** ETRI (Electronics and Telecommunications Research Institute)
 * **Period:** 2025 (Project 2)
 * **Description:**
-  * **End-to-End Pipeline:** Developed a user identification pipeline utilizing a custom deep learning model trained on a our EEG dataset.
-  * **Real-time Demo:** Implemented a web-based demonstration system that processes Ear-EEG signals, runs the deep learning inference, and identifies the user in real-time.
-  * **System Integration:** Successfully integrated the hardware (Ear-EEG measurement) with the software (DL model & Web interface) for seamless operation.
+  * **Lightweight DL Model Design:** Designed and implemented a lightweight user identification model based on a 1D-CNN architecture to ensure fast real-time inference, effectively learning the temporal characteristics of Ear-EEG signals.
+  * **End-to-End Training Pipeline:** Developed an end-to-end deep learning pipeline on a self-constructed Ear-EEG dataset, covering signal preprocessing, model training, and evaluation.
+  * **Real-time Inference System:** Deployed the trained 1D-CNN model in a real-time environment to perform on-the-fly inference, identifying users instantly from incoming Ear-EEG signals.
 
 **2. Large-scale EEG Database Construction based on Visual Stimuli**
 * **Agency:** ETRI (Electronics and Telecommunications Research Institute)
