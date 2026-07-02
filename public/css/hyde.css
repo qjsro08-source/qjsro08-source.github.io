@@ -253,12 +253,20 @@ a.sidebar-nav-item:focus {
 /* ===== CV customizations (Jingyo Lim) ===== */
 html { scroll-behavior: smooth; }
 
+/* Pin the profile/nav to the TOP of the sidebar instead of the bottom */
+@media (min-width: 48em) {
+  .sidebar-sticky {
+    top: 2.5rem;
+    bottom: auto;
+  }
+}
+
 .sidebar-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;          /* square photo */
   object-fit: cover;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.1rem;
   display: block;
   border: 3px solid rgba(255,255,255,.35);
 }
