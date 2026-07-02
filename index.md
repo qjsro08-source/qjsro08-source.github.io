@@ -43,9 +43,8 @@ I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multi
 ### International Conferences
 
 1. **ICML 2026** — Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity (**J. Lim**, S. Jeong, S.-E. Kim\*)
-2. **CHI 2026** — Reading the Mood Behind Words: Integrating Prosody-Derived Emotional Context into Socially Responsive VR Agents (SY Jeong, YS Na, SG Jeong, JW Jeong, SE Kim)
-3. **Interspeech 2025** — SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting (**J. Lim**, S.-E. Kim\*)
-4. **ICEIC 2025** — Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification (**J. Lim**, S.-E. Kim\*)
+2. **Interspeech 2025** — SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting (**J. Lim**, S.-E. Kim\*)
+3. **ICEIC 2025** — Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification (**J. Lim**, S.-E. Kim\*)
 
 ### International Journals (SCI/SCIE)
 
