@@ -1,19 +1,28 @@
-{% if page.author_profile or layout.author_profile or page.sidebar %}
-  <div class="sidebar sticky">
-  {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
-  {% if page.sidebar %}
-    {% for s in page.sidebar %}
-      {% if s.image %}
-        <img src="{{ s.image | relative_url }}"
-             alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
-      {% endif %}
-      {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
-      {% if s.text %}{{ s.text | markdownify }}{% endif %}
-      {% if s.nav %}{% include nav_list nav=s.nav %}{% endif %}
-    {% endfor %}
-    {% if page.sidebar.nav %}
-      {% include nav_list nav=page.sidebar.nav %}
-    {% endif %}
-  {% endif %}
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img class="sidebar-avatar" src="{{ '/assets/images/main.png' | relative_url }}" alt="{{ site.author.name }}">
+      <h1>
+        <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      </h1>
+      <p class="lead">{{ site.tagline }}</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="{{ '/#research-interests' | relative_url }}">Research Interests</a>
+      <a class="sidebar-nav-item" href="{{ '/#education' | relative_url }}">Education</a>
+      <a class="sidebar-nav-item" href="{{ '/#publications' | relative_url }}">Publications</a>
+      <a class="sidebar-nav-item" href="{{ '/#skills' | relative_url }}">Skills</a>
+      <a class="sidebar-nav-item" href="{{ '/#languages' | relative_url }}">Languages</a>
+    </nav>
+
+    <div class="sidebar-contact">
+      {% if site.author.email %}<a href="mailto:{{ site.author.email }}">Email</a>{% endif %}
+      {% if site.author.github %}<a href="https://github.com/{{ site.author.github }}">GitHub</a>{% endif %}
+      {% if site.author.scholar %}<a href="{{ site.author.scholar }}">Scholar</a>{% endif %}
+      {% if site.author.linkedin %}<a href="{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+    </div>
+
+    <p class="sidebar-copy">&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}</p>
   </div>
-{% endif %}
+</div>
