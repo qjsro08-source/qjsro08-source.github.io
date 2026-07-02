@@ -42,18 +42,19 @@ I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multi
 
 ### International Conferences
 
-1. **J. Lim**, Seung Jeong, and S.-E. Kim\*, "Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity," to appear in *Proc. International Conference on Machine Learning (ICML)*, Jul 6–11, Seoul, South Korea (2026).
-2. **J. Lim** and S.-E. Kim\*, "SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting," *Proc. Interspeech*, Aug 17–21, Rotterdam, The Netherlands, pp. 2665–2669 (2025).
-3. **J. Lim** and S.-E. Kim\*, "Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification," *Proc. ICEIC*, Jan 19–22, Osaka, Japan (2025).
+1. **ICML 2026** — Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity (**J. Lim**, S. Jeong, S.-E. Kim\*)
+2. **CHI 2026** — Reading the Mood Behind Words: Integrating Prosody-Derived Emotional Context into Socially Responsive VR Agents (SY Jeong, YS Na, SG Jeong, JW Jeong, SE Kim)
+3. **Interspeech 2025** — SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting (**J. Lim**, S.-E. Kim\*)
+4. **ICEIC 2025** — Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification (**J. Lim**, S.-E. Kim\*)
 
 ### International Journals (SCI/SCIE)
 
-1. **J. Lim** and S.-E. Kim\*, "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection," *Applied Sciences*, vol. 15, no. 13, 7622, Jul. 2025.
-2. T. Kang, M. Kallel, **J. Lim**, J.-J. Lee, and S.-E. Kim\*, "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications," *IEEE Transactions on Instrumentation and Measurement* (IF 9.9, JCR Top 8.2%).
+1. **Applied Sciences 2025** — Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection (**J. Lim**, S.-E. Kim\*)
+2. **IEEE TIM** — Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications (T. Kang, M. Kallel, **J. Lim**, J.-J. Lee, S.-E. Kim\*)
 
 ### Under Review
 
-1. **J. Lim** and S.-E. Kim\*, "Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering," submitted to *Advances in Neural Information Processing Systems (NeurIPS)* (2026, under review).
+1. **NeurIPS 2026** — Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering (**J. Lim**, S.-E. Kim\*)
 
 </section>
 
