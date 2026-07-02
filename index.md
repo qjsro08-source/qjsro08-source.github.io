@@ -43,6 +43,10 @@ title: Home
 1. **J. Lim** and S.-E. Kim\*, "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection," *Applied Sciences*, vol. 15, no. 13, 7622, Jul. 2025.
 2. T. Kang, M. Kallel, **J. Lim**, J.-J. Lee, and S.-E. Kim\*, "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications," *IEEE Transactions on Instrumentation and Measurement* (IF 9.9, JCR Top 8.2%).
 
+### Under Review
+
+1. **J. Lim** and S.-E. Kim\*, "Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering," submitted to *Advances in Neural Information Processing Systems (NeurIPS)* (2026, under review).
+
 </section>
 
 <section id="skills" class="cv-section" markdown="1">
