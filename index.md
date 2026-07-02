@@ -7,7 +7,7 @@ title: Home
 
 ## About
 
-I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multimodal reasoning** and **efficient AI**. My current focus is building models that reason from incomplete evidence in audio-visual question answering, while keeping them lightweight enough to run efficiently on-device and at the edge.
+I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multimodal reasoning** and **efficient AI**. My current focus is making reasoning-capable **multimodal large language models (MLLMs)** efficient enough to run **on-device**, as well as **reasoning** itself.
 
 </section>
 
