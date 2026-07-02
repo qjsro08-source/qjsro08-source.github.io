@@ -48,8 +48,8 @@ I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multi
 
 ### International Journals (SCI/SCIE)
 
-1. **Applied Sciences 2025** — Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection (**J. Lim**, S.-E. Kim\*)
-2. **IEEE TIM** — Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications (T. Kang, M. Kallel, **J. Lim**, J.-J. Lee, S.-E. Kim\*)
+1. **IEEE TIM** — Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications (T. Kang, M. Kallel, **J. Lim**, J.-J. Lee, S.-E. Kim\*)
+2. **Applied Sciences 2025** — Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection (**J. Lim**, S.-E. Kim\*)
 
 ### Under Review
 
