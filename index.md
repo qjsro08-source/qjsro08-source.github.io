@@ -7,7 +7,8 @@ title: Home
 
 ## About
 
-I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multimodal reasoning** and **efficient AI**. My current focus is making reasoning-capable **multimodal large language models (MLLMs)** efficient enough to run **on-device**, as well as **reasoning** itself.
+I am an M.S. student in Applied AI at SeoulTech, focusing on multimodal large language models (MLLMs) and efficient AI, with particular interests in model architecture design and optimization.
+
 
 </section>
 
@@ -15,9 +16,8 @@ I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multi
 
 ## Research Interests
 
-- **Audio AI**
-- **Multimodal AI and Reasoning**
-- **On-Device and Edge AI**
+- **Multimodal Large Language Models (MLLMs)**
+- **Model Architecture Design**
 - **Efficient AI**
 
 </section>
@@ -53,7 +53,11 @@ I am an M.S. student in Applied AI at SeoulTech, working on **audio-visual multi
 
 ### Under Review
 
-1. **NeurIPS 2026** — Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering (**J. Lim**, S.-E. Kim\*)
+1. **ICLR 2027** — Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering
+
+2. **ICLR 2027** — NEOPrune: Non-rEconstructible Orthogonal Token Pruning for Omni Modal Models
+
+3. **AAAI 2027** — CoRE-SQA: Question-Conditioned Temporal Aggregation for Spiking Audio-Visual Question Answering
 
 </section>
 
