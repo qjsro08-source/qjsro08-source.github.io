@@ -330,6 +330,39 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   margin-bottom: .85rem;
 }
 
+/* A paper card splits into figure + text once there is a figure to show. */
+.pub-card {
+  display: flex;
+  gap: 1.15rem;
+  align-items: flex-start;
+}
+
+.pub-figure {
+  flex: 0 0 13rem;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+}
+
+.pub-figure a { display: block; }
+.pub-figure a:hover img { opacity: .85; }
+
+.pub-figure img {
+  display: block;
+  transition: opacity .15s ease;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  /* contain, not cover: architecture diagrams are often very wide and
+     cropping them to a thumbnail box destroys the point of the figure. */
+  object-fit: contain;
+}
+
+/* Without min-width:0 a flex child refuses to shrink below its longest
+   unbreakable word, which would push long paper titles out of the card. */
+.pub-main { min-width: 0; }
+
 .pub-venue {
   display: inline-block;
   padding: .12rem .55rem;
@@ -413,6 +446,13 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 }
 .row-value { color: var(--text-body); }
 
+/* "See everything" link at the foot of a summary section ------------------ */
+.section-more {
+  margin: 1.1rem 0 0;
+  font-size: .9rem;
+  font-weight: 500;
+}
+
 /* Page header (sub-pages) ------------------------------------------------- */
 .page-header {
   padding: 3.5rem 0 1rem;
@@ -454,6 +494,8 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 /* Narrow screens ---------------------------------------------------------- */
 @media (max-width: 34em) {
   .wrap { padding-left: 1.15rem; padding-right: 1.15rem; }
+  .pub-card { flex-direction: column; gap: .9rem; }
+  .pub-figure { flex: none; width: 100%; }
   .hero { padding-top: 3rem; }
   .hero-photo { width: 6rem; height: 6rem; }
   .section { padding: 2.25rem 0; }

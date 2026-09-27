@@ -1,0 +1,37 @@
+{%- comment -%}
+  One project card. Shared by the home-page summary and /projects/, so the
+  two never drift apart. Pass the entry as `p`.
+{%- endcomment -%}
+<li class="card">
+  <h3 class="entry-title">{{ include.p.title }}</h3>
+
+  {% if include.p.period or include.p.role %}
+  <p class="entry-meta">
+    {%- if include.p.period %}{{ include.p.period }}{% endif -%}
+    {%- if include.p.period and include.p.role %} &middot; {% endif -%}
+    {%- if include.p.role %}{{ include.p.role }}{% endif -%}
+  </p>
+  {% endif %}
+
+  {% if include.p.highlights %}
+  <div class="entry-body">
+    <ul>
+      {% for h in include.p.highlights %}<li>{{ h }}</li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if include.p.stack %}
+  <ul class="tags">
+    {% for s in include.p.stack %}<li>{{ s }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if include.p.code or include.p.demo or include.p.paper %}
+  <div class="pub-actions">
+    {% if include.p.code %}<a class="btn btn-ghost" href="{{ include.p.code }}" rel="noopener">Code</a>{% endif %}
+    {% if include.p.demo %}<a class="btn btn-ghost" href="{{ include.p.demo }}" rel="noopener">Demo</a>{% endif %}
+    {% if include.p.paper %}<a class="btn btn-ghost" href="{{ include.p.paper }}" rel="noopener">Paper</a>{% endif %}
+  </div>
+  {% endif %}
+</li>

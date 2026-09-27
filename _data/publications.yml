@@ -1,26 +1,52 @@
 # Publications shown on the home page.
 # Groups render in the order listed here; so do the papers inside each group.
-# Optional per-paper keys: paper, code, project (each becomes a link button).
+#
+# Required : venue, title
+# Optional : authors
+#            image    teaser figure — put the file in
+#                     assets/images/publications/ and write the path as
+#                     /assets/images/publications/<file>
+#                     (a full https:// URL works too)
+#            paper    link button "Paper"
+#            code     link button "Code"
+#            project  link button "Project"
+#            poster   link button "Poster" — a local PDF works, same path form
+#            video    link button "Video"
+#
+# Every optional key can be left out; the card just drops that piece.
+#
+#   - venue: "ICML 2026"
+#     title: "..."
+#     authors: "J. Lim, S.-E. Kim*"
+#     image: /assets/images/publications/icml2026.png
+#     paper: https://arxiv.org/abs/xxxx.xxxxx
+#     code: https://github.com/you/repo
 
 - group: International Conferences
   items:
     - venue: "ICML 2026"
       title: "Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity"
       authors: "J. Lim, S. Jeong, S.-E. Kim*"
+      paper: https://openreview.net/pdf?id=8clCPAImE3
+      poster: /assets/images/publications/icml-poster.pdf
 
     - venue: "Interspeech 2025"
       title: "SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting"
       authors: "J. Lim, S.-E. Kim*"
+      paper: https://www.isca-archive.org/interspeech_2025/lim25_interspeech.pdf
+      poster: /assets/images/publications/interspeech-poster.pdf
 
     - venue: "ICEIC 2025"
       title: "Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification"
       authors: "J. Lim, S.-E. Kim*"
+      paper: https://ieeexplore.ieee.org/abstract/document/10879689
 
 - group: International Journals (SCI/SCIE)
   items:
     - venue: "IEEE TIM"
       title: "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications"
       authors: "T. Kang, M. Kallel, J. Lim, J.-J. Lee, S.-E. Kim*"
+      paper: https://ieeexplore.ieee.org/abstract/document/11421516/
 
     - venue: "Applied Sciences 2025"
       title: "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection"
@@ -29,10 +55,9 @@
 - group: Under Review
   items:
     - venue: "ICLR 2027"
-      title: "Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering"
+      title: "QRePair: Question-Guided Reconstruction via Paired Prototype Retrieval for Missing-Modality Audio-Visual Question Answering"
+      image: /assets/images/publications/QRePair.png
 
     - venue: "ICLR 2027"
       title: "NEOPrune: Non-rEconstructible Orthogonal Token Pruning for Omni Modal Models"
-
-    - venue: "AAAI 2027"
-      title: "CoRE-SQA: Question-Conditioned Temporal Aggregation for Spiking Audio-Visual Question Answering"
+      image: /assets/images/publications/NEOPrune.png
