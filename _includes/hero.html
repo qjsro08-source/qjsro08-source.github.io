@@ -1,0 +1,42 @@
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <img class="hero-photo" src="{{ '/assets/images/profile.jpg' | relative_url }}"
+         alt="{{ site.author.name }}" width="120" height="120">
+
+    <h1 class="hero-name">{{ site.author.name }}</h1>
+    <p class="hero-title">M.S. Student in Applied Artificial Intelligence</p>
+    <p class="hero-affil">Seoul National University of Science and Technology</p>
+
+    <div class="hero-links">
+      {% if site.author.email %}
+      <a class="btn btn-primary" href="mailto:{{ site.author.email }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>
+        </svg>
+        Email
+      </a>
+      {% endif %}
+      {% if site.author.scholar %}
+      <a class="btn btn-ghost" href="{{ site.author.scholar }}" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3 1 9l11 6 9-4.9V17"/><path d="M5 12.5V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-4.5"/>
+        </svg>
+        Scholar
+      </a>
+      {% endif %}
+      {% if site.author.linkedin %}
+      <a class="btn btn-ghost" href="{{ site.author.linkedin }}" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-11h4v1.5A6 6 0 0 1 16 8Z"/>
+          <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>

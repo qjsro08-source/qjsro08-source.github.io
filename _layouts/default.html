@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    {% include sidebar.html %}
+  {% include navbar.html %}
 
-    <div class="content container">
-      {{ content }}
+  <main id="main">
+    {{ content }}
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      &copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
     </div>
+  </footer>
 
-  </body>
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</body>
+
 </html>

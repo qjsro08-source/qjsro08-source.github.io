@@ -1,81 +1,95 @@
 ---
-layout: default
+layout: home
 title: Home
 ---
 
-<section id="about" class="cv-section" markdown="1">
+<section id="about" class="section reveal">
+  <div class="wrap">
+    <h2 class="section-title">About</h2>
 
-## About
+    <p class="section-lead">
+      I am an M.S. student in Applied AI at SeoulTech, focusing on multimodal
+      large language models (MLLMs) and efficient AI, with particular interests
+      in model architecture design and optimization.
+    </p>
 
-I am an M.S. student in Applied AI at SeoulTech, focusing on multimodal large language models (MLLMs) and efficient AI, with particular interests in model architecture design and optimization.
-
-
+    <ul class="tags">
+      <li>Multimodal Large Language Models</li>
+      <li>Model Architecture Design</li>
+      <li>Efficient AI</li>
+    </ul>
+  </div>
 </section>
 
-<section id="research-interests" class="cv-section" markdown="1">
+<section id="education" class="section reveal">
+  <div class="wrap">
+    <h2 class="section-title">Education</h2>
 
-## Research Interests
-
-- **Multimodal Large Language Models (MLLMs)**
-- **Model Architecture Design**
-- **Efficient AI**
-
+    <ul class="card-list">
+      {% for edu in site.data.education %}
+      <li class="card">
+        <h3 class="entry-title">{{ edu.degree }}</h3>
+        <p class="entry-meta">{{ edu.school }}{% if edu.period %} &middot; {{ edu.period }}{% endif %}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </section>
 
-<section id="education" class="cv-section" markdown="1">
+<section id="publications" class="section reveal">
+  <div class="wrap">
+    <h2 class="section-title">Publications</h2>
 
-## Education
+    {% for group in site.data.publications %}
+    <div class="pub-group">
+      <h3 class="pub-group-title">{{ group.group }}</h3>
 
-<div class="cv-entry" markdown="1">
-**M.S. Candidate in Dept. of Applied Artificial Intelligence**, SeoulTech
-</div>
+      <ul class="card-list">
+        {% for pub in group.items %}
+        <li class="card">
+          <span class="pub-venue">{{ pub.venue }}</span>
+          <h4 class="pub-title">{{ pub.title }}</h4>
 
-<div class="cv-entry" markdown="1">
-**B.S. in Electrical & Information Engineering**, SeoulTech
-</div>
+          {% if pub.authors %}
+          <p class="pub-authors">{{ pub.authors | replace: 'J. Lim', '<span class="me">J. Lim</span>' }}</p>
+          {% endif %}
 
+          {% if pub.paper or pub.code or pub.project %}
+          <div class="pub-actions">
+            {% if pub.paper %}<a class="btn btn-ghost" href="{{ pub.paper }}" rel="noopener">Paper</a>{% endif %}
+            {% if pub.code %}<a class="btn btn-ghost" href="{{ pub.code }}" rel="noopener">Code</a>{% endif %}
+            {% if pub.project %}<a class="btn btn-ghost" href="{{ pub.project }}" rel="noopener">Project</a>{% endif %}
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
 </section>
 
-<section id="publications" class="cv-section" markdown="1">
+<section id="skills" class="section reveal">
+  <div class="wrap">
+    <h2 class="section-title">Skills</h2>
 
-## Publications
-
-### International Conferences
-
-1. **ICML 2026** — Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity (**J. Lim**, S. Jeong, S.-E. Kim\*)
-2. **Interspeech 2025** — SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting (**J. Lim**, S.-E. Kim\*)
-3. **ICEIC 2025** — Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification (**J. Lim**, S.-E. Kim\*)
-
-### International Journals (SCI/SCIE)
-
-1. **IEEE TIM** — Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications (T. Kang, M. Kallel, **J. Lim**, J.-J. Lee, S.-E. Kim\*)
-2. **Applied Sciences 2025** — Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection (**J. Lim**, S.-E. Kim\*)
-
-### Under Review
-
-1. **ICLR 2027** — Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering
-
-2. **ICLR 2027** — NEOPrune: Non-rEconstructible Orthogonal Token Pruning for Omni Modal Models
-
-3. **AAAI 2027** — CoRE-SQA: Question-Conditioned Temporal Aggregation for Spiking Audio-Visual Question Answering
-
-</section>
-
-<section id="skills" class="cv-section" markdown="1">
-
-## Skills
-
-- **Programming Languages** — Python
-- **AI/ML Frameworks and Tools** — PyTorch, TensorFlow, ONNX
-- **Infrastructure and Development Tools** — Docker, Linux, Git
-
-</section>
-
-<section id="languages" class="cv-section" markdown="1">
-
-## Languages
-
-- **Korean**
-- **English**
-
+    <div class="card rows">
+      <div>
+        <div class="row-label">Programming Languages</div>
+        <div class="row-value">Python</div>
+      </div>
+      <div>
+        <div class="row-label">AI / ML Frameworks and Tools</div>
+        <div class="row-value">PyTorch, TensorFlow, ONNX</div>
+      </div>
+      <div>
+        <div class="row-label">Infrastructure and Development Tools</div>
+        <div class="row-value">Docker, Linux, Git</div>
+      </div>
+      <div>
+        <div class="row-label">Languages</div>
+        <div class="row-value">Korean, English</div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,0 +1,38 @@
+# Publications shown on the home page.
+# Groups render in the order listed here; so do the papers inside each group.
+# Optional per-paper keys: paper, code, project (each becomes a link button).
+
+- group: International Conferences
+  items:
+    - venue: "ICML 2026"
+      title: "Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity"
+      authors: "J. Lim, S. Jeong, S.-E. Kim*"
+
+    - venue: "Interspeech 2025"
+      title: "SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting"
+      authors: "J. Lim, S.-E. Kim*"
+
+    - venue: "ICEIC 2025"
+      title: "Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification"
+      authors: "J. Lim, S.-E. Kim*"
+
+- group: International Journals (SCI/SCIE)
+  items:
+    - venue: "IEEE TIM"
+      title: "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications"
+      authors: "T. Kang, M. Kallel, J. Lim, J.-J. Lee, S.-E. Kim*"
+
+    - venue: "Applied Sciences 2025"
+      title: "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection"
+      authors: "J. Lim, S.-E. Kim*"
+
+- group: Under Review
+  items:
+    - venue: "ICLR 2027"
+      title: "Reasoning from Incomplete Evidence: Temporal Experts and Memory for Audio-Visual Question Answering"
+
+    - venue: "ICLR 2027"
+      title: "NEOPrune: Non-rEconstructible Orthogonal Token Pruning for Omni Modal Models"
+
+    - venue: "AAAI 2027"
+      title: "CoRE-SQA: Question-Conditioned Temporal Aggregation for Spiking Audio-Visual Question Answering"

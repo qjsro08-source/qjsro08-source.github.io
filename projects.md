@@ -2,27 +2,45 @@
 layout: page
 title: Projects
 permalink: /projects/
+description: Selected research and engineering projects.
 ---
 
-<section class="cv-section" markdown="1">
+<section class="section reveal">
+  <div class="wrap">
+    <ul class="card-list">
+      {% for p in site.data.projects %}
+      <li class="card">
+        <h2 class="entry-title">{{ p.title }}</h2>
 
-<div class="cv-entry" markdown="1">
-### Project Title
-<span class="cv-meta">2025.01 – 2025.06 · Role · PyTorch, CUDA</span>
+        <p class="entry-meta">
+          {%- if p.period %}{{ p.period }}{% endif -%}
+          {%- if p.period and p.role %} &middot; {% endif -%}
+          {%- if p.role %}{{ p.role }}{% endif -%}
+        </p>
 
-- One-line summary of what the project does and why it matters.
-- Key technical contribution or result (numbers help: accuracy, latency, memory).
-- [Code](https://github.com/) · [Paper](https://arxiv.org/)
+        {% if p.highlights %}
+        <div class="entry-body">
+          <ul>
+            {% for h in p.highlights %}<li>{{ h }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
 
-</div>
+        {% if p.stack %}
+        <ul class="tags">
+          {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
+        </ul>
+        {% endif %}
 
-<div class="cv-entry" markdown="1">
-### Another Project Title
-<span class="cv-meta">2024.03 – 2024.12 · Role · Tech stack</span>
-
-- What you built.
-- What the outcome was.
-
-</div>
-
+        {% if p.code or p.demo or p.paper %}
+        <div class="pub-actions">
+          {% if p.code %}<a class="btn btn-ghost" href="{{ p.code }}" rel="noopener">Code</a>{% endif %}
+          {% if p.demo %}<a class="btn btn-ghost" href="{{ p.demo }}" rel="noopener">Demo</a>{% endif %}
+          {% if p.paper %}<a class="btn btn-ghost" href="{{ p.paper }}" rel="noopener">Paper</a>{% endif %}
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </section>

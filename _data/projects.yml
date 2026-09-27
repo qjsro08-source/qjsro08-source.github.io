@@ -1,0 +1,19 @@
+# Each entry becomes one card on /projects/.
+# Optional keys: period, role, stack (list), highlights (list), code, demo, paper
+
+- title: "Project Title"
+  period: "2025.01 – 2025.06"
+  role: "Role"
+  stack: ["PyTorch", "CUDA"]
+  highlights:
+    - "One-line summary of what the project does and why it matters."
+    - "Key technical result — numbers help: accuracy, latency, memory."
+  code: "https://github.com/"
+
+- title: "Another Project Title"
+  period: "2024.03 – 2024.12"
+  role: "Role"
+  stack: ["Python", "Docker"]
+  highlights:
+    - "What you built."
+    - "What the outcome was."
