@@ -53,6 +53,10 @@ title: Home
             <p class="pub-authors">{{ pub.authors | replace: 'J. Lim', '<span class="me">J. Lim</span>' }}</p>
             {% endif %}
 
+            {% if pub.summary %}
+            <p class="pub-summary">{{ pub.summary }}</p>
+            {% endif %}
+
             {% if pub.paper or pub.code or pub.project or pub.poster or pub.video %}
             <div class="pub-actions">
               {% if pub.paper %}<a class="btn btn-ghost" href="{{ pub.paper }}" rel="noopener">Paper</a>{% endif %}

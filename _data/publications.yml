@@ -3,6 +3,7 @@
 #
 # Required : venue, title
 # Optional : authors
+#            summary  one short sentence under the author line
 #            image    teaser figure — put the file in
 #                     assets/images/publications/ and write the path as
 #                     /assets/images/publications/<file>
@@ -27,18 +28,25 @@
     - venue: "ICML 2026"
       title: "Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity"
       authors: "J. Lim, S. Jeong, S.-E. Kim*"
+      summary: >-
+        Finds that attention in spiking transformers is skewed by spike density, and replaces the dot product with a density-invariant set-similarity score.
       paper: https://openreview.net/pdf?id=8clCPAImE3
       poster: /assets/images/publications/icml-poster.pdf
 
     - venue: "Interspeech 2025"
       title: "SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting"
       authors: "J. Lim, S.-E. Kim*"
+      summary: >-
+        A spiking Conformer combining inception and dilated convolutions for low-power keyword spotting.
       paper: https://www.isca-archive.org/interspeech_2025/lim25_interspeech.pdf
       poster: /assets/images/publications/interspeech-poster.pdf
 
     - venue: "ICEIC 2025"
       title: "Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification"
       authors: "J. Lim, S.-E. Kim*"
+      summary: >-
+        Classifies imagined movement from EEG with a spiking recurrent network
+        that attends across both channels and time.
       paper: https://ieeexplore.ieee.org/abstract/document/10879689
 
 - group: International Journals (SCI/SCIE)
@@ -46,18 +54,27 @@
     - venue: "IEEE TIM"
       title: "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications"
       authors: "T. Kang, M. Kallel, J. Lim, J.-J. Lee, S.-E. Kim*"
+      summary: >-
+        Evaluates dual-channel ear-EEG as a biometric by fusing the responses to several evoked stimuli, aimed at wearables.
       paper: https://ieeexplore.ieee.org/abstract/document/11421516/
 
     - venue: "Applied Sciences 2025"
       title: "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection"
       authors: "J. Lim, S.-E. Kim*"
+      summary: >-
+        Brings spiking neural networks to bearing fault detection, aimed at
+        low-power condition monitoring on the machine itself.
 
 - group: Under Review
   items:
     - venue: "ICLR 2027"
       title: "QRePair: Question-Guided Reconstruction via Paired Prototype Retrieval for Missing-Modality Audio-Visual Question Answering"
+      summary: >-
+        Reconstructs a missing modality from question-guided paired prototypes, then answers through a mixture of temporal experts.
       image: /assets/images/publications/QRePair.png
 
     - venue: "ICLR 2027"
       title: "NEOPrune: Non-rEconstructible Orthogonal Token Pruning for Omni Modal Models"
+      summary: >-
+        Drops tokens that their neighbours can already reconstruct — once in each encoder, then again layer-by-layer inside the LLM.
       image: /assets/images/publications/NEOPrune.png
