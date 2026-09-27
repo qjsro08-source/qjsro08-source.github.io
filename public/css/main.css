@@ -337,26 +337,34 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   align-items: flex-start;
 }
 
+/* The column keeps a fixed width so every card's text starts at the same
+   place, but the framed box inside it hugs the image. A fixed-ratio box
+   would letterbox a portrait poster inside wide empty margins. */
 .pub-figure {
   flex: 0 0 13rem;
   margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.pub-figure a {
+  display: block;
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-subtle);
   border: 1px solid var(--border);
+  line-height: 0;
 }
-
-.pub-figure a { display: block; }
 .pub-figure a:hover img { opacity: .85; }
 
 .pub-figure img {
   display: block;
+  /* Never cropped: architecture diagrams lose their point when cut down. */
+  width: auto;
+  height: auto;
+  max-width: 13rem;
+  max-height: 13rem;
   transition: opacity .15s ease;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  /* contain, not cover: architecture diagrams are often very wide and
-     cropping them to a thumbnail box destroys the point of the figure. */
-  object-fit: contain;
 }
 
 /* Without min-width:0 a flex child refuses to shrink below its longest
@@ -502,7 +510,11 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 @media (max-width: 34em) {
   .wrap { padding-left: 1.15rem; padding-right: 1.15rem; }
   .pub-card { flex-direction: column; gap: .9rem; }
+  /* Stacked: let a wide figure use the full width, but keep a tall poster
+     from taking over the whole card. */
   .pub-figure { flex: none; width: 100%; }
+  .pub-figure a { max-width: 100%; }
+  .pub-figure img { max-width: 100%; max-height: 17rem; }
   .hero { padding-top: 3rem; }
   .hero-photo { width: 6rem; height: 6rem; }
   .section { padding: 2.25rem 0; }
