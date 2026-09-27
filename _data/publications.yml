@@ -4,6 +4,8 @@
 # Required : venue, title
 # Optional : authors
 #            summary  one short sentence under the author line
+#            image_href  what the thumbnail opens, when that is a different
+#                        file from the thumbnail (e.g. the poster PDF)
 #            image    teaser figure — put the file in
 #                     assets/images/publications/ and write the path as
 #                     /assets/images/publications/<file>
@@ -29,7 +31,11 @@
       title: "Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity"
       authors: "J. Lim, S. Jeong, S.-E. Kim*"
       summary: >-
-        Finds that attention in spiking transformers is skewed by spike density, and replaces the dot product with a density-invariant set-similarity score.
+        Identifies a spike-density bias in spiking attention and replaces the dot
+        product with Spike Dice Attention; the resulting DiceFormer reaches SNN
+        state of the art on AudioSet-20K.
+      image: /assets/images/publications/icml-poster.jpg
+      image_href: /assets/images/publications/icml-poster.pdf
       paper: https://openreview.net/pdf?id=8clCPAImE3
       poster: /assets/images/publications/icml-poster.pdf
 
@@ -37,7 +43,10 @@
       title: "SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting"
       authors: "J. Lim, S.-E. Kim*"
       summary: >-
-        A spiking Conformer combining inception and dilated convolutions for low-power keyword spotting.
+        A spiking Conformer for keyword spotting: 96.8% on Google Speech Commands
+        V2 at 401.5K parameters, with 75% less energy than an equivalent ANN.
+      image: /assets/images/publications/interspeech-poster.jpg
+      image_href: /assets/images/publications/interspeech-poster.pdf
       paper: https://www.isca-archive.org/interspeech_2025/lim25_interspeech.pdf
       poster: /assets/images/publications/interspeech-poster.pdf
 

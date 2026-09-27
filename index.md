@@ -35,11 +35,19 @@ title: Home
           {% if pub.image %}
           {% assign fig = pub.image %}
           {% unless fig contains '://' %}{% assign fig = pub.image | relative_url %}{% endunless %}
+          {% comment %}
+            The thumbnail is unreadable at this size, so it opens something
+            bigger: image_href when the full version is a different file (a
+            poster PDF, say), otherwise the image itself.
+          {% endcomment %}
+          {% assign figlink = fig %}
+          {% if pub.image_href %}
+            {% assign figlink = pub.image_href %}
+            {% unless figlink contains '://' %}{% assign figlink = pub.image_href | relative_url %}{% endunless %}
+          {% endif %}
           <figure class="pub-figure">
-            <!-- Architecture diagrams are unreadable at thumbnail size, so the
-                 thumbnail opens the full-resolution figure. -->
-            <a href="{{ fig }}" target="_blank" rel="noopener"
-               aria-label="Open the full figure for &ldquo;{{ pub.title | escape }}&rdquo;">
+            <a href="{{ figlink }}" target="_blank" rel="noopener"
+               aria-label="Open the full version for &ldquo;{{ pub.title | escape }}&rdquo;">
               <img src="{{ fig }}" alt="Figure from &ldquo;{{ pub.title | escape }}&rdquo;" loading="lazy">
             </a>
           </figure>
