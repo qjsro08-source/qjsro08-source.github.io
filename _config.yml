@@ -26,7 +26,9 @@ plugins:
 
 # Exclude from processing
 exclude:
-  - project
+  # Trailing slash matters: Jekyll also excludes any path that merely
+  # starts with the entry, so a bare "project" would swallow projects.md.
+  - project/
   - Gemfile
   - Gemfile.lock
   - README.md
