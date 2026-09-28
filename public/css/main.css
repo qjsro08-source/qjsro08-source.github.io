@@ -430,6 +430,116 @@ html.dark .theme-toggle .icon-sun  { display: block; }
    as a nested list and switch the marker to a hollow circle. */
 .entry-body ul { margin-bottom: 0; list-style: disc; }
 
+/* Project cards ----------------------------------------------------------- */
+.proj { padding: 1.35rem 1.4rem; }
+.proj .entry-title { font-size: 1.15rem; font-weight: 600; }
+
+.proj-figures { margin: 1rem 0 1.15rem; }
+.proj-figures figure { margin: 0; }
+.proj-figures a {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-subtle);
+  line-height: 0;
+}
+.proj-figures a:hover img { opacity: .88; }
+.proj-figures img { display: block; width: 100%; height: auto; transition: opacity .15s ease; }
+
+.proj-figures figcaption {
+  margin-top: .45rem;
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Two figures sit side by side while there is room for both to stay legible. */
+.proj-figures-multi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.proj-block { margin-bottom: 1rem; }
+.proj-block p { font-size: .925rem; margin: 0; }
+
+.proj-label {
+  display: inline-block;
+  margin-bottom: .3rem;
+  padding: .1rem .5rem;
+  border-radius: 6px;
+  background: var(--chip);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--text);
+}
+
+.proj-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: .75rem;
+  margin: 0 0 1.1rem;
+  padding: .9rem 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.proj-metrics li { margin: 0; }
+
+.proj-metric-value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.proj-metric-label {
+  display: block;
+  margin-top: .1rem;
+  font-size: .76rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.proj-example {
+  margin: 0 0 1rem;
+  padding: .85rem 1rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--bg-subtle);
+}
+.proj-example-q {
+  margin: 0 0 .5rem;
+  font-size: .875rem;
+  font-weight: 550;
+  color: var(--text);
+}
+.proj-example-a {
+  margin: 0;
+  font-size: .85rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+.proj-note {
+  margin: 0 0 1rem;
+  font-size: .8rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.proj-compact { padding: 1.1rem 1.25rem; }
+.proj-compact .entry-title { font-size: 1.05rem; }
+.proj-summary {
+  margin: .35rem 0 0;
+  font-size: .9rem;
+  color: var(--text-body);
+}
+
 /* Tags -------------------------------------------------------------------- */
 .tags {
   display: flex;

@@ -10,7 +10,8 @@ title: Home
     <p class="section-lead">
       I am an M.S. student in Applied AI at SeoulTech, focusing on multimodal
       large language models (MLLMs) and efficient AI, with particular interests
-      in model architecture design and optimization.
+      in model architecture design and optimization. Beyond this main focus, I
+      am also interested in 3D scene generation and time-series data.
     </p>
 
     <ul class="tags">
@@ -89,7 +90,7 @@ title: Home
 
     <ul class="card-list">
       {% for p in site.data.projects limit: 3 %}
-        {% include project-card.html p=p %}
+        {% include project-card.html p=p compact=true %}
       {% endfor %}
     </ul>
 

@@ -1,37 +1,101 @@
 {%- comment -%}
-  One project card. Shared by the home-page summary and /projects/, so the
-  two never drift apart. Pass the entry as `p`.
+  One project card: 문제 → 해결 → 결과, with optional figures, headline
+  numbers, a sample exchange and a caveat. Shared by the home-page summary
+  and /projects/, so the two never drift apart. Pass the entry as `p`.
 {%- endcomment -%}
-<li class="card">
-  <h3 class="entry-title">{{ include.p.title }}</h3>
+{%- assign p = include.p -%}
+{%- if include.compact -%}
+<li class="card proj proj-compact">
+  <h3 class="entry-title">{{ p.title }}</h3>
+  {% if p.period %}<p class="entry-meta">{{ p.period }}</p>{% endif %}
+  {% if p.summary %}<p class="proj-summary">{{ p.summary }}</p>{% endif %}
+  {% if p.stack %}
+  <ul class="tags">
+    {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+</li>
+{%- else -%}
+<li class="card proj">
+  <h3 class="entry-title">{{ p.title }}</h3>
 
-  {% if include.p.period or include.p.role %}
+  {% if p.period or p.role %}
   <p class="entry-meta">
-    {%- if include.p.period %}{{ include.p.period }}{% endif -%}
-    {%- if include.p.period and include.p.role %} &middot; {% endif -%}
-    {%- if include.p.role %}{{ include.p.role }}{% endif -%}
+    {%- if p.period %}{{ p.period }}{% endif -%}
+    {%- if p.period and p.role %} &middot; {% endif -%}
+    {%- if p.role %}{{ p.role }}{% endif -%}
   </p>
   {% endif %}
 
-  {% if include.p.highlights %}
-  <div class="entry-body">
-    <ul>
-      {% for h in include.p.highlights %}<li>{{ h }}</li>{% endfor %}
-    </ul>
+  {% if p.figures %}
+  <div class="proj-figures{% if p.figures.size > 1 %} proj-figures-multi{% endif %}">
+    {% for fig in p.figures %}
+    {% assign src = fig.src %}
+    {% unless src contains '://' %}{% assign src = fig.src | relative_url %}{% endunless %}
+    <figure>
+      <!-- Paper figures are unreadable at this size, so they open full-size. -->
+      <a href="{{ src }}" target="_blank" rel="noopener">
+        <img src="{{ src }}" alt="{{ fig.caption | default: p.title | escape }}" loading="lazy">
+      </a>
+      {% if fig.caption %}<figcaption>{{ fig.caption }}</figcaption>{% endif %}
+    </figure>
+    {% endfor %}
   </div>
   {% endif %}
 
-  {% if include.p.stack %}
-  <ul class="tags">
-    {% for s in include.p.stack %}<li>{{ s }}</li>{% endfor %}
+  {% if p.problem %}
+  <div class="proj-block">
+    <div class="proj-label">문제</div>
+    <p>{{ p.problem }}</p>
+  </div>
+  {% endif %}
+
+  {% if p.approach %}
+  <div class="proj-block">
+    <div class="proj-label">해결</div>
+    <p>{{ p.approach }}</p>
+  </div>
+  {% endif %}
+
+  {% if p.metrics %}
+  <ul class="proj-metrics">
+    {% for m in p.metrics %}
+    <li>
+      <span class="proj-metric-value">{{ m.value }}</span>
+      <span class="proj-metric-label">{{ m.label }}</span>
+    </li>
+    {% endfor %}
   </ul>
   {% endif %}
 
-  {% if include.p.code or include.p.demo or include.p.paper %}
+  {% if p.result %}
+  <div class="proj-block">
+    <div class="proj-label">결과</div>
+    <p>{{ p.result }}</p>
+  </div>
+  {% endif %}
+
+  {% if p.example %}
+  <div class="proj-example">
+    <p class="proj-example-q">{{ p.example.question }}</p>
+    <p class="proj-example-a">{{ p.example.answer }}</p>
+  </div>
+  {% endif %}
+
+  {% if p.note %}<p class="proj-note">{{ p.note }}</p>{% endif %}
+
+  {% if p.stack %}
+  <ul class="tags">
+    {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if p.code or p.demo or p.paper %}
   <div class="pub-actions">
-    {% if include.p.code %}<a class="btn btn-ghost" href="{{ include.p.code }}" rel="noopener">Code</a>{% endif %}
-    {% if include.p.demo %}<a class="btn btn-ghost" href="{{ include.p.demo }}" rel="noopener">Demo</a>{% endif %}
-    {% if include.p.paper %}<a class="btn btn-ghost" href="{{ include.p.paper }}" rel="noopener">Paper</a>{% endif %}
+    {% if p.code %}<a class="btn btn-ghost" href="{{ p.code }}" rel="noopener">Code</a>{% endif %}
+    {% if p.demo %}<a class="btn btn-ghost" href="{{ p.demo }}" rel="noopener">Demo</a>{% endif %}
+    {% if p.paper %}<a class="btn btn-ghost" href="{{ p.paper }}" rel="noopener">Paper</a>{% endif %}
   </div>
   {% endif %}
 </li>
+{%- endif -%}
