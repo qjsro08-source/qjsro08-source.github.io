@@ -8,10 +8,12 @@ title: Home
     <h2 class="section-title">About</h2>
 
     <p class="section-lead">
-      I am an M.S. student in Applied AI at SeoulTech, focusing on multimodal
-      large language models (MLLMs) and efficient AI, with particular interests
-      in model architecture design and optimization. Beyond this main focus, I
-      am also interested in 3D scene generation and time-series data.
+      I am an M.S. student in Applied AI at SeoulTech, primarily focusing on
+      multimodal large language models (MLLMs). My research aims to develop
+      efficient MLLMs that reduce computational costs while preserving strong
+      performance, with particular interests in model architecture design and
+      optimization. Beyond MLLMs, I have also conducted research on 3D
+      reconstruction and time-series data.
     </p>
 
     <ul class="tags">

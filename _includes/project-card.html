@@ -78,7 +78,12 @@
   {% if p.example %}
   <div class="proj-example">
     <p class="proj-example-q">{{ p.example.question }}</p>
-    <p class="proj-example-a">{{ p.example.answer }}</p>
+    <dl class="proj-example-a">
+      {% for part in p.example.answer %}
+      <dt>{{ part.label }}</dt>
+      <dd>{{ part.text }}</dd>
+      {% endfor %}
+    </dl>
   </div>
   {% endif %}
 
