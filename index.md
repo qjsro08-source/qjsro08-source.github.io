@@ -12,8 +12,11 @@ title: Home
       multimodal large language models (MLLMs). My research aims to develop
       efficient MLLMs that reduce computational costs while preserving strong
       performance, with particular interests in model architecture design and
-      optimization. Beyond MLLMs, I have also conducted research on 3D
-      reconstruction and time-series data.
+      optimization. I have also conducted research on 3D reconstruction and
+      time-series data, which has broadened my perspective on how AI can
+      perceive and model different aspects of the real world. Through these
+      experiences, my broader research goal is to develop AI systems that can
+      understand and reason about the world through diverse modalities.
     </p>
 
     <ul class="tags">
