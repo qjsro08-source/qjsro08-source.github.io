@@ -1,7 +1,7 @@
 # Site settings
 title:            Jingyo Lim
 tagline:          'AI Researcher · M.S. Student @ SeoulTech'
-description:      'Curriculum Vitae of Jingyo Lim — M.S. student in Applied AI at SeoulTech, researching deep learning for audio, EEG, and multimodal learning.'
+description:      'Curriculum Vitae of Jingyo Lim — M.S. student in Applied AI at SeoulTech, researching efficient multimodal large language models (MLLMs), model architecture design, and optimization.'
 url:              'https://qjsro08-source.github.io'
 baseurl:          ''
 
