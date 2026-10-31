@@ -2,6 +2,10 @@
   One project card: 문제 → 해결 → 결과, with optional figures, headline
   numbers, a sample exchange and a caveat. Pass the entry as `p`.
 
+  A project that needs tables interleaved with its prose uses `sections`
+  instead of problem/approach/result: an ordered list of { label, text,
+  table }, rendered in the order given.
+
   Three modes, so the list and the detail page never drift apart:
     compact=true  name, date and keywords only, linked to the detail page.
                   Used by the home page and /projects/.
@@ -53,6 +57,25 @@
   </div>
   {% endif %}
 
+  {% if p.metrics and p.sections %}
+  <ul class="proj-metrics proj-metrics-lead">
+    {% for m in p.metrics %}
+    <li>
+      <span class="proj-metric-value">{{ m.value }}</span>
+      <span class="proj-metric-label">{{ m.label }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% for sec in p.sections %}
+  <div class="proj-block">
+    {% if sec.label %}<div class="proj-label">{{ sec.label }}</div>{% endif %}
+    {% if sec.text %}<p>{{ sec.text }}</p>{% endif %}
+    {% if sec.table %}{% include proj-table.html t=sec.table %}{% endif %}
+  </div>
+  {% endfor %}
+
   {% if p.problem %}
   <div class="proj-block">
     <div class="proj-label">문제</div>
@@ -67,7 +90,7 @@
   </div>
   {% endif %}
 
-  {% if p.metrics %}
+  {% if p.metrics and p.sections == nil %}
   <ul class="proj-metrics">
     {% for m in p.metrics %}
     <li>

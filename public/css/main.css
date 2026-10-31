@@ -316,7 +316,12 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   padding: 0;
   list-style: none;
 }
-.card-list li { margin: 0; }
+.card-list li {
+  margin: 0;
+  /* A grid item defaults to min-width:auto, so a wide table inside a card
+     would stretch the card — and the page — instead of scrolling itself. */
+  min-width: 0;
+}
 
 /* Publications ------------------------------------------------------------ */
 .pub-group + .pub-group { margin-top: 2rem; }
@@ -462,7 +467,7 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   align-items: start;
 }
 
-.proj-block { margin-bottom: 1rem; }
+.proj-block { margin-bottom: 1rem; min-width: 0; }
 .proj-block p { font-size: .925rem; margin: 0; }
 
 .proj-label {
@@ -488,6 +493,14 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   border-bottom: 1px solid var(--border);
 }
 .proj-metrics li { margin: 0; }
+
+/* Leading the card rather than sitting between two blocks, so it needs no
+   rule above it and a little more air below. */
+.proj-metrics-lead {
+  margin-bottom: 1.4rem;
+  padding-top: 0;
+  border-top: none;
+}
 
 .proj-metric-value {
   display: block;
@@ -543,6 +556,64 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 .proj-note {
   margin: 0 0 1rem;
   font-size: .8rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* Result tables ----------------------------------------------------------- */
+/* Wide tables scroll on their own rather than stretching the page. */
+.proj-table-wrap {
+  margin: .25rem 0 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.proj-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.proj-table th,
+.proj-table td {
+  padding: .45rem .7rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+/* The first column names the row, so it reads left-aligned and stays put. */
+.proj-table th[scope="row"] {
+  text-align: left;
+  font-weight: 450;
+  color: var(--text);
+  white-space: normal;
+  min-width: 9rem;
+}
+
+.proj-table thead th {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: var(--text-secondary);
+  border-bottom-color: var(--border-strong);
+  white-space: nowrap;
+}
+.proj-table thead th:first-child { text-align: left; }
+
+.proj-table tbody td { color: var(--text-body); }
+.proj-table tbody tr:last-child th,
+.proj-table tbody tr:last-child td { border-bottom: none; }
+.proj-table tbody tr:hover td,
+.proj-table tbody tr:hover th { background: var(--chip); }
+
+/* **…** in a cell marks the result being highlighted. */
+.proj-table strong { color: var(--text); font-weight: 650; }
+
+.proj-table-caption {
+  margin: .5rem 0 0;
+  font-size: .78rem;
   line-height: 1.55;
   color: var(--text-secondary);
 }

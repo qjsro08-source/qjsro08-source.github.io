@@ -1,0 +1,30 @@
+{%- comment -%}
+  A small results table inside a project card. Pass it as `t`:
+    head     list of column headers
+    rows     list of rows, each a list of cells
+    caption  optional line under the table
+  Cells go through markdownify so **…** marks the row being highlighted.
+{%- endcomment -%}
+{%- assign t = include.t -%}
+<div class="proj-table-wrap">
+  <table class="proj-table">
+    {% if t.head %}
+    <thead>
+      <tr>
+        {% for h in t.head %}<th scope="col">{{ h }}</th>{% endfor %}
+      </tr>
+    </thead>
+    {% endif %}
+    <tbody>
+      {% for row in t.rows %}
+      <tr>
+        {% for cell in row %}
+        {%- assign c = cell | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+        {% if forloop.first %}<th scope="row">{{ c }}</th>{% else %}<td>{{ c }}</td>{% endif %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% if t.caption %}<p class="proj-table-caption">{{ t.caption }}</p>{% endif %}
