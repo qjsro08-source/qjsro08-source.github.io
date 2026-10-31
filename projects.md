@@ -9,7 +9,7 @@ description: Selected research and engineering projects.
   <div class="wrap">
     <ul class="card-list">
       {% for p in site.data.projects %}
-        {% include project-card.html p=p %}
+        {% include project-card.html p=p compact=true %}
       {% endfor %}
     </ul>
   </div>

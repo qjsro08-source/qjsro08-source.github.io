@@ -1,6 +1,9 @@
 # Projects shown on /projects/ and, for the first few, on the home page.
 #
-# Required : title, problem, approach, result
+# Required : title, slug, problem, approach, result
+#            slug  the detail page's URL (/projects/<slug>/). Adding a project
+#                  also needs a stub page at projects/<slug>.md — Liquid cannot
+#                  create pages on its own, and GitHub Pages allows no plugins.
 # Optional : period, role, stack (list)
 #            figures  list of { src, caption }
 #            metrics  list of { value, label } — the headline numbers
@@ -10,6 +13,7 @@
 #            code / demo / paper — link buttons
 
 - title: 옴니모달 LLM의 토큰 프루닝
+  slug: omnimodal-token-pruning
   period: 2026
   summary: 주변 토큰으로 복원되는 토큰을 골라 버려, 오디오·비디오 토큰을 절반 이하로 줄이면서 성능을 지킵니다.
   stack: ["OmniLLM", "Token Pruning", "Qwen2.5-Omni", "Training-free"]
@@ -50,6 +54,7 @@
       caption: 왼쪽은 각 방법이 남긴 토큰, 오른쪽은 prefill 시간 대비 정확도. 제안 방법은 토큰 45%에서 전체 토큰과 거의 같은 정확도에 도달
 
 - title: 로컬 LLM 육아 상담 챗봇
+  slug: local-llm-parenting-chatbot
   period: 2026
   summary: 아이 기록을 외부로 보내지 않는 육아 상담 챗봇. 상용 API 4종과 같은 조건에서 비교했습니다.
   stack: ["Gemma 4 E4B", "LoRA", "Q4_0 양자화", "RAG", "PyTorch"]
@@ -94,6 +99,7 @@
         text: 발열 여부와 체온, 수유·수분 섭취량, 젖은 기저귀 수 등 탈수 징후를 확인해야 합니다.
 
 - title: 단일 이미지로부터의 3D 장면 복원
+  slug: single-image-3d-scene
   period: 2026
   summary: 사진 한 장을 전경·배경·하늘로 나눠 층별로 복원해, 가려져 있던 배경까지 살린 3D 장면을 만듭니다.
   stack: ["3D Gaussian Splatting", "Diffusion Inpainting", "SAM3", "LLaVA-OneVision"]

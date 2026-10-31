@@ -1,0 +1,51 @@
+---
+layout: default
+---
+{%- comment -%}
+  One project, in full. The stub page under projects/ supplies `slug`; the
+  entry itself lives in _data/projects.yml so the list and this page cannot
+  disagree.
+{%- endcomment -%}
+{%- assign p = nil -%}
+{%- for item in site.data.projects -%}
+  {%- if item.slug == page.slug -%}{%- assign p = item -%}{%- endif -%}
+{%- endfor -%}
+
+<div class="page-header">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="crumb"><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a></p>
+
+    {%- if p -%}
+    <h1 class="section-title">{{ p.title }}</h1>
+
+    {% if p.period or p.role %}
+    <p class="entry-meta">
+      {%- if p.period %}{{ p.period }}{% endif -%}
+      {%- if p.period and p.role %} &middot; {% endif -%}
+      {%- if p.role %}{{ p.role }}{% endif -%}
+    </p>
+    {% endif %}
+
+    {% if p.stack %}
+    <ul class="tags">
+      {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    {%- else -%}
+    <h1 class="section-title">{{ page.title }}</h1>
+    {%- endif -%}
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    {%- if p -%}
+    <ul class="card-list">
+      {% include project-card.html p=p detail=true %}
+    </ul>
+    {%- else -%}
+    <p>No project matches the slug <code>{{ page.slug }}</code> in <code>_data/projects.yml</code>.</p>
+    {%- endif -%}
+  </div>
+</section>

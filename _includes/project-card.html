@@ -1,22 +1,31 @@
 {%- comment -%}
   One project card: 문제 → 해결 → 결과, with optional figures, headline
-  numbers, a sample exchange and a caveat. Shared by the home-page summary
-  and /projects/, so the two never drift apart. Pass the entry as `p`.
+  numbers, a sample exchange and a caveat. Pass the entry as `p`.
+
+  Three modes, so the list and the detail page never drift apart:
+    compact=true  name, date and keywords only, linked to the detail page.
+                  Used by the home page and /projects/.
+    detail=true   everything except the title and period, which the detail
+                  page already shows in its header.
+    (neither)     the full card, title included.
 {%- endcomment -%}
 {%- assign p = include.p -%}
 {%- if include.compact -%}
 <li class="card proj proj-compact">
-  <h3 class="entry-title">{{ p.title }}</h3>
-  {% if p.period %}<p class="entry-meta">{{ p.period }}</p>{% endif %}
-  {% if p.summary %}<p class="proj-summary">{{ p.summary }}</p>{% endif %}
-  {% if p.stack %}
-  <ul class="tags">
-    {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
-  </ul>
-  {% endif %}
+  <a class="proj-link" href="{{ p.slug | prepend: '/projects/' | append: '/' | relative_url }}">
+    <h3 class="entry-title">{{ p.title }}</h3>
+    {% if p.period %}<p class="entry-meta">{{ p.period }}</p>{% endif %}
+    {% if p.summary %}<p class="proj-summary">{{ p.summary }}</p>{% endif %}
+    {% if p.stack %}
+    <ul class="tags">
+      {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+  </a>
 </li>
 {%- else -%}
 <li class="card proj">
+  {%- unless include.detail -%}
   <h3 class="entry-title">{{ p.title }}</h3>
 
   {% if p.period or p.role %}
@@ -26,6 +35,7 @@
     {%- if p.role %}{{ p.role }}{% endif -%}
   </p>
   {% endif %}
+  {%- endunless -%}
 
   {% if p.figures %}
   <div class="proj-figures{% if p.figures.size > 1 %} proj-figures-multi{% endif %}">
@@ -89,7 +99,7 @@
 
   {% if p.note %}<p class="proj-note">{{ p.note }}</p>{% endif %}
 
-  {% if p.stack %}
+  {% if p.stack and include.detail != true %}
   <ul class="tags">
     {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
   </ul>

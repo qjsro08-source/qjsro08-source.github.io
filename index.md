@@ -137,7 +137,7 @@ title: Home
       </div>
       <div>
         <div class="row-label">AI / ML Frameworks and Tools</div>
-        <div class="row-value">PyTorch, TensorFlow, ONNX</div>
+        <div class="row-value">PyTorch, TensorFlow, ONNX, Transformers, Accelerate, DeepSpeed</div>
       </div>
       <div>
         <div class="row-label">Infrastructure and Development Tools</div>
