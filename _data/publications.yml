@@ -12,6 +12,8 @@
 #                     (a full https:// URL works too)
 #            paper    link button "Paper"
 #            code     link button "Code"
+#
+# A group with `hidden: true` stays here but is not shown.
 #            project  link button "Project"
 #            poster   link button "Poster" — a local PDF works, same path form
 #            video    link button "Video"
@@ -75,6 +77,7 @@
         low-power condition monitoring on the machine itself.
 
 - group: Under Review
+  hidden: true
   items:
     - venue: "ICLR 2027"
       title: "QRePair: Question-Guided Reconstruction via Paired Prototype Retrieval for Missing-Modality Audio-Visual Question Answering"

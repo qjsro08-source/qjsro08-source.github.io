@@ -32,6 +32,7 @@ title: Home
     <h2 class="section-title">Publications</h2>
 
     {% for group in site.data.publications %}
+    {% if group.hidden %}{% continue %}{% endif %}
     <div class="pub-group">
       <h3 class="pub-group-title">{{ group.group }}</h3>
 
