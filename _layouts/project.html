@@ -5,7 +5,14 @@ layout: default
   One project, in full. The stub page under projects/ supplies `slug`; the
   entry itself lives in _data/projects.yml so the list and this page cannot
   disagree.
+
+  A stub that has a body of its own is a hand-built page (figures, an
+  animated hero, full paper tables) and is rendered as written instead.
 {%- endcomment -%}
+{%- assign body = content | strip -%}
+{%- if body != "" -%}
+{{ content }}
+{%- else -%}
 {%- assign p = nil -%}
 {%- for item in site.data.projects -%}
   {%- if item.slug == page.slug -%}{%- assign p = item -%}{%- endif -%}
@@ -49,3 +56,4 @@ layout: default
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}

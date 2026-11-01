@@ -41,6 +41,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650&display=swap">
   <link rel="stylesheet" href="{{ '/public/css/main.css' | relative_url }}">
+  {%- for css in page.extra_css %}
+  <link rel="stylesheet" href="{{ css | relative_url }}">
+  {%- endfor %}
 
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ '/public/apple-touch-icon-144-precomposed.png' | relative_url }}">
   <link rel="shortcut icon" href="{{ '/public/favicon.ico' | relative_url }}">
