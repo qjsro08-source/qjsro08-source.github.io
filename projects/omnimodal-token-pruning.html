@@ -136,25 +136,23 @@ extra_css: [/public/css/project-rich.css]
     <div class="rp-obs">
       <span class="rp-obs-num">OBSERVATION 01</span>
       <h3>레이어가 더하는 변화는 대부분 직교 성분이다</h3>
-      <div class="rp-obs-grid">
-        <div class="rp-prose">
-          <p>
-          누적된 token state만 보면 이웃 토큰끼리 무척 비슷합니다(이웃 cosine 유사도 평균 비전 0.620, 오디오 0.893). 그러나 블록이
-          더하는 업데이트로 보면 훨씬 덜 닮았습니다(0.385, 0.601). 같은 상태에서 출발한 토큰도 레이어마다 다른 변화를 겪는다는 뜻입니다.
-        </p>
+      <div class="rp-prose">
         <p>
-          그 업데이트를 입력 방향에 대해 분해하면, 오디오 인코더에서 <strong>직교 성분이 업데이트 에너지의 평균 88% 이상</strong>을
-          차지하고 비전 인코더도 비슷합니다. 직교 성분을 평행 성분 크기만큼 줄이면 평행 성분을 통째로 지울 때보다 정확도가 더 떨어집니다.
-          토큰이 새로 얻는 정보는 직교 성분에 실려 있고, 그래서 직교 업데이트를 복원 대상으로 삼습니다.
-        </p>
-        </div>
-        <figure class="rp-figure rp-figure-side">
-          <a class="rp-figure-frame" href="{{ img }}orth-energy.png" target="_blank" rel="noopener">
-            <img src="{{ img }}orth-energy.png" alt="오디오 인코더 레이어별 직교 에너지 비율 분포" width="1000" height="1182" loading="lazy">
-          </a>
-          <figcaption><b>Figure 2.</b> 오디오 인코더의 attention(a)·FFN(b) 업데이트에서 직교 성분이 차지하는 에너지 비율. 대부분의 토큰이 위쪽(80–100%)에 몰려 있습니다.</figcaption>
-        </figure>
+        누적된 token state만 보면 이웃 토큰끼리 무척 비슷합니다(이웃 cosine 유사도 평균 비전 0.620, 오디오 0.893). 그러나 블록이
+        더하는 업데이트로 보면 훨씬 덜 닮았습니다(0.385, 0.601). 같은 상태에서 출발한 토큰도 레이어마다 다른 변화를 겪는다는 뜻입니다.
+      </p>
+      <p>
+        그 업데이트를 입력 방향에 대해 분해하면, 오디오 인코더에서 <strong>직교 성분이 업데이트 에너지의 평균 88% 이상</strong>을
+        차지하고 비전 인코더도 비슷합니다. 직교 성분을 평행 성분 크기만큼 줄이면 평행 성분을 통째로 지울 때보다 정확도가 더 떨어집니다.
+        토큰이 새로 얻는 정보는 직교 성분에 실려 있고, 그래서 직교 업데이트를 복원 대상으로 삼습니다.
+      </p>
       </div>
+      <figure class="rp-figure rp-figure-wide">
+        <a class="rp-figure-frame" href="{{ img }}orth-energy.png" target="_blank" rel="noopener">
+          <img src="{{ img }}orth-energy.png" alt="오디오 인코더 레이어별 직교 에너지 비율 분포" width="2040" height="602" loading="lazy">
+        </a>
+        <figcaption><b>Figure 2.</b> 오디오 인코더의 attention(a)·FFN(b) 업데이트에서 직교 성분이 차지하는 에너지 비율. 대부분의 토큰이 위쪽(80–100%)에 몰려 있습니다.</figcaption>
+      </figure>
       <figure class="rp-figure rp-figure-wide">
         <a class="rp-figure-frame" href="{{ img }}recon-targets.png" target="_blank" rel="noopener">
           <img src="{{ img }}recon-targets.png" alt="복원 대상별 Pre-LLM 토큰 선택 비교" width="2020" height="365" loading="lazy">
