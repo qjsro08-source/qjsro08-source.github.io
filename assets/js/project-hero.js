@@ -1,9 +1,13 @@
 // Step-through hero for a hand-built project page.
 //
-// Markup: an element with [data-hero] holding step buttons [data-step-btn].
-// Each button carries what its step shows in the readout — data-name,
-// data-acc, data-dec (decimals), data-sub — and how long it holds (data-hold,
-// ms). CSS keys everything else off the hero's data-step attribute, and the
+// Markup: an element with [data-hero] holding step buttons [data-step-btn],
+// each with how long its step holds (data-hold, ms). Optional pieces:
+//   readout      [data-out-name] [data-out-acc] [data-out-sub], fed by the
+//                button's data-name, data-acc, data-dec (decimals), data-sub
+//   [data-at=i]  gets is-past / is-now / is-next relative to the step
+//   [data-step-text="a|b|c"]   text for each step
+//   [data-step-width="1,2,3"]  width (%) for each step
+// CSS keys everything else off the hero's data-step attribute, and the
 // markup ships the final step, so the page reads correctly without this file.
 (function () {
   var hero = document.querySelector('[data-hero]')
@@ -22,11 +26,15 @@
   var timer = null
   var playing = false    // the user's choice: autoplay on or off
   var visible = true     // on screen and in a foreground tab
-  var shownAcc = parseFloat(btns[last].dataset.acc)
+  var shownAcc = outAcc ? parseFloat(btns[last].dataset.acc) : 0
+  var atEls = Array.prototype.slice.call(hero.querySelectorAll('[data-at]'))
+  var textEls = Array.prototype.slice.call(hero.querySelectorAll('[data-step-text]'))
+  var widthEls = Array.prototype.slice.call(hero.querySelectorAll('[data-step-width]'))
   var countFrame = null
   var countSettle = null
 
   function countTo(target, dec) {
+    if (!outAcc) return
     if (countFrame) cancelAnimationFrame(countFrame)
     clearTimeout(countSettle)
     if (reduce) { outAcc.textContent = target.toFixed(dec); shownAcc = target; return }
@@ -54,9 +62,17 @@
     hero.dataset.step = String(i)
     hero.style.setProperty('--hold', (b.dataset.hold || 2000) + 'ms')
     btns.forEach(function (x, j) { x.setAttribute('aria-pressed', j === i ? 'true' : 'false') })
-    outName.textContent = b.dataset.name
-    outSub.textContent = b.dataset.sub
+    if (outName) outName.textContent = b.dataset.name
+    if (outSub) outSub.textContent = b.dataset.sub
     countTo(parseFloat(b.dataset.acc), parseInt(b.dataset.dec || '1', 10))
+    atEls.forEach(function (el) {
+      var k = parseInt(el.dataset.at, 10)
+      el.classList.toggle('is-past', k < i)
+      el.classList.toggle('is-now', k === i)
+      el.classList.toggle('is-next', k > i)
+    })
+    textEls.forEach(function (el) { el.textContent = el.dataset.stepText.split('|')[i] })
+    widthEls.forEach(function (el) { el.style.width = el.dataset.stepWidth.split(',')[i] + '%' })
     // Restart the progress bar on the active step.
     hero.classList.remove('is-ticking')
     void hero.offsetWidth

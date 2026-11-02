@@ -1,0 +1,263 @@
+---
+layout: project
+slug: local-llm-parenting-chatbot
+permalink: /projects/local-llm-parenting-chatbot/
+title: 로컬 LLM 육아 상담 챗봇
+description: 아이 기록을 근거로 답하는 온디바이스 육아 상담 챗봇. 같은 조건에서 상용 API 4종과 38턴을 비교했습니다.
+extra_css: [/public/css/project-rich.css]
+---
+
+<header class="rp-header">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap rp-wrap">
+    <p class="crumb"><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a></p>
+    <h1 class="rp-title">로컬 LLM 육아 상담 챗봇</h1>
+    <p class="rp-subtitle">An on-device parenting assistant that answers from the child&rsquo;s own records</p>
+    <p class="rp-meta">2026</p>
+    <ul class="tags">
+      <li>Gemma 4 E4B</li><li>LoRA</li><li>Q4_0 양자화</li><li>RAG</li><li>PyTorch</li>
+    </ul>
+    <div class="rp-actions">
+      <a class="btn btn-primary" href="#idea">구조 보기 &darr;</a>
+      <a class="btn btn-ghost" href="#results">비교 결과 &darr;</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap rp-wrap">
+
+  <!-- Hero: one conversation replayed turn by turn. Ships on the last turn. -->
+  <section class="rp-hero ch-hero" data-hero data-step="4" aria-label="대화 재생: 앞 턴에 기대는 질문에 기록을 근거로 답하기">
+    <div class="ch-head">
+      <p class="rp-eyebrow">대화 재생 &middot; 앞 턴 없이는 뜻이 통하지 않는 질문들</p>
+      <ol class="ch-history">
+        <li class="is-past" data-at="0">어제 아기가 토했어요</li>
+        <li class="is-past" data-at="1">두 번이요</li>
+        <li class="is-past" data-at="2">그건 기록에도 있어요?</li>
+        <li class="is-past" data-at="3">그럼 그거랑 설사도 관련 있을까요?</li>
+        <li class="is-now" data-at="4">언제까지 지켜봐도 돼요?</li>
+      </ol>
+    </div>
+
+    <div class="ch-body">
+      <div class="ch-chat">
+        <div class="ch-turn is-past" data-at="0">
+          <p class="ch-user">어제 아기가 토했어요</p>
+          <div class="ch-answer">
+            <div class="ch-sec"><span class="ch-sec-label">관찰된 사실</span>
+              <p>어제 아기가 토한 것으로 기록되어 있습니다.</p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">권장 행동</span>
+              <p>아기의 건강 상태를 확인하고, 걱정이 있으면 의사나 아동보건 간호사에게 상담하는 것이 좋습니다.</p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">되묻기</span>
+              <p>토한 정확한 시각과 현재까지의 횟수는 몇 번인가요?</p>
+              <p>토한 양과 내용(분수처럼 뿜었는지, 초록색 또는 피가 섞였는지)은 어떠했나요?</p>
+            </div>
+          </div>
+          <p class="ch-meta">온디바이스 · 11.7 s · 47 tok/s · 출력 549 토큰 · <b>$0</b></p>
+        </div>
+        <div class="ch-turn is-past" data-at="1">
+          <p class="ch-user">두 번이요</p>
+          <div class="ch-answer">
+            <div class="ch-sec"><span class="ch-sec-label">관찰된 사실</span>
+              <p>2026-08-04 오후에 구토를 한 번 더 했다는 기록이 있습니다. <span class="ch-cite ch-cite-rec">아이 기록</span></p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">일반 설명</span>
+              <p>모유 수유 아기는 일반적으로 24시간에 8~12회 수유할 수 있으며, 모유 섭취가 충분한지 확인할 때 수유 횟수와 삼킴, 젖은 기저귀를 함께 살펴볼 수 있습니다. <span class="ch-cite ch-cite-doc">전문자료 p.49</span></p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">권장 행동</span>
+              <p>구토가 실제로 발생한 정확한 시각과 두 기록이 같은 날의 구토인지 확인이 필요합니다. <span class="ch-cite ch-cite-rec">아이 기록 ×2</span></p>
+            </div>
+          </div>
+          <p class="ch-meta">온디바이스 · 26.2 s · 54 tok/s · 출력 1,401 토큰 · <b>$0</b></p>
+        </div>
+        <div class="ch-turn is-past" data-at="2">
+          <p class="ch-user">그건 기록에도 있어요?</p>
+          <div class="ch-answer">
+            <div class="ch-sec"><span class="ch-sec-label">관찰된 사실</span>
+              <p>2026년 8월 3일에 “조금 토했어”라고 구토가 기록되어 있습니다.</p>
+              <p>2026년 8월 4일에 “오후에 한 번 더 토함”이라고 구토가 기록되어 있습니다.</p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">권장 행동</span>
+              <p>구토 증상이 8월 3일과 4일에 기록되어 있습니다. 어제 상황을 더 알려주시겠어요?</p>
+            </div>
+          </div>
+          <p class="ch-meta">온디바이스 · 7.7 s · 47 tok/s · 출력 364 토큰 · <b>$0</b></p>
+        </div>
+        <div class="ch-turn is-past" data-at="3">
+          <p class="ch-user">그럼 그거랑 설사도 관련 있을까요?</p>
+          <div class="ch-answer">
+            <div class="ch-sec"><span class="ch-sec-label">관찰된 사실</span>
+              <p>2026년 8월 5일과 6일에 ‘묽은 변’ 증상이 기록되어 있습니다. <span class="ch-cite ch-cite-rec">아이 기록 ×2</span></p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">일반 설명</span>
+              <p>모유 수유 아기는 잦고 묽은 변을 보더라도 그것만으로 설사나 유당불내증을 의미하지 않을 수 있습니다. <span class="ch-cite ch-cite-doc">전문자료 p.49</span></p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">권장 행동</span>
+              <p>구토와 묽은 변이 같은 원인으로 인한 것인지 현재 자료만으로는 판단할 수 없으므로, 추가적인 증상이나 상황에 대한 기록이 필요합니다. <span class="ch-cite ch-cite-gap">정보 부족</span></p>
+            </div>
+          </div>
+          <p class="ch-meta">온디바이스 · 32.4 s · 53 tok/s · 출력 1,722 토큰 · <b>$0</b></p>
+        </div>
+        <div class="ch-turn is-now" data-at="4">
+          <p class="ch-user">언제까지 지켜봐도 돼요?</p>
+          <div class="ch-answer">
+            <div class="ch-sec"><span class="ch-sec-label">관찰된 사실</span>
+              <p>구토는 2026년 8월 3일과 4일에, 설사는 8월 5일과 6일에 각각 1회씩 기록되어 있습니다. <span class="ch-cite ch-cite-rec">아이 기록 ×4</span></p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">일반 설명</span>
+              <p>구토와 설사가 함께 나타나는 경우 장염의 가능성을 고려할 수 있으나, 다른 원인도 있을 수 있습니다. <span class="ch-cite ch-cite-rec">아이 기록 ×4</span></p>
+            </div>
+            <div class="ch-sec"><span class="ch-sec-label">권장 행동</span>
+              <p>발열 여부와 체온, 수유·수분 섭취량, 소변량과 젖은 기저귀 수, 입마름·눈물 감소 등 탈수 징후를 확인해야 합니다. <span class="ch-cite ch-cite-gap">정보 부족</span></p>
+            </div>
+          </div>
+          <p class="ch-meta">온디바이스 · 33.1 s · 53 tok/s · 출력 1,766 토큰 · <b>$0</b></p>
+        </div>
+      </div>
+
+      <aside class="ch-cost" aria-label="이 대화의 누적 답변 비용">
+        <p class="ch-cost-title">이 대화의 누적 답변 비용</p>
+        <ul class="ch-bars">
+          <li><span class="ch-bar-name">GPT-5.6 Luna</span>
+            <span class="ch-bar-track"><span class="ch-bar" style="width:67.3%" data-step-width="14.5,25.2,32.9,50.4,67.3"></span></span>
+            <span class="ch-bar-val" data-step-text="$0.0043|$0.0074|$0.0097|$0.0149|$0.0199">$0.0199</span></li>
+          <li><span class="ch-bar-name">DeepSeek V4 Flash</span>
+            <span class="ch-bar-track"><span class="ch-bar" style="width:4.2%" data-step-width="1.1,1.9,2.3,3.1,4.2"></span></span>
+            <span class="ch-bar-val" data-step-text="$0.0003|$0.0006|$0.0007|$0.0009|$0.0012">$0.0012</span></li>
+          <li><span class="ch-bar-name">Gemini 3.6 Flash</span>
+            <span class="ch-bar-track"><span class="ch-bar" style="width:100.0%" data-step-width="25.2,40.2,50.8,76.8,100.0"></span></span>
+            <span class="ch-bar-val" data-step-text="$0.0075|$0.0119|$0.0150|$0.0227|$0.0295">$0.0295</span></li>
+          <li><span class="ch-bar-name">Claude Haiku 4.5</span>
+            <span class="ch-bar-track"><span class="ch-bar" style="width:99.0%" data-step-width="20.2,37.7,49.6,75.0,99.0"></span></span>
+            <span class="ch-bar-val" data-step-text="$0.0060|$0.0111|$0.0146|$0.0221|$0.0292">$0.0292</span></li>
+          <li class="ch-bars-ours"><span class="ch-bar-name">Ours · 온디바이스</span>
+            <span class="ch-bar-track"><span class="ch-bar" style="width:0"></span></span>
+            <span class="ch-bar-val">$0</span></li>
+        </ul>
+        <p class="ch-cost-note">38턴 전체로는 API 4종이 $0.0176–$0.3507, Ours는 $0입니다.</p>
+      </aside>
+    </div>
+
+    <ul class="rp-steps ch-steps">
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="4300">1 · 토했어요</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="4600">2 · 두 번이요</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="4000">3 · 기록에도?</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="4800">4 · 설사도?</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="true" data-hold="6200">5 · 언제까지?</button></li>
+    </ul>
+
+    <div class="rp-hero-foot">
+      <p class="rp-hero-caption">
+        Gemma 4 E4B에 육아 서적으로 LoRA를 학습하고 Q4_0으로 양자화해 기기 안에서 돌린 답변입니다(턴마다 일부 문장만 발췌).
+        문장마다 아이 기록이나 전문자료 근거가 붙고, 판단에 필요한 정보가 없으면 그렇다고 표시합니다. 비용은 같은 대화를 API 모델로 돌렸을 때의 실측값입니다.
+      </p>
+      <div class="rp-controls">
+        <button class="btn btn-ghost" type="button" data-toggle>일시정지</button>
+        <button class="btn btn-ghost" type="button" data-replay>처음부터</button>
+      </div>
+    </div>
+  </section>
+
+  <ul class="rp-numbers">
+    <li><span class="rp-num">$0</span><span class="rp-num-label">답변 생성 비용 — 38턴, API는 $0.0176–$0.3507</span></li>
+    <li><span class="rp-num">51 tok/s</span><span class="rp-num-label">온디바이스 생성 속도 (중앙값)</span></li>
+    <li><span class="rp-num">Q4_0</span><span class="rp-num-label">4-bit 양자화로 기기 안에서 실행</span></li>
+    <li><span class="rp-num">5 × 38</span><span class="rp-num-label">같은 대화를 모델 5개로 비교</span></li>
+  </ul>
+
+  <!-- 1 · System ------------------------------------------------------------------ -->
+  <section class="rp-section" id="idea">
+    <p class="rp-kicker">구조</p>
+    <h2 class="rp-h2">답변은 기기 안에서 만든다</h2>
+    <p class="rp-lead">
+      육아 상담은 수유·배변·발열 같은 아이의 민감한 기록을 그대로 다루고, 부모는 같은 상황을 하루에도 몇 번씩 되묻습니다.
+      그래서 답변 모델을 <strong>기기 안에서 돌리는 작은 LLM</strong>으로 두었습니다. 아이 기록이 담긴 근거를 외부 모델에 보내지 않고 답을 만들며, 질문이 늘어도 비용이 늘지 않습니다.
+    </p>
+    <div class="rp-prose">
+      <p>
+        질문이 들어오면 먼저 어떤 경로가 필요한지 분류하고, 필요하면 아이 기록과 전문자료를 찾아 답에 쓸 근거만 압축합니다.
+        답변 모델은 이 근거를 받아 정해진 네 부분으로 답하고, 문장마다 근거 ID를 답니다. 근거가 없는 판단은 하지 않고 <strong>정보 부족</strong>으로 표시한 뒤 되묻습니다.
+      </p>
+    </div>
+
+    <ol class="ch-flow" aria-label="처리 흐름">
+      <li><span class="ch-flow-k">1</span><b>질문 분류</b><small>단순 응답 · 기록 조회 · 전문자료 · 위험 대응</small></li>
+      <li><span class="ch-flow-k">2</span><b>근거 찾기</b><small>아이 기록 208건 · 전문자료 5종 467청크</small></li>
+      <li><span class="ch-flow-k">3</span><b>근거 압축</b><small>답에 쓸 문장만 남기고 ID를 붙임</small></li>
+      <li class="is-ours"><span class="ch-flow-k">4</span><b>답변 모델</b><small>Gemma 4 E4B + 육아 LoRA · Q4_0 · 온디바이스</small></li>
+    </ol>
+
+    <div class="ch-schema">
+      <article><h3>관찰된 사실</h3><p>아이 기록에서 확인되는 것만 말합니다.</p><span class="ch-cite ch-cite-rec">아이 기록</span></article>
+      <article><h3>일반 설명</h3><p>전문자료에 근거한 육아·의학 지식입니다.</p><span class="ch-cite ch-cite-doc">전문자료</span></article>
+      <article><h3>권장 행동</h3><p>지금 부모가 할 일을 구체적으로 제시합니다.</p><span class="ch-cite ch-cite-gap">정보 부족</span></article>
+      <article><h3>되묻기</h3><p>판단에 빠진 정보를 다시 묻습니다.</p></article>
+    </div>
+  </section>
+
+  <!-- 2 · Evaluation design -------------------------------------------------------- -->
+  <section class="rp-section" id="design">
+    <p class="rp-kicker">평가 설계</p>
+    <h2 class="rp-h2">차이가 답변 모델에서만 나오도록</h2>
+    <div class="rp-prose">
+      <p>
+        같은 대화 10세트 38턴을 모델 5개로 돌렸습니다. 질문 분류·기록 조회·전문자료 검색·근거 압축은 GPT-5.6 Luna로 <strong>한 번만 실행해 고정</strong>하고 모든 모델에 똑같이 넣었으며,
+        이전 턴의 답변도 고정 대본으로 두어 모든 모델이 같은 대화 이력을 봅니다. 그래서 결과의 차이는 답변 모델에서 나옵니다.
+        아이는 10개월, 기록은 208건, 전문자료는 5종 467청크입니다.
+      </p>
+    </div>
+    <div class="rp-table-block">
+      <div class="rp-table-wrap" tabindex="0" role="region" aria-label="대화 세트">
+        <table class="rp-table ch-sets">
+          <thead><tr><th scope="col">#</th><th scope="col">유형</th><th scope="col">세트</th><th scope="col">보는 것</th><th scope="col">첫 발화</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">01</th><td>단순 대화</td><td>인사와 격려</td><td>과잉 대응하지 않고 사람처럼 답하는가</td><td>“안녕하세요, 오늘 처음 써 봐요”</td></tr>
+            <tr><th scope="row">02</th><td>기록 조회</td><td>밤잠 기록 파고들기</td><td>‘그중에’, ‘낮잠은?’처럼 앞 턴에 기대는 후속 질문</td><td>“지난 이주일 밤잠 기록 좀 보여줘”</td></tr>
+            <tr><th scope="row">03</th><td>기록 조회</td><td>성장 기록</td><td>‘키는?’처럼 극단적으로 짧은 후속 질문</td><td>“우리 아이 몸무게 기록 알려줘”</td></tr>
+            <tr><th scope="row">04</th><td>전문자료 검색</td><td>이유식 진행</td><td>전문자료 근거를 대야 하는 질문이 연달아 올 때</td><td>“10개월인데 이유식을 하루 몇 번 주는 게 맞을까요”</td></tr>
+            <tr><th scope="row">05</th><td>전문자료 검색</td><td>수면교육 상담</td><td>부모가 표현한 거부감을 다음 답에 반영하는가</td><td>“밤에 자꾸 깨는데 수면교육 시작해도 될까요”</td></tr>
+            <tr><th scope="row">06</th><td>의학 지식 · 위험</td><td>발열 경과</td><td>실제 발열·투약 기록과 이어지는 위험 판단과 병원 권고</td><td>“아침에 열이 38.2도였는데 지금은 37.9도예요”</td></tr>
+            <tr><th scope="row">07</th><td>의학 지식 · 위험</td><td>호흡 이상</td><td>응급 판단을 미루거나 과하게 놀래키지 않는가</td><td>“쌕쌕거리는 소리도 조금 나요”</td></tr>
+            <tr><th scope="row">08</th><td>기록 + 지식</td><td>수유량 적정성</td><td>기록 조회에서 일반 지식으로 경로가 바뀌는 대화</td><td>“어제 분유 몇 번 먹었는지 기록 보여줘”</td></tr>
+            <tr><th scope="row">09</th><td>의학 지식 · 위험</td><td>해열제 중복투여</td><td>부모를 탓하지 않으면서 위험을 정확히 전달하는가</td><td>“해열제를 두 번 준 것 같아요. 8시랑 9시에요”</td></tr>
+            <tr><th scope="row">10</th><td>맥락 의존</td><td>구토 맥락의존</td><td>‘두 번이요’, ‘그건’처럼 앞 턴 없이는 해석할 수 없는 발화</td><td>“어제 아기가 토했어요”</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Results ------------------------------------------------------------------ -->
+  <section class="rp-section" id="results">
+    <p class="rp-kicker">비교 결과</p>
+    <h2 class="rp-h2">같은 형식의 답을, 비용 없이</h2>
+    <div class="rp-prose">
+      <p>
+        API 모델 4종은 같은 38턴에 <strong>$0.0176–$0.3507</strong>을 썼고, 기기 안에서 도는 Ours는 비용이 들지 않습니다.
+        답변은 모두 관찰된 사실 · 일반 설명 · 권장 행동 · 되묻기의 같은 형식으로 나오며, Ours는 문장마다 아이 기록과 전문자료 근거 ID를 붙입니다.
+        생성 속도는 온디바이스 기준 초당 51토큰(중앙값)입니다.
+      </p>
+    </div>
+    <div class="rp-table-block">
+      <h3 class="rp-table-title">모델별 합계 · 10세트 38턴</h3>
+      <p class="rp-table-note">비용은 성공한 호출만 합산, 응답 시간은 중앙값입니다.</p>
+      <div class="rp-table-wrap" tabindex="0" role="region" aria-label="모델별 합계">
+        <table class="rp-table">
+          <thead><tr><th scope="col">모델</th><th scope="col">실행</th><th scope="col">답변 성공</th><th scope="col">총비용</th><th scope="col">출력 토큰</th><th scope="col">응답 시간</th><th scope="col">생성 속도</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">GPT-5.6 Luna</th><td>API</td><td>36/38</td><td>$0.2658</td><td>34,272</td><td>6,396 ms</td><td>–</td></tr>
+            <tr><th scope="row">DeepSeek V4 Flash</th><td>API</td><td>37/38</td><td>$0.0176</td><td>37,121</td><td>6,022 ms</td><td>–</td></tr>
+            <tr><th scope="row">Gemini 3.6 Flash</th><td>API</td><td>36/38</td><td>$0.3507</td><td>34,060</td><td>7,815 ms</td><td>–</td></tr>
+            <tr><th scope="row">Claude Haiku 4.5</th><td>API</td><td>37/38</td><td>$0.2796</td><td>35,159</td><td>8,317 ms</td><td>–</td></tr>
+            <tr class="is-ours"><th scope="row">Ours · Gemma 4 E4B + 육아 LoRA</th><td>온디바이스 Q4_0</td><td>33/38</td><td class="is-best">$0</td><td>40,178</td><td>17,755 ms</td><td>51 tok/s</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="{{ '/assets/js/project-hero.js' | relative_url }}" defer></script>
