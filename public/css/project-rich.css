@@ -232,6 +232,7 @@ html.dark {
   list-style: none;
 }
 .rp-numbers li { margin: 0; }
+.rp-numbers.rp-numbers-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .rp-num {
   display: block;
   font-size: clamp(1.4rem, 3.2vw, 1.85rem);
@@ -577,7 +578,7 @@ html.dark .ch-cite-gap { color: #f0c26e; background: rgba(230, 170, 60, .18); }
 @media (max-width: 760px) {
   .rp-hero { padding: 1rem; border-radius: 16px; }
   .rp-hero-body { grid-template-columns: 1fr; }
-  .rp-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rp-numbers, .rp-numbers.rp-numbers-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rp-stages, .rp-figure-pair, .rp-obs-grid { grid-template-columns: 1fr; }
   .rp-step { font-size: .74rem; padding: .45rem .2rem .55rem; }
   .ch-body { grid-template-columns: 1fr; }
