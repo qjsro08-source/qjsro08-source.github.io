@@ -55,7 +55,7 @@ extra_css: [/public/css/project-rich.css]
               <p>토한 양과 내용(분수처럼 뿜었는지, 초록색 또는 피가 섞였는지)은 어떠했나요?</p>
             </div>
           </div>
-          <p class="ch-meta">온디바이스 · 11.7 s · 출력 549 토큰 · <b>$0</b></p>
+          <p class="ch-meta">11.7 s · 47 tok/s · 출력 549 토큰 · <b>$0</b></p>
         </div>
         <div class="ch-turn is-past" data-at="1">
           <p class="ch-user">두 번이요</p>
@@ -70,7 +70,7 @@ extra_css: [/public/css/project-rich.css]
               <p>구토가 실제로 발생한 정확한 시각과 두 기록이 같은 날의 구토인지 확인이 필요합니다. <span class="ch-cite ch-cite-rec">아이 기록 ×2</span></p>
             </div>
           </div>
-          <p class="ch-meta">온디바이스 · 26.2 s · 출력 1,401 토큰 · <b>$0</b></p>
+          <p class="ch-meta">26.2 s · 54 tok/s · 출력 1,401 토큰 · <b>$0</b></p>
         </div>
         <div class="ch-turn is-past" data-at="2">
           <p class="ch-user">그건 기록에도 있어요?</p>
@@ -83,7 +83,7 @@ extra_css: [/public/css/project-rich.css]
               <p>구토 증상이 8월 3일과 4일에 기록되어 있습니다. 어제 상황을 더 알려주시겠어요?</p>
             </div>
           </div>
-          <p class="ch-meta">온디바이스 · 7.7 s · 출력 364 토큰 · <b>$0</b></p>
+          <p class="ch-meta">7.7 s · 47 tok/s · 출력 364 토큰 · <b>$0</b></p>
         </div>
         <div class="ch-turn is-past" data-at="3">
           <p class="ch-user">그럼 그거랑 설사도 관련 있을까요?</p>
@@ -98,7 +98,7 @@ extra_css: [/public/css/project-rich.css]
               <p>구토와 묽은 변이 같은 원인으로 인한 것인지 현재 자료만으로는 판단할 수 없으므로, 추가적인 증상이나 상황에 대한 기록이 필요합니다. <span class="ch-cite ch-cite-gap">정보 부족</span></p>
             </div>
           </div>
-          <p class="ch-meta">온디바이스 · 32.4 s · 출력 1,722 토큰 · <b>$0</b></p>
+          <p class="ch-meta">32.4 s · 53 tok/s · 출력 1,722 토큰 · <b>$0</b></p>
         </div>
         <div class="ch-turn is-now" data-at="4">
           <p class="ch-user">언제까지 지켜봐도 돼요?</p>
@@ -113,7 +113,7 @@ extra_css: [/public/css/project-rich.css]
               <p>발열 여부와 체온, 수유·수분 섭취량, 소변량과 젖은 기저귀 수, 입마름·눈물 감소 등 탈수 징후를 확인해야 합니다. <span class="ch-cite ch-cite-gap">정보 부족</span></p>
             </div>
           </div>
-          <p class="ch-meta">온디바이스 · 33.1 s · 출력 1,766 토큰 · <b>$0</b></p>
+          <p class="ch-meta">33.1 s · 53 tok/s · 출력 1,766 토큰 · <b>$0</b></p>
         </div>
       </div>
 
@@ -160,8 +160,9 @@ extra_css: [/public/css/project-rich.css]
     </div>
   </section>
 
-  <ul class="rp-numbers rp-numbers-3">
+  <ul class="rp-numbers">
     <li><span class="rp-num">$0</span><span class="rp-num-label">답변 생성 비용 — 38턴, API는 $0.0176–$0.3507</span></li>
+    <li><span class="rp-num">51 tok/s</span><span class="rp-num-label">생성 속도 (중앙값)</span></li>
     <li><span class="rp-num">Q4_0</span><span class="rp-num-label">4-bit 양자화로 기기 안에서 실행</span></li>
     <li><span class="rp-num">5 × 38</span><span class="rp-num-label">같은 대화를 모델 5개로 비교</span></li>
   </ul>
@@ -236,6 +237,7 @@ extra_css: [/public/css/project-rich.css]
       <p>
         API 모델 4종은 같은 38턴에 <strong>$0.0176–$0.3507</strong>을 썼고, 기기 안에서 도는 Ours는 비용이 들지 않습니다.
         답변은 모두 관찰된 사실 · 일반 설명 · 권장 행동 · 되묻기의 같은 형식으로 나오며, Ours는 문장마다 아이 기록과 전문자료 근거 ID를 붙입니다.
+        생성 속도는 초당 51토큰(중앙값)입니다.
       </p>
     </div>
     <div class="rp-table-block">
@@ -243,13 +245,13 @@ extra_css: [/public/css/project-rich.css]
       <p class="rp-table-note">비용은 성공한 호출만 합산, 응답 시간은 중앙값입니다.</p>
       <div class="rp-table-wrap" tabindex="0" role="region" aria-label="모델별 합계">
         <table class="rp-table">
-          <thead><tr><th scope="col">모델</th><th scope="col">실행</th><th scope="col">답변 성공</th><th scope="col">총비용</th><th scope="col">출력 토큰</th><th scope="col">응답 시간</th></tr></thead>
+          <thead><tr><th scope="col">모델</th><th scope="col">실행</th><th scope="col">답변 성공</th><th scope="col">총비용</th><th scope="col">출력 토큰</th><th scope="col">응답 시간</th><th scope="col">생성 속도</th></tr></thead>
           <tbody>
-            <tr><th scope="row">GPT-5.6 Luna</th><td>API</td><td>36/38</td><td>$0.2658</td><td>34,272</td><td>6,396 ms</td></tr>
-            <tr><th scope="row">DeepSeek V4 Flash</th><td>API</td><td>37/38</td><td>$0.0176</td><td>37,121</td><td>6,022 ms</td></tr>
-            <tr><th scope="row">Gemini 3.6 Flash</th><td>API</td><td>36/38</td><td>$0.3507</td><td>34,060</td><td>7,815 ms</td></tr>
-            <tr><th scope="row">Claude Haiku 4.5</th><td>API</td><td>37/38</td><td>$0.2796</td><td>35,159</td><td>8,317 ms</td></tr>
-            <tr class="is-ours"><th scope="row">Ours · Gemma 4 E4B + 육아 LoRA</th><td>온디바이스 Q4_0</td><td>33/38</td><td class="is-best">$0</td><td>40,178</td><td>17,755 ms</td></tr>
+            <tr><th scope="row">GPT-5.6 Luna</th><td>API</td><td>36/38</td><td>$0.2658</td><td>34,272</td><td>6,396 ms</td><td>–</td></tr>
+            <tr><th scope="row">DeepSeek V4 Flash</th><td>API</td><td>37/38</td><td>$0.0176</td><td>37,121</td><td>6,022 ms</td><td>–</td></tr>
+            <tr><th scope="row">Gemini 3.6 Flash</th><td>API</td><td>36/38</td><td>$0.3507</td><td>34,060</td><td>7,815 ms</td><td>–</td></tr>
+            <tr><th scope="row">Claude Haiku 4.5</th><td>API</td><td>37/38</td><td>$0.2796</td><td>35,159</td><td>8,317 ms</td><td>–</td></tr>
+            <tr class="is-ours"><th scope="row">Ours · Gemma 4 E4B + 육아 LoRA</th><td>온디바이스 Q4_0</td><td>33/38</td><td class="is-best">$0</td><td>40,178</td><td>17,755 ms</td><td>51 tok/s</td></tr>
           </tbody>
         </table>
       </div>
