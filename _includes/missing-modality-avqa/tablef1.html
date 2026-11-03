@@ -1,0 +1,29 @@
+{%- comment -%} Generated from Table F1. Bold/underline: best/second among task-specific models, as marked in the source. {%- endcomment -%}
+<div class="rp-table-wrap" tabindex="0" role="region" aria-label="Table F1">
+<table class="rp-table qr-f1">
+<thead>
+<tr><th rowspan="2" scope="col">Method</th><th colspan="3" scope="colgroup" class="rp-group">Audio QA</th><th colspan="3" scope="colgroup" class="rp-group">Visual QA</th><th colspan="6" scope="colgroup" class="rp-group">Audio-Visual QA</th><th rowspan="2" scope="col">Avg</th></tr>
+<tr><th scope="col">Count</th><th scope="col">Comp</th><th scope="col">Avg</th><th scope="col">Count</th><th scope="col">Local</th><th scope="col">Avg</th><th scope="col">Exist</th><th scope="col">Count</th><th scope="col">Local</th><th scope="col">Comp</th><th scope="col">Temp</th><th scope="col">Avg</th></tr>
+</thead>
+<tbody class="rp-model"><tr><th colspan="14" scope="colgroup">Zero-shot omni models</th></tr></tbody>
+<tbody>
+<tr><th scope="row">GPT-4o</th><td>65.68</td><td>37.04</td><td>55.12</td><td>72.77</td><td>62.20</td><td>67.42</td><td>55.87</td><td>54.94</td><td>59.57</td><td>38.24</td><td>42.58</td><td>50.35</td><td>55.72</td></tr>
+<tr><th scope="row">Qwen2.5-Omni (7B)</th><td>62.93</td><td>39.56</td><td>54.31</td><td>67.92</td><td>59.02</td><td>63.42</td><td>51.92</td><td>55.10</td><td>60.98</td><td>36.42</td><td>40.27</td><td>49.12</td><td>53.83</td></tr>
+<tr><th scope="row">Ming-Lite-Omni</th><td>62.44</td><td>40.74</td><td>54.44</td><td>67.50</td><td>58.29</td><td>62.84</td><td>52.73</td><td>53.91</td><td>62.17</td><td>37.24</td><td>41.85</td><td>49.63</td><td>53.98</td></tr>
+</tbody>
+<tbody class="rp-model"><tr><th colspan="14" scope="colgroup">Task-specific models</th></tr></tbody>
+<tbody>
+<tr><th scope="row">ST-AVQA</th><td>78.18</td><td>67.05</td><td>74.06</td><td>71.56</td><td>76.38</td><td>74.00</td><td>81.81</td><td>70.80</td><td>64.51</td><td>66.01</td><td>63.23</td><td>69.54</td><td>71.52</td></tr>
+<tr><th scope="row">COCA</th><td>79.35</td><td>67.68</td><td>75.42</td><td>75.10</td><td>75.43</td><td>75.23</td><td class="is-second">83.50</td><td>66.63</td><td>69.72</td><td>64.12</td><td>65.57</td><td>69.96</td><td>72.33</td></tr>
+<tr><th scope="row">PSTP-Net</th><td>73.97</td><td>65.59</td><td>70.91</td><td>77.15</td><td>77.36</td><td>77.26</td><td>76.18</td><td>72.23</td><td>71.80</td><td class="is-best">71.79</td><td>69.00</td><td>72.57</td><td>73.52</td></tr>
+<tr><th scope="row">LAVISH</th><td>82.09</td><td>65.56</td><td>75.97</td><td>78.98</td><td>81.43</td><td>80.22</td><td>81.71</td><td>75.51</td><td>66.13</td><td>63.77</td><td>67.96</td><td>71.26</td><td>74.46</td></tr>
+<tr><th scope="row">APL</th><td>82.40</td><td class="is-second">70.71</td><td>78.09</td><td>76.52</td><td>82.74</td><td>79.69</td><td>82.99</td><td>73.29</td><td>66.68</td><td>64.76</td><td>65.95</td><td>70.96</td><td>74.53</td></tr>
+<tr><th scope="row">TSPM</th><td>84.07</td><td>64.65</td><td>76.91</td><td>82.29</td><td>84.90</td><td>83.61</td><td>82.19</td><td>76.21</td><td>71.85</td><td>65.76</td><td class="is-second">71.17</td><td>73.51</td><td>76.79</td></tr>
+<tr><th scope="row">QA-TIGER</th><td>84.86</td><td>67.85</td><td>78.58</td><td class="is-second">83.96</td><td class="is-best">86.29</td><td class="is-second">85.14</td><td>83.10</td><td class="is-second">78.58</td><td class="is-second">72.50</td><td>63.94</td><td>69.59</td><td>73.74</td><td>77.62</td></tr>
+<tr><th scope="row">QSTar</th><td class="is-second">85.64</td><td class="is-best">72.05</td><td class="is-best">80.63</td><td>83.46</td><td>84.90</td><td>84.17</td><td class="is-best">83.81</td><td class="is-best">79.76</td><td class="is-best">72.72</td><td class="is-second">70.03</td><td class="is-best">72.38</td><td class="is-best">75.98</td><td class="is-best">78.98</td></tr>
+</tbody>
+<tbody>
+<tr class="is-ours"><th scope="row">Ours</th><td class="is-best">86.53</td><td>69.87</td><td class="is-second">80.38</td><td class="is-best">84.38</td><td class="is-second">86.12</td><td class="is-best">85.26</td><td>82.79</td><td>78.50</td><td>71.85</td><td>64.58</td><td>71.05</td><td class="is-second">73.92</td><td class="is-second">78.07</td></tr>
+</tbody>
+</table>
+</div>

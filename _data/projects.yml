@@ -190,6 +190,12 @@
     - src: /assets/images/projects/prune-tradeoff.jpg
       caption: 왼쪽은 각 방법이 남긴 토큰, 오른쪽은 prefill 시간 대비 정확도. 제안 방법은 토큰 45%에서 전체 토큰과 거의 같은 정확도에 도달
 
+- title: 모달리티가 빠져도 추론하는 오디오-비주얼 QA
+  slug: missing-modality-avqa
+  period: 2026
+  summary: 추론 중 오디오나 영상이 빠져도, 짝지어 저장한 프로토타입에서 빠진 쪽을 찾아 질문에 맞게 복원해 답합니다.
+  stack: ["Audio-Visual QA", "Missing Modality", "Prototype Retrieval", "Mixture of Experts"]
+
 - title: 로컬 LLM 육아 상담 챗봇
   slug: local-llm-parenting-chatbot
   period: 2026

@@ -575,6 +575,101 @@ html.dark .ch-cite-gap { color: #f0c26e; background: rgba(230, 170, 60, .18); }
 .ch-sets tbody th[scope="row"] { color: var(--text-secondary); }
 .ch-sets thead th { text-align: left; }
 
+/* Missing-modality hero ---------------------------------------------------------- */
+.qr-hero { --qr-a: #e8834a; --qr-v: #3d9bd6; --qr-a-soft: #fbe3d4; --qr-v-soft: #d9ecf8; }
+html.dark .qr-hero { --qr-a: #f19a66; --qr-v: #5fb3e8; --qr-a-soft: rgba(241, 154, 102, .22); --qr-v-soft: rgba(95, 179, 232, .2); }
+.qr-headline {
+  min-height: 3em;
+  margin: .4rem 0 .2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+}
+.qr-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.qr-svg text { font-family: inherit; }
+
+.qr-lbl, .qr-row, .qr-slotl { font-size: 14px; font-weight: 600; fill: var(--text-secondary); }
+.qr-frame { fill: #2c4560; }
+.qr-guitar { fill: #e2a66c; }
+.qr-neck { stroke: #e2a66c; stroke-width: 3; stroke-linecap: round; }
+.qr-bar { fill: var(--qr-a); }
+.qr-veil { fill: var(--bg-elevated); opacity: .78; }
+html.dark .qr-veil { fill: #111; }
+.qr-x { stroke: #e0443a; stroke-width: 4; stroke-linecap: round; }
+.qr-miss { font-size: 14px; font-weight: 700; fill: #e0443a; }
+.qr-q { fill: var(--bg); stroke: var(--border-strong); stroke-width: 1.5; }
+.qr-qt { font-size: 15px; fill: var(--text); }
+
+.qr-box { fill: var(--bg-subtle); stroke: var(--border-strong); stroke-width: 1.2; }
+.qr-model { fill: var(--bg); }
+.qr-boxt { font-size: 15px; font-weight: 700; fill: var(--text); }
+.qr-boxs { font-size: 12px; fill: var(--text-secondary); }
+.qr-tv { fill: var(--qr-v-soft); stroke: var(--qr-v); stroke-width: 1.4; }
+.qr-ta { fill: var(--qr-a-soft); stroke: var(--qr-a); stroke-width: 1.4; }
+.qr-link { stroke: var(--text-secondary); stroke-width: 1.2; stroke-dasharray: 3 3; opacity: .55; }
+.qr-tv-on { fill: var(--qr-v); stroke: var(--qr-v); stroke-width: 2; }
+.qr-ta-on { fill: var(--qr-a); stroke: var(--qr-a); stroke-width: 2; }
+.qr-link-on { stroke: var(--text); stroke-width: 2.5; }
+.qr-pair { font-size: 13px; font-weight: 700; fill: var(--text); }
+
+.qr-fv { fill: var(--qr-v); }
+.qr-fa { fill: var(--qr-a); }
+.qr-fr { fill: url(#qr-stripe); stroke: var(--qr-a); stroke-width: 1.2; }
+.qr-stripe-bg { fill: var(--qr-a-soft); }
+.qr-stripe-fg { fill: var(--qr-a); }
+.qr-slot-empty { fill: none; stroke: #e0443a; stroke-width: 1.4; stroke-dasharray: 5 4; }
+.qr-slot-miss { font-size: 12px; font-weight: 600; fill: #e0443a; }
+.qr-rec-l { font-size: 12px; font-weight: 600; fill: var(--qr-a); }
+.qr-ans-wait { fill: none; stroke: var(--border-strong); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.qr-ans-q { font-size: 17px; font-weight: 700; fill: var(--text-secondary); }
+.qr-ans-box { fill: var(--rp-ours); }
+.qr-ans-t { font-size: 16px; font-weight: 700; fill: #fff; }
+
+.qr-flow { fill: none; stroke-width: 2.2; }
+.qr-flow-v, .qr-flow-q { stroke: var(--qr-v); }
+.qr-flow-a, .qr-flow-r { stroke: var(--qr-a); }
+.qr-flow-qq { stroke: var(--text-secondary); stroke-dasharray: 5 4; }
+.qr-flow-q { stroke-dasharray: 6 4; }
+.qr-ah { fill: var(--text-secondary); }
+.qr-ah-o { fill: var(--qr-a); }
+.qr-ah-b { fill: var(--qr-v); }
+.qr-note { font-size: 13px; font-weight: 600; fill: var(--qr-v); }
+.qr-qgr { fill: var(--qr-a-soft); stroke: var(--qr-a); stroke-width: 1.6; }
+.qr-qgr-t { font-size: 14px; font-weight: 700; fill: var(--text); }
+
+/* Step gating: from-k shows once the hero reaches k; before-k only until then. */
+.qr-hero .qr-from, .qr-hero .qr-before { transition: opacity .45s ease; }
+.qr-hero .qr-from.is-next { opacity: 0; }
+.qr-hero .qr-before.is-now, .qr-hero .qr-before.is-past { opacity: 0; }
+.qr-hero .qr-flow-q, .qr-hero .qr-flow-r { stroke-dashoffset: 0; }
+.qr-hero .is-now .qr-flow-q { animation: qr-dash 1.2s linear infinite; }
+@keyframes qr-dash { to { stroke-dashoffset: -20; } }
+
+/* Problem → goal callout, stage cards, tables */
+.qr-goal {
+  margin: 1.5rem 0 0;
+  padding: 1.15rem 1.3rem;
+  border-left: 3px solid var(--rp-ours);
+  border-radius: 0 14px 14px 0;
+  background: var(--rp-ours-bg);
+}
+.qr-goal .rp-kicker { margin-bottom: .3rem; }
+.qr-goal p:last-child { margin: 0; font-size: 1.02rem; line-height: 1.7; color: var(--text); }
+.qr-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.rp-table.qr-t1 tbody td:nth-child(2) { text-align: right; color: var(--text-body); }
+.rp-table.qr-t1 tbody td.qr-av { text-align: center; }
+.qr-dot { display: inline-block; width: .62rem; height: .62rem; border-radius: 50%; border: 1.5px solid var(--text-secondary); vertical-align: middle; }
+.qr-dot.is-on { background: var(--text-body); border-color: var(--text-body); }
+.qr-svg-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.rp-table.qr-t1 tbody th[scope="row"] { vertical-align: middle; }
+.rp-table.qr-t1 .qr-avg > * { border-top: 1px solid var(--border); }
+.rp-table.qr-t1 td.qr-avg-l { text-align: center; color: var(--text-secondary); }
+.rp-table.qr-t1 .is-ours-group th[scope="row"] { color: var(--rp-ours); font-weight: 650; background: var(--rp-ours-bg); }
+.rp-table.qr-f1 tbody td:nth-child(2) { text-align: right; color: var(--text-body); }
+.rp-table.qr-f1 thead tr:first-child th:last-child { vertical-align: middle; }
+
 /* Small screens --------------------------------------------------------------- */
 @media (max-width: 760px) {
   .rp-hero { padding: 1rem; border-radius: 16px; }
@@ -587,10 +682,15 @@ html.dark .ch-cite-gap { color: #f0c26e; background: rgba(230, 170, 60, .18); }
   .ch-flow, .ch-schema { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ch-flow li + li::before { display: none; }
   .rp-steps.ch-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .qr-stages { grid-template-columns: 1fr; }
+  .qr-svg { min-width: 600px; }
+  .qr-headline { font-size: .95rem; min-height: 4.5em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .rp-frame img, .rp-pt, .rp-bracket, .ch-bar, .ch-history li { transition: none; }
   .ch-turn.is-now { animation: none; }
+  .qr-hero .qr-from, .qr-hero .qr-before { transition: none; }
+  .qr-hero .is-now .qr-flow-q { animation: none; }
   .rp-hero.is-ticking .rp-step[aria-pressed="true"]::after { animation: none; }
 }
