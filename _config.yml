@@ -11,6 +11,10 @@ author:
   scholar:        'https://scholar.google.com/citations?user=pqmWGuAAAAAJ&hl=ko'
   linkedin:       'https://www.linkedin.com/in/jingyo-lim-0555b8362'
 
+# Visitor stats at https://qjsro08.goatcounter.com (no cookies). Only the
+# published site reports; local `jekyll build` previews do not.
+goatcounter:      qjsro08
+
 # Build settings
 markdown:         kramdown
 highlighter:      rouge
