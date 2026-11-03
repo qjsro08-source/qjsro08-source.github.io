@@ -556,6 +556,7 @@ html.dark .ch-cite-gap { color: #f0c26e; background: rgba(230, 170, 60, .18); }
 .ch-flow-k { font-size: .72rem; font-weight: 650; color: var(--text-secondary); }
 .ch-flow li.is-ours .ch-flow-k, .ch-flow li.is-ours b { color: var(--rp-ours); }
 
+.ch-funnel b { font-size: 1.45rem; font-weight: 650; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin: .2rem 0 .15rem; }
 .ch-schema {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

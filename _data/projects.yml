@@ -193,7 +193,7 @@
 - title: 로컬 LLM 육아 상담 챗봇
   slug: local-llm-parenting-chatbot
   period: 2026
-  summary: 아이 기록을 외부로 보내지 않는 육아 상담 챗봇. 상용 API 4종과 같은 조건에서 비교했습니다.
+  summary: 온디바이스를 목표로 만든 육아 상담 챗봇. 공개 QA로 데이터셋을 만들어 LoRA로 튜닝하고, 상용 API 4종과 같은 조건에서 비교했습니다.
   stack: ["Gemma 4 E4B", "LoRA", "Q4_0 양자화", "RAG", "PyTorch"]
 
   problem: >-
