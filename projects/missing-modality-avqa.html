@@ -3,7 +3,7 @@ layout: project
 slug: missing-modality-avqa
 permalink: /projects/missing-modality-avqa/
 title: 모달리티가 빠져도 추론하는 오디오-비주얼 QA
-description: 추론 시점에 오디오나 영상이 빠져도, 짝지어 저장한 프로토타입에서 빠진 쪽을 찾아 질문에 맞게 복원해 답하는 멀티모달 구조.
+description: 추론 시점에 오디오나 영상이 빠져도, 페어로 저장한 프로토타입(paired prototype)에서 빠진 쪽을 찾아 질문에 맞게 복원해 답하는 멀티모달 구조.
 extra_css: [/public/css/project-rich.css]
 ---
 {%- assign img = '/assets/images/projects/missing-modality-avqa/' | relative_url -%}
@@ -31,7 +31,7 @@ extra_css: [/public/css/project-rich.css]
   <section class="rp-hero qr-hero" data-hero data-step="4" aria-label="오디오가 빠졌을 때의 추론 과정">
     <div class="ch-head">
       <p class="rp-eyebrow">동작 방식 &middot; 추론 중에 오디오가 빠진 상황</p>
-      <p class="qr-headline" data-step-text="오디오·영상·질문이 함께 들어옵니다.|추론 시점에 오디오가 통째로 빠집니다.|남은 영상 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, 짝지어진 오디오 프로토타입을 꺼냅니다.|꺼낸 오디오 프로토타입을 질문에 맞게 다듬어 빠진 오디오 표현을 복원합니다.|복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%.">복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%.</p>
+      <p class="qr-headline" data-step-text="오디오·영상·질문이 함께 들어옵니다.|추론 시점에 오디오가 통째로 빠집니다.|남은 영상 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, 그와 페어인 오디오 프로토타입을 꺼냅니다.|꺼낸 오디오 프로토타입을 질문에 맞게 다듬어 빠진 오디오 표현을 복원합니다.|복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%.">복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%.</p>
     </div>
 
     <div class="qr-svg-wrap">
@@ -41,8 +41,8 @@ extra_css: [/public/css/project-rich.css]
     <ul class="rp-steps ch-steps">
       <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="2200">1 · 입력</button></li>
       <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="2400">2 · 오디오 누락</button></li>
-      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="3800">3 · 짝 검색</button></li>
-      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="3600">4 · 복원</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="3800">3 · Paired Retrieval</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="3600">4 · Reconstruction</button></li>
       <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="true" data-hold="4400">5 · 답변</button></li>
     </ul>
 
@@ -92,44 +92,44 @@ extra_css: [/public/css/project-rich.css]
   <!-- 2 · Method ------------------------------------------------------------------------ -->
   <section class="rp-section" id="method">
     <p class="rp-kicker">방법</p>
-    <h2 class="rp-h2">남은 모달리티로 짝을 찾고, 질문에 맞게 복원한다</h2>
+    <h2 class="rp-h2">남은 모달리티로 페어를 찾고, 질문에 맞게 복원한다</h2>
     <div class="rp-prose">
       <p>
-        학습 데이터의 온전한 오디오·영상 표현을 <strong>짝지어 저장</strong>해 두고, 추론 중 한쪽이 빠지면 남은 쪽으로 가장 비슷한 짝을 찾아
-        빠진 쪽의 출발점으로 씁니다. 찾아온 표현은 다른 샘플들의 평균이므로, <strong>현재 질문에 맞게 다듬어</strong> 추론 모델에 넣습니다.
+        학습 데이터의 온전한 오디오·영상 표현을 <strong>paired prototype으로 저장</strong>해 두고, 추론 중 한쪽이 빠지면 남은 쪽으로 가장 비슷한 페어를 찾아
+        빠진 쪽의 출발점으로 씁니다. 찾아온 표현은 다른 샘플들의 평균이므로, <strong>현재 질문에 맞게 다듬어</strong> reasoning model에 넣습니다.
       </p>
     </div>
 
     <figure class="rp-figure">
       <a class="rp-figure-frame" href="{{ img }}overview.png" target="_blank" rel="noopener">
-        <img src="{{ img }}overview.png" alt="전체 구조: 질문 조건 인코딩, 짝 프로토타입 구축, 짝 검색과 질문 기반 복원, 시간 전문가 추론" width="2200" height="1040" loading="lazy">
+        <img src="{{ img }}overview.png" alt="전체 구조: Question-Guided Modality Encoding, Paired Prototype Construction, Paired Prototype Retrieval과 Question-Guided Reconstruction, Temporal Experts" width="2200" height="1040" loading="lazy">
       </a>
-      <figcaption><b>Figure 1.</b> 전체 구조. 영상이 빠진 예시로, 남은 오디오 표현으로 가장 비슷한 프로토타입을 찾고 짝지어진 영상 프로토타입을 질문과 함께 복원합니다.</figcaption>
+      <figcaption><b>Figure 1.</b> 전체 구조. 영상이 빠진 예시로, 남은 오디오 표현으로 가장 비슷한 프로토타입을 찾고 그와 페어인 영상 프로토타입을 질문과 함께 복원합니다.</figcaption>
     </figure>
 
     <div class="rp-stages qr-stages">
       <article class="rp-stage">
-        <span class="rp-stage-tag">1 · 짝 프로토타입 구축</span>
-        <h3>오디오와 영상을 짝으로 저장</h3>
-        <p>온전한 학습 데이터의 오디오·영상 표현을 모달리티별로 군집한 뒤, 두 군집 결과를 샘플 단위로 겹쳐 묶음을 만듭니다. 묶음마다 오디오와 영상의 시간열을 평균해 <strong>같은 번호의 짝 프로토타입</strong>으로 저장합니다.</p>
-        <p>짝 대응은 유지하면서 저장할 쌍을 28.8%로 줄여도 정확도 차이는 0.23p에 그칩니다.</p>
+        <span class="rp-stage-tag">1 · Paired Prototype Construction</span>
+        <h3>오디오와 영상을 페어로 저장</h3>
+        <p>온전한 학습 데이터의 오디오·영상 표현을 모달리티별로 군집한 뒤, 두 군집 결과를 샘플 단위로 겹쳐 묶음을 만듭니다. 묶음마다 오디오와 영상의 시간열을 평균해 <strong>같은 번호의 paired prototype</strong>으로 저장합니다.</p>
+        <p>페어 대응은 유지하면서 저장할 페어를 28.8%로 줄여도 정확도 차이는 0.23p에 그칩니다.</p>
       </article>
       <article class="rp-stage">
-        <span class="rp-stage-tag">2 · 짝 검색</span>
-        <h3>남은 쪽으로 찾고, 짝을 꺼낸다</h3>
-        <p>작은 상태 예측기가 어느 모달리티가 빠졌는지 먼저 판단합니다. 남은 모달리티의 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, <strong>같은 번호에 짝지어진 빠진 쪽 프로토타입</strong>을 꺼냅니다.</p>
+        <span class="rp-stage-tag">2 · Paired Prototype Retrieval</span>
+        <h3>남은 쪽으로 찾고, 페어를 꺼낸다</h3>
+        <p>작은 상태 예측기가 어느 모달리티가 빠졌는지 먼저 판단합니다. 남은 모달리티의 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, <strong>같은 번호의 페어인 빠진 쪽 프로토타입</strong>을 꺼냅니다.</p>
       </article>
       <article class="rp-stage">
-        <span class="rp-stage-tag">3 · 질문 기반 복원</span>
+        <span class="rp-stage-tag">3 · Question-Guided Reconstruction</span>
         <h3>질문에 맞게 다듬는다</h3>
-        <p>꺼낸 프로토타입을 질문 벡터와 함께 시점마다 복원해, 지금의 질문이 필요로 하는 단서를 살리고 추론 모델이 기대하는 특징 공간에 맞춥니다.</p>
-        <p>복원에서 질문 조건을 빼면 누락 상황 평균 정확도가 8.96p, 오디오·영상의 짝 대응을 깨면 4.25p 떨어집니다.</p>
+        <p>꺼낸 프로토타입을 질문 벡터와 함께 시점마다 복원해, 지금의 질문이 필요로 하는 단서를 살리고 reasoning model이 기대하는 특징 공간에 맞춥니다.</p>
+        <p>복원에서 질문 조건을 빼면 누락 상황 평균 정확도가 8.96p, 오디오·영상의 페어 대응을 깨면 4.25p 떨어집니다.</p>
       </article>
       <article class="rp-stage">
-        <span class="rp-stage-tag">추론 모델</span>
+        <span class="rp-stage-tag">Reasoning Model</span>
         <h3>질문 조건 인코딩과 시간 전문가</h3>
         <p>오디오와 영상은 처음부터 질문에 맞춰 인코딩해, 같은 영상이라도 질문마다 다른 단서를 강조합니다. 추론은 구간·변화·비교·전체를 보는 네 시간 전문가를 질문에 따라 섞어 답합니다.</p>
-        <p>먼저 온전한 입력으로 추론 모델을 학습해 고정한 뒤, 복원 부분만 온전한 입력의 특징과 답변 분포를 따라가도록 학습합니다.</p>
+        <p>먼저 온전한 입력으로 reasoning model을 학습해 고정한 뒤, 복원 부분만 온전한 입력의 특징과 답변 분포를 따라가도록 학습합니다.</p>
       </article>
     </div>
   </section>
