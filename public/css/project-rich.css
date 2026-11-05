@@ -36,6 +36,8 @@ html.dark {
   line-height: 1.05;
   margin: 0 0 .5rem;
 }
+.rp-nowrap { white-space: nowrap; }
+.rp-title, .rp-h2 { word-break: keep-all; }
 .rp-subtitle {
   font-size: clamp(1rem, 2.2vw, 1.2rem);
   color: var(--text-body);

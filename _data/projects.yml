@@ -163,7 +163,7 @@
 
   note: 진행 중인 프로젝트입니다.
 
-- title: 옴니모달 LLM의 토큰 프루닝
+- title: Omni-modal LLM을 위한 Token Pruning
   slug: omnimodal-token-pruning
   period: 2026
   summary: 주변 토큰으로 복원되는 토큰을 골라 버려, 오디오·비디오 토큰을 절반 이하로 줄이면서 성능을 지킵니다.
@@ -204,7 +204,7 @@
     - src: /assets/images/projects/prune-tradeoff.jpg
       caption: 왼쪽은 각 방법이 남긴 토큰, 오른쪽은 prefill 시간 대비 정확도. 제안 방법은 토큰 45%에서 전체 토큰과 거의 같은 정확도에 도달
 
-- title: 모달리티가 빠져도 추론하는 오디오-비주얼 QA
+- title: Missing Modality에도 강건한 Audio-Visual QA
   slug: missing-modality-avqa
   period: 2026
   summary: 추론 중 오디오나 영상이 빠져도, 페어로 저장한 프로토타입(paired prototype)에서 빠진 쪽을 찾아 질문에 맞게 복원해 답합니다.
