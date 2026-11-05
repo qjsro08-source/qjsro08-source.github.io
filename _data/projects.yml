@@ -14,7 +14,7 @@
 
 - title: Visual Looped Transformer 기반 Continual Learning
   slug: looped-transformer-continual-learning
-  period: 2026 — 진행 중
+  period: 2026.10 – 진행 중
   summary: 파라미터 대신 반복 호출로 깊이를 버는 Looped VLM을 백본으로 삼아, 도메인과 능력을 순차 학습할 때의 망각을 측정합니다.
   stack: ["LoopVL", "Looped Transformer", "Continual Learning", "MLLM-CL", "LoRA"]
 
@@ -165,7 +165,7 @@
 
 - title: Omni-modal LLM을 위한 Token Pruning
   slug: omnimodal-token-pruning
-  period: 2026
+  period: 2026.03 – 2026.09
   summary: 주변 토큰으로 복원되는 토큰을 골라 버려, 오디오·비디오 토큰을 절반 이하로 줄이면서 성능을 지킵니다.
   stack: ["OmniLLM", "Token Pruning", "Qwen2.5-Omni", "Training-free"]
 
@@ -206,13 +206,13 @@
 
 - title: Missing Modality에도 강건한 Audio-Visual QA
   slug: missing-modality-avqa
-  period: 2026
+  period: 2026.03 – 2026.09
   summary: 추론 중 오디오나 영상이 빠져도, 페어로 저장한 프로토타입(paired prototype)에서 빠진 쪽을 찾아 질문에 맞게 복원해 답합니다.
   stack: ["Audio-Visual QA", "Missing Modality", "Prototype Retrieval", "Mixture of Experts"]
 
 - title: 로컬 LLM 육아 상담 챗봇
   slug: local-llm-parenting-chatbot
-  period: 2026
+  period: 2026.05
   summary: 온디바이스를 목표로 만든 육아 상담 챗봇. 공개 QA로 데이터셋을 만들어 LoRA로 튜닝하고, 상용 API 4종과 같은 조건에서 비교했습니다.
   stack: ["Gemma 4 E4B", "LoRA", "Q4_0 양자화", "RAG", "PyTorch"]
 
@@ -257,7 +257,7 @@
 
 - title: 단일 이미지로부터의 3D 장면 복원
   slug: single-image-3d-scene
-  period: 2026
+  period: 2025.12 – 2026.04
   summary: 사진 한 장을 전경·배경·하늘로 나눠 층별로 복원해, 가려져 있던 배경까지 살린 3D 장면을 만듭니다.
   stack: ["3D Gaussian Splatting", "Diffusion Inpainting", "SAM3", "LLaVA-OneVision"]
 
