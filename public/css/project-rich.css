@@ -222,6 +222,16 @@ html.dark {
   color: var(--text-secondary);
 }
 
+/* Recorded inference video */
+.rp-video { margin: 2.5rem 0 0; }
+.rp-video-frame {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #080d15;
+}
+.rp-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+
 /* Key numbers --------------------------------------------------------------- */
 .rp-numbers {
   display: grid;

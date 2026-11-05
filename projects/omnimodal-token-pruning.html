@@ -77,6 +77,22 @@ extra_css: [/public/css/project-rich.css]
     </div>
   </section>
 
+  <!-- Real inference, recorded side by side. -->
+  <section class="rp-video" aria-labelledby="rp-video-title">
+    <p class="rp-kicker">실제 추론</p>
+    <h2 class="rp-h2" id="rp-video-title">같은 질문에 1.5배 빠르게 답한다</h2>
+    <figure class="rp-figure">
+      <div class="rp-video-frame">
+        <video src="{{ img }}inference-speed.mp4" poster="{{ img }}inference-speed.jpg"
+               width="1600" height="900" controls muted playsinline preload="metadata"></video>
+      </div>
+      <figcaption>
+        같은 비디오 질문에 대해 모든 토큰을 쓴 모델(왼쪽)과 오디오·비디오 토큰을 35%만 남긴 Ours(오른쪽)가 1,200토큰 답변을 생성하는 실제 추론 화면입니다.
+        Ours는 초당 49.6토큰으로 27.17초, Full-Token은 초당 32.9토큰으로 41.17초가 걸립니다.
+      </figcaption>
+    </figure>
+  </section>
+
   <ul class="rp-numbers">
     <li><span class="rp-num">99.9%</span><span class="rp-num-label">토큰 45%로 유지한 Full 대비 성능 (7B, Table 1)</span></li>
     <li><span class="rp-num">3.25×</span><span class="rp-num-label">LLM prefill 가속</span></li>
