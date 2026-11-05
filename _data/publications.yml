@@ -66,7 +66,7 @@
 
 - group: International Journals (SCI/SCIE)
   items:
-    - venue: "IEEE TIM 2026"
+    - venue: "IEEE Transactions on Instrumentation and Measurement (TIM) 2026"
       year: 2026
       title: "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications"
       authors: "T. Kang, M. Kallel, J. Lim, J.-J. Lee, S.-E. Kim*"

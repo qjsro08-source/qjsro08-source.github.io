@@ -348,20 +348,39 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 .research-card:hover h3 { color: var(--accent); }
 .research-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 
-.research-icon, .research-go {
+.research-go {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.research-icon {
-  display: block;
-  width: 1.6rem;
-  height: 1.6rem;
+
+/* Icons share one family: line drawings in a tinted tile, with a soft fill
+   where a shape is "present" and a dashed outline where it is left out. */
+.research-badge {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
   margin-bottom: 1rem;
-  stroke-width: 1.7;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   color: var(--accent);
 }
+.research-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.research-icon .ri-fill { fill: color-mix(in srgb, currentColor 22%, transparent); }
+.research-icon .ri-on { fill: currentColor; stroke: none; }
+.research-icon .ri-off { stroke-dasharray: 2 2; opacity: .55; }
+
 .research-go {
   position: absolute;
   top: 1.2rem;
