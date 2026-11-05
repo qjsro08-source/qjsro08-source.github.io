@@ -27,6 +27,39 @@ title: Home
   </div>
 </section>
 
+<section id="research" class="section reveal">
+  <div class="wrap">
+    <h2 class="section-title">Research</h2>
+
+    <ul class="research-grid">
+      <li>
+        <a class="research-card" href="{{ '/#publications' | relative_url }}">
+          <svg class="research-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M7.75 4v16M12 4v16M16.25 4v16"/></svg>
+          <svg class="research-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          <h3>Efficient Architectures</h3>
+          <p>1-bit attention and linear attention.</p>
+        </a>
+      </li>
+      <li>
+        <a class="research-card" href="{{ '/projects/omnimodal-token-pruning/' | relative_url }}">
+          <svg class="research-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/></svg>
+          <svg class="research-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          <h3>Efficient Algorithms</h3>
+          <p>Token pruning for omni-modal models, PEFT, and continual learning.</p>
+        </a>
+      </li>
+      <li>
+        <a class="research-card" href="{{ '/projects/missing-modality-avqa/' | relative_url }}">
+          <svg class="research-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4h-4"/></svg>
+          <svg class="research-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          <h3>Adaptive Algorithms</h3>
+          <p>Robust reasoning even when a modality goes missing.</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <section id="publications" class="section reveal">
   <div class="wrap">
     <h2 class="section-title">Publications</h2>
