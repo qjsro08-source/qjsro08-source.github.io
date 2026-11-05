@@ -31,62 +31,73 @@ title: Home
   <div class="wrap">
     <h2 class="section-title">Publications</h2>
 
-    {% for group in site.data.publications %}
-    {% if group.hidden %}{% continue %}{% endif %}
-    <div class="pub-group">
-      <h3 class="pub-group-title">{{ group.group }}</h3>
+    {%- comment -%}
+      Every visible paper, regrouped by year, newest year first. Hidden
+      groups (e.g. under review) stay in the data file but are skipped.
+    {%- endcomment -%}
+    {%- assign pubs = "" | split: "" -%}
+    {%- for group in site.data.publications -%}
+      {%- unless group.hidden -%}{%- assign pubs = pubs | concat: group.items -%}{%- endunless -%}
+    {%- endfor -%}
+    {%- assign by_year = pubs | group_by: "year" | sort: "name" | reverse %}
 
-      <ul class="card-list">
-        {% for pub in group.items %}
-        <li class="card pub-card">
-          {% if pub.image %}
-          {% assign fig = pub.image %}
-          {% unless fig contains '://' %}{% assign fig = pub.image | relative_url %}{% endunless %}
-          {% comment %}
-            The thumbnail is unreadable at this size, so it opens something
-            bigger: image_href when the full version is a different file (a
-            poster PDF, say), otherwise the image itself.
-          {% endcomment %}
-          {% assign figlink = fig %}
-          {% if pub.image_href %}
-            {% assign figlink = pub.image_href %}
-            {% unless figlink contains '://' %}{% assign figlink = pub.image_href | relative_url %}{% endunless %}
-          {% endif %}
-          <figure class="pub-figure">
-            <a href="{{ figlink }}" target="_blank" rel="noopener"
-               aria-label="Open the full version for &ldquo;{{ pub.title | escape }}&rdquo;">
-              <img src="{{ fig }}" alt="Figure from &ldquo;{{ pub.title | escape }}&rdquo;" loading="lazy">
-            </a>
-          </figure>
-          {% endif %}
+    <div class="pub-years">
+      {% for yg in by_year %}
+      <div class="pub-year">
+        <h3 class="pub-year-label">{{ yg.name }}</h3>
 
-          <div class="pub-main">
-            <span class="pub-venue">{{ pub.venue }}</span>
-            <h4 class="pub-title">{{ pub.title }}</h4>
+        <ul class="pub-list">
+          {% for pub in yg.items %}
+          <li class="pub-item">
+            <div class="pub-main">
+              <span class="pub-venue">{{ pub.venue }}</span>
+              <h4 class="pub-title">{{ pub.title }}</h4>
 
-            {% if pub.authors %}
-            <p class="pub-authors">{{ pub.authors | replace: 'J. Lim', '<span class="me">J. Lim</span>' }}</p>
-            {% endif %}
+              {% if pub.authors %}
+              <p class="pub-authors">{{ pub.authors | replace: 'J. Lim', '<span class="me">J. Lim</span>' }}</p>
+              {% endif %}
 
-            {% if pub.summary %}
-            <p class="pub-summary">{{ pub.summary }}</p>
-            {% endif %}
+              {% if pub.summary %}
+              <p class="pub-summary">{{ pub.summary }}</p>
+              {% endif %}
 
-            {% if pub.paper or pub.code or pub.project or pub.poster or pub.video %}
-            <div class="pub-actions">
-              {% if pub.paper %}<a class="btn btn-ghost" href="{{ pub.paper }}" rel="noopener">Paper</a>{% endif %}
-              {% if pub.code %}<a class="btn btn-ghost" href="{{ pub.code }}" rel="noopener">Code</a>{% endif %}
-              {% if pub.project %}<a class="btn btn-ghost" href="{{ pub.project }}" rel="noopener">Project</a>{% endif %}
-              {% if pub.poster %}<a class="btn btn-ghost" href="{% if pub.poster contains '://' %}{{ pub.poster }}{% else %}{{ pub.poster | relative_url }}{% endif %}" rel="noopener">Poster</a>{% endif %}
-              {% if pub.video %}<a class="btn btn-ghost" href="{{ pub.video }}" rel="noopener">Video</a>{% endif %}
+              {% if pub.paper or pub.code or pub.project or pub.poster or pub.video %}
+              <p class="pub-links">
+                {% if pub.paper %}<a href="{{ pub.paper }}" target="_blank" rel="noopener">Paper<span aria-hidden="true">↗</span></a>{% endif %}
+                {% if pub.code %}<a href="{{ pub.code }}" target="_blank" rel="noopener">Code<span aria-hidden="true">↗</span></a>{% endif %}
+                {% if pub.project %}<a href="{{ pub.project }}" target="_blank" rel="noopener">Project<span aria-hidden="true">↗</span></a>{% endif %}
+                {% if pub.poster %}<a href="{% if pub.poster contains '://' %}{{ pub.poster }}{% else %}{{ pub.poster | relative_url }}{% endif %}" target="_blank" rel="noopener">Poster<span aria-hidden="true">↗</span></a>{% endif %}
+                {% if pub.video %}<a href="{{ pub.video }}" target="_blank" rel="noopener">Video<span aria-hidden="true">↗</span></a>{% endif %}
+              </p>
+              {% endif %}
             </div>
+
+            {% if pub.image %}
+            {% assign fig = pub.image %}
+            {% unless fig contains '://' %}{% assign fig = pub.image | relative_url %}{% endunless %}
+            {% comment %}
+              The thumbnail is unreadable at this size, so it opens something
+              bigger: image_href when the full version is a different file (a
+              poster PDF, say), otherwise the image itself.
+            {% endcomment %}
+            {% assign figlink = fig %}
+            {% if pub.image_href %}
+              {% assign figlink = pub.image_href %}
+              {% unless figlink contains '://' %}{% assign figlink = pub.image_href | relative_url %}{% endunless %}
             {% endif %}
-          </div>
-        </li>
-        {% endfor %}
-      </ul>
+            <figure class="pub-figure">
+              <a href="{{ figlink }}" target="_blank" rel="noopener"
+                 aria-label="Open the full version for &ldquo;{{ pub.title | escape }}&rdquo;">
+                <img src="{{ fig }}" alt="Figure from &ldquo;{{ pub.title | escape }}&rdquo;" loading="lazy">
+              </a>
+            </figure>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </section>
 

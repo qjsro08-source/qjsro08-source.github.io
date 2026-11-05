@@ -324,75 +324,62 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 }
 
 /* Publications ------------------------------------------------------------ */
-.pub-group + .pub-group { margin-top: 2rem; }
-
-.pub-group-title {
-  font-size: .78rem;
-  font-weight: 600;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: .85rem;
+/* One row per year: the year on the left, that year's papers on the right. */
+.pub-year {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0 1.25rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
 }
+.pub-year:first-child { border-top: none; padding-top: .25rem; }
+.pub-year + .pub-year { margin-top: 1.4rem; }
 
-/* A paper card splits into figure + text once there is a figure to show. */
-.pub-card {
-  display: flex;
-  gap: 1.15rem;
-  align-items: flex-start;
-}
-
-/* The column keeps a fixed width so every card's text starts at the same
-   place, but the framed box inside it hugs the image. A fixed-ratio box
-   would letterbox a portrait poster inside wide empty margins. */
-.pub-figure {
-  flex: 0 0 13rem;
+.pub-year-label {
+  position: sticky;
+  top: 4.5rem;
+  align-self: start;
   margin: 0;
+  font-size: 1.65rem;
+  font-weight: 650;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.pub-list { margin: 0; padding: 0; list-style: none; }
+
+/* Text on the left, the figure on the right; papers are divided by a rule. */
+.pub-item {
   display: flex;
-  justify-content: center;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0 0 1.4rem;
 }
-
-.pub-figure a {
-  display: block;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
-  line-height: 0;
-}
-.pub-figure a:hover img { opacity: .85; }
-
-.pub-figure img {
-  display: block;
-  /* Never cropped: architecture diagrams lose their point when cut down. */
-  width: auto;
-  height: auto;
-  max-width: 13rem;
-  max-height: 13rem;
-  transition: opacity .15s ease;
-}
+.pub-item + .pub-item { padding-top: 1.4rem; border-top: 1px solid var(--border); }
 
 /* Without min-width:0 a flex child refuses to shrink below its longest
-   unbreakable word, which would push long paper titles out of the card. */
-.pub-main { min-width: 0; }
+   unbreakable word, which would push long paper titles out of the row. */
+.pub-main { flex: 1 1 auto; min-width: 0; }
 
 .pub-venue {
   display: inline-block;
   padding: .12rem .55rem;
-  margin-bottom: .5rem;
-  border-radius: 999px;
+  margin-bottom: .55rem;
+  border-radius: 6px;
   background: var(--chip);
   font-size: .75rem;
   font-weight: 600;
   letter-spacing: .01em;
-  color: var(--text);
+  color: var(--accent);
 }
 
 .pub-title {
-  font-size: 1rem;
-  font-weight: 550;
+  font-size: 1.05rem;
+  font-weight: 600;
   line-height: 1.45;
-  margin-bottom: .35rem;
+  margin-bottom: .4rem;
 }
 
 .pub-authors {
@@ -400,7 +387,7 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   color: var(--text-secondary);
   margin: 0;
 }
-.pub-authors .me { color: var(--text); font-weight: 600; }
+.pub-authors .me { color: var(--text); font-weight: 650; }
 
 .pub-summary {
   font-size: .875rem;
@@ -409,6 +396,45 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   margin: .45rem 0 0;
 }
 
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.1rem;
+  margin: .75rem 0 0;
+  font-size: .85rem;
+  font-weight: 550;
+}
+.pub-links a span { margin-left: .2rem; font-size: .8em; }
+
+/* The figure keeps a fixed column so every row's text ends at the same
+   place, but the framed box hugs the image: a fixed-ratio box would
+   letterbox a portrait poster inside wide empty margins. */
+.pub-figure {
+  flex: 0 0 15rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.pub-figure a {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+  line-height: 0;
+}
+.pub-figure a:hover img { opacity: .85; }
+.pub-figure img {
+  display: block;
+  /* Never cropped: architecture diagrams lose their point when cut down. */
+  width: auto;
+  height: auto;
+  max-width: 15rem;
+  max-height: 11rem;
+  transition: opacity .15s ease;
+}
+
+/* Link buttons under a project card */
 .pub-actions {
   display: flex;
   flex-wrap: wrap;
@@ -728,12 +754,14 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 /* Narrow screens ---------------------------------------------------------- */
 @media (max-width: 34em) {
   .wrap { padding-left: 1.15rem; padding-right: 1.15rem; }
-  .pub-card { flex-direction: column; gap: .9rem; }
-  /* Stacked: let a wide figure use the full width, but keep a tall poster
-     from taking over the whole card. */
-  .pub-figure { flex: none; width: 100%; }
+  /* Stacked: the year sits above its papers, and the figure under the
+     text may use the full width without a tall poster taking over. */
+  .pub-year { grid-template-columns: 1fr; gap: .5rem; }
+  .pub-year-label { position: static; font-size: 1.35rem; }
+  .pub-item { flex-direction: column; gap: .9rem; }
+  .pub-figure { flex: none; width: 100%; justify-content: flex-start; }
   .pub-figure a { max-width: 100%; }
-  .pub-figure img { max-width: 100%; max-height: 17rem; }
+  .pub-figure img { max-width: 100%; max-height: 15rem; }
   .hero { padding-top: 3rem; }
   .hero-photo { width: 6rem; height: 6rem; }
   .section { padding: 2.25rem 0; }

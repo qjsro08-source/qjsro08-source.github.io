@@ -1,7 +1,8 @@
-# Publications shown on the home page.
-# Groups render in the order listed here; so do the papers inside each group.
+# Publications shown on the home page, grouped by `year` (newest first).
+# Within a year, papers keep the order they have here. The groups below only
+# organise this file (and let a whole group be hidden); they are not shown.
 #
-# Required : venue, title
+# Required : venue, title, year
 # Optional : authors
 #            summary  one short sentence under the author line
 #            image_href  what the thumbnail opens, when that is a different
@@ -30,6 +31,7 @@
 - group: International Conferences
   items:
     - venue: "ICML 2026"
+      year: 2026
       title: "Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity"
       authors: "J. Lim, S. Jeong, S.-E. Kim*"
       summary: >-
@@ -42,6 +44,7 @@
       poster: /assets/images/publications/icml-poster.pdf
 
     - venue: "Interspeech 2025"
+      year: 2025
       title: "SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting"
       authors: "J. Lim, S.-E. Kim*"
       summary: >-
@@ -53,6 +56,7 @@
       poster: /assets/images/publications/interspeech-poster.pdf
 
     - venue: "ICEIC 2025"
+      year: 2025
       title: "Spatio-temporal Spiking Attention Recurrent Neural Network for EEG-based Motor Imagery Classification"
       authors: "J. Lim, S.-E. Kim*"
       summary: >-
@@ -62,7 +66,8 @@
 
 - group: International Journals (SCI/SCIE)
   items:
-    - venue: "IEEE TIM"
+    - venue: "IEEE TIM 2026"
+      year: 2026
       title: "Measurement and Evaluation of Evoked Dual-Channel Ear-EEG Biometrics Leveraging Multi-Stimuli-Response Feature Integration for Wearable Applications"
       authors: "T. Kang, M. Kallel, J. Lim, J.-J. Lee, S.-E. Kim*"
       summary: >-
@@ -70,6 +75,7 @@
       paper: https://ieeexplore.ieee.org/abstract/document/11421516/
 
     - venue: "Applied Sciences 2025"
+      year: 2025
       title: "Spike-Driven Channel-Temporal Attention Network with Multi-Scale Convolution for Energy-Efficient Bearing Fault Detection"
       authors: "J. Lim, S.-E. Kim*"
       summary: >-
@@ -80,12 +86,14 @@
   hidden: true
   items:
     - venue: "ICLR 2027"
+      year: 2027
       title: "QRePair: Question-Guided Reconstruction via Paired Prototype Retrieval for Missing-Modality Audio-Visual Question Answering"
       summary: >-
         Reconstructs a missing modality from question-guided paired prototypes, then answers through a mixture of temporal experts.
       image: /assets/images/publications/QRePair.png
 
     - venue: "ICLR 2027"
+      year: 2027
       title: "NEOPrune: Non-rEconstructible Orthogonal Token Pruning for Omni Modal Models"
       summary: >-
         Drops tokens that their neighbours can already reconstruct — once in each encoder, then again layer-by-layer inside the LLM.
