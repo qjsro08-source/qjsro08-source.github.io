@@ -81,6 +81,7 @@
       summary: >-
         Brings spiking neural networks to bearing fault detection, aimed at
         low-power condition monitoring on the machine itself.
+      paper: https://www.mdpi.com/2076-3417/15/13/7622
 
 - group: Under Review
   hidden: true
