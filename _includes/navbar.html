@@ -3,13 +3,18 @@
     <a class="nav-brand" href="{{ '/' | relative_url }}">{{ site.author.name }}</a>
 
     <nav class="nav-links" aria-label="Sections">
-      <a href="{{ '/#about' | relative_url }}">About</a>
-      <a href="{{ '/#research' | relative_url }}">Research</a>
-      <a href="{{ '/#publications' | relative_url }}">Publications</a>
-      <a href="{{ '/#projects' | relative_url }}"{% if page.url contains '/projects/' %} class="active"{% endif %}>Projects</a>
-      <a href="{{ '/#education' | relative_url }}">Education</a>
-      <a href="{{ '/#skills' | relative_url }}">Skills</a>
+      <a href="{{ '/#about' | relative_url }}"><span data-l="en">About</span><span data-l="ko">소개</span></a>
+      <a href="{{ '/#research' | relative_url }}"><span data-l="en">Research</span><span data-l="ko">연구</span></a>
+      <a href="{{ '/#publications' | relative_url }}"><span data-l="en">Publications</span><span data-l="ko">논문</span></a>
+      <a href="{{ '/#projects' | relative_url }}"{% if page.url contains '/projects/' %} class="active"{% endif %}><span data-l="en">Projects</span><span data-l="ko">프로젝트</span></a>
+      <a href="{{ '/#education' | relative_url }}"><span data-l="en">Education</span><span data-l="ko">학력</span></a>
+      <a href="{{ '/#skills' | relative_url }}"><span data-l="en">Skills</span><span data-l="ko">기술</span></a>
     </nav>
+
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="ko" aria-pressed="false" lang="ko">한</button>
+    </div>
 
     <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"

@@ -7,34 +7,39 @@
   table }, rendered in the order given.
 
   Three modes, so the list and the detail page never drift apart:
-    compact=true  name, date and keywords only, linked to the detail page.
-                  Used by the home page and /projects/.
+    compact=true  the list card: thumbnail, period, title, English
+                  subtitle and one line, linked to the detail page.
+                  Used by the home page and /projects/ (project-grid.html).
     detail=true   everything except the title and period, which the detail
                   page already shows in its header.
     (neither)     the full card, title included.
 {%- endcomment -%}
 {%- assign p = include.p -%}
 {%- if include.compact -%}
-<li class="card proj proj-compact">
-  <a class="proj-link" href="{{ p.slug | prepend: '/projects/' | append: '/' | relative_url }}">
-    <h3 class="entry-title">{{ p.title }}</h3>
-    {% if p.period %}<p class="entry-meta">{{ p.period }}</p>{% endif %}
-    {% if p.summary %}<p class="proj-summary">{{ p.summary }}</p>{% endif %}
-    {% if p.stack %}
-    <ul class="tags">
-      {% for s in p.stack %}<li>{{ s }}</li>{% endfor %}
-    </ul>
+{%- assign thumb = p.thumb -%}
+{%- if thumb -%}{%- unless thumb contains '://' -%}{%- assign thumb = p.thumb | relative_url -%}{%- endunless -%}{%- endif -%}
+<li class="pcard" data-cat="{{ p.category | default: 'research' }}">
+  <a class="pcard-link" href="{{ p.slug | prepend: '/projects/' | append: '/' | relative_url }}">
+    {% if thumb %}
+    <div class="pcard-thumb"><img src="{{ thumb }}" alt="" loading="lazy"></div>
     {% endif %}
+    <div class="pcard-body">
+      {% if p.period %}{% include t.html class="pcard-chip" ko=p.period en=p.period_en %}{% endif %}
+      {% include t.html tag="h3" class="pcard-title" ko=p.title en=p.title_en %}
+      {% if p.subtitle %}<p class="pcard-sub" data-l="ko">{{ p.subtitle }}</p>{% endif %}
+      {% if p.summary %}{% include t.html tag="p" class="pcard-desc" ko=p.summary en=p.summary_en %}{% endif %}
+      <span class="pcard-more"><span data-l="en">Read more</span><span data-l="ko">자세히 보기</span> <span aria-hidden="true">&rarr;</span></span>
+    </div>
   </a>
 </li>
 {%- else -%}
 <li class="card proj">
   {%- unless include.detail -%}
-  <h3 class="entry-title">{{ p.title }}</h3>
+  {% include t.html tag="h3" class="entry-title" ko=p.title en=p.title_en %}
 
   {% if p.period or p.role %}
   <p class="entry-meta">
-    {%- if p.period %}{{ p.period }}{% endif -%}
+    {%- if p.period %}{% include t.html ko=p.period en=p.period_en %}{% endif -%}
     {%- if p.period and p.role %} &middot; {% endif -%}
     {%- if p.role %}{{ p.role }}{% endif -%}
   </p>
@@ -51,7 +56,7 @@
       <a href="{{ src }}" target="_blank" rel="noopener">
         <img src="{{ src }}" alt="{{ fig.caption | default: p.title | escape }}" loading="lazy">
       </a>
-      {% if fig.caption %}<figcaption>{{ fig.caption }}</figcaption>{% endif %}
+      {% if fig.caption %}{% include t.html tag="figcaption" ko=fig.caption en=fig.caption_en %}{% endif %}
     </figure>
     {% endfor %}
   </div>
@@ -62,7 +67,7 @@
     {% for m in p.metrics %}
     <li>
       <span class="proj-metric-value">{{ m.value }}</span>
-      <span class="proj-metric-label">{{ m.label }}</span>
+      {% include t.html class="proj-metric-label" ko=m.label en=m.label_en %}
     </li>
     {% endfor %}
   </ul>
@@ -70,23 +75,26 @@
 
   {% for sec in p.sections %}
   <div class="proj-block">
-    {% if sec.label %}<div class="proj-label">{{ sec.label }}</div>{% endif %}
-    {% if sec.text %}<p>{{ sec.text }}</p>{% endif %}
-    {% if sec.table %}{% include proj-table.html t=sec.table %}{% endif %}
+    {% if sec.label %}{% include t.html tag="div" class="proj-label" ko=sec.label en=sec.label_en %}{% endif %}
+    {% if sec.text %}{% include t.html tag="p" ko=sec.text en=sec.text_en %}{% endif %}
+    {% if sec.table_en %}
+    <div data-l="ko">{% include proj-table.html t=sec.table %}</div>
+    <div data-l="en">{% include proj-table.html t=sec.table_en %}</div>
+    {% elsif sec.table %}{% include proj-table.html t=sec.table %}{% endif %}
   </div>
   {% endfor %}
 
   {% if p.problem %}
   <div class="proj-block">
-    <div class="proj-label">문제</div>
-    <p>{{ p.problem }}</p>
+    <div class="proj-label"><span data-l="ko">문제</span><span data-l="en">Problem</span></div>
+    {% include t.html tag="p" ko=p.problem en=p.problem_en %}
   </div>
   {% endif %}
 
   {% if p.approach %}
   <div class="proj-block">
-    <div class="proj-label">해결</div>
-    <p>{{ p.approach }}</p>
+    <div class="proj-label"><span data-l="ko">해결</span><span data-l="en">Approach</span></div>
+    {% include t.html tag="p" ko=p.approach en=p.approach_en %}
   </div>
   {% endif %}
 
@@ -95,7 +103,7 @@
     {% for m in p.metrics %}
     <li>
       <span class="proj-metric-value">{{ m.value }}</span>
-      <span class="proj-metric-label">{{ m.label }}</span>
+      {% include t.html class="proj-metric-label" ko=m.label en=m.label_en %}
     </li>
     {% endfor %}
   </ul>
@@ -103,8 +111,8 @@
 
   {% if p.result %}
   <div class="proj-block">
-    <div class="proj-label">결과</div>
-    <p>{{ p.result }}</p>
+    <div class="proj-label"><span data-l="ko">결과</span><span data-l="en">Result</span></div>
+    {% include t.html tag="p" ko=p.result en=p.result_en %}
   </div>
   {% endif %}
 
@@ -120,7 +128,7 @@
   </div>
   {% endif %}
 
-  {% if p.note %}<p class="proj-note">{{ p.note }}</p>{% endif %}
+  {% if p.note %}{% include t.html tag="p" class="proj-note" ko=p.note en=p.note_en %}{% endif %}
 
   {% if p.stack and include.detail != true %}
   <ul class="tags">

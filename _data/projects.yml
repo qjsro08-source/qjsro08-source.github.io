@@ -5,6 +5,11 @@
 #                  also needs a stub page at projects/<slug>.md — Liquid cannot
 #                  create pages on its own, and GitHub Pages allows no plugins.
 # Optional : period, role, stack (list)
+#            subtitle  English one-liner under the title on the list card
+#            title_en / summary_en / period_en  English text for EN mode;
+#                      any field with an _en twin shows that twin in EN mode
+#            thumb     list-card image (a figure from the project page)
+#            category  research | application — drives the list filter
 #            figures  list of { src, caption }
 #            metrics  list of { value, label } — the headline numbers
 #            note     one honest caveat, rendered in smaller grey text
@@ -14,7 +19,13 @@
 
 - title: Visual Looped Transformer 기반 Continual Learning
   slug: looped-transformer-continual-learning
+  title_en: "Continual Learning on a Visual Looped Transformer"
+  summary_en: "A looped VLM gains depth by reusing the same blocks instead of adding parameters. With one as the backbone, we measure forgetting as it learns domains and skills in sequence."
+  period_en: "2026.10 – present"
   period: 2026.10 – 진행 중
+  subtitle: "Continual learning on a looped vision-language model"
+  thumb: /assets/images/projects/loopvl-arch.png
+  category: research
   summary: 파라미터 대신 반복 호출로 깊이를 버는 Looped VLM을 백본으로 삼아, 도메인과 능력을 순차 학습할 때의 망각을 측정합니다.
   stack: ["LoopVL", "Looped Transformer", "Continual Learning", "MLLM-CL", "LoRA"]
 
@@ -23,27 +34,41 @@
       caption: >-
         기반 모델 LoopVL의 구조 (논문 Figure 2a에서 발췌). L 모듈을 3회 반복하고
         L/H 쌍을 다시 2회 반복해, 32개 고유 레이어로 128번의 레이어 호출을 만듭니다.
+      caption_en: >-
+        Architecture of the base model LoopVL (from Figure 2a of the LoopVL paper). The L module loops
+        three times and the L/H pair loops twice more, so 32 unique layers make 128 layer calls.
 
   metrics:
     - value: "36.40 → 60.24"
       label: "DCL 5개 도메인 평균 (zero-shot → 순차 학습 후)"
+      label_en: "DCL average over 5 domains (zero-shot → after sequential training)"
     - value: "55.64"
       label: "ACL 4개 능력 zero-shot 평균 (LLaVA-7B 33.05)"
+      label_en: "ACL zero-shot average over 4 skills (LLaVA-7B: 33.05)"
     - value: "r = 32"
       label: "LoRA — q, k, v, o에 적용"
+      label_en: "LoRA on q, k, v and o"
     - value: "5 + 4"
       label: "순차 학습 task (도메인 5 · 능력 4)"
+      label_en: "Sequential tasks (5 domains · 4 skills)"
 
   sections:
     - label: 왜 looped transformer인가
+      label_en: Why looped transformers
       text: >-
         LLM은 스케일링 법칙을 따라 파라미터를 키우는 쪽으로 발전해 왔고, 학습과 서빙
         비용도 그만큼 같이 올랐습니다. looped transformer는 다른 축을 택합니다.
         파라미터를 늘리는 대신 같은 블록을 여러 번 되불러 유효 깊이를 벌고, 깊이에
         민감한 추론 과제에서 훨씬 적은 파라미터로 더 나은 성능을 냅니다. 강건한 추론을
         더 적은 파라미터로 확보하는, 곧 더 효율적인 경로입니다.
+      text_en: >-
+        LLMs have grown by scaling up parameters, and training and serving costs have grown with them.
+        Looped transformers take another axis: instead of adding parameters, they call the same blocks
+        again and again to gain effective depth, and on depth-sensitive reasoning tasks they do better
+        with far fewer parameters. That makes them a more efficient route to robust reasoning.
 
     - label: 문제
+      label_en: Problem
       text: >-
         그런데 멀티모달 LLM에 새 도메인이나 능력을 순차적으로 가르치면 앞서 배운 것을
         잊습니다. 지금까지의 continual learning 연구는 LLaVA처럼 레이어를 한 번씩만
@@ -51,19 +76,36 @@
         적은 없습니다. 같은 가중치가 반복 호출마다 다시 쓰이는 구조에서는 한 task를 위한
         업데이트가 모든 반복에 동시에 반영되고 학습되는 가중치 자체도 적어서, 망각의
         양상이 달라질 여지가 있습니다. 이 프로젝트는 그 빈자리를 측정합니다.
+      text_en: >-
+        But when a multimodal LLM is taught new domains or skills one after another, it forgets what it
+        learned before. Continual learning research has so far used only backbones that pass through
+        each layer once, like LLaVA; sequential learning on looped transformers has not been studied.
+        When the same weights are reused at every iteration, an update for one task lands on all
+        iterations at once and fewer weights are trained, so forgetting may behave differently. This
+        project measures that gap.
 
     - label: 목표
+      label_en: Goal
       text: >-
         looped transformer의 강한 추론 성능을 continual learning으로 옮기는 것이
         목표입니다. 기존 모델보다 적은 파라미터로 더 나은 추론을 하면서, catastrophic
         forgetting 없이 여러 도메인과 능력을 차례로 익혀 쓸 수 있는 범위를 넓히는
         VLM을 만듭니다.
+      text_en: >-
+        The goal is to carry the strong reasoning of looped transformers into continual learning: a VLM
+        that reasons better than existing models with fewer parameters, and widens what it can do by
+        learning domains and skills in turn without catastrophic forgetting.
 
     - label: 깊이가 추론을 만든다
+      label_en: Depth drives reasoning
       text: >-
         파라미터보다 깊이가 추론을 좌우한다는 근거는 언어와 비전 양쪽에서 따로
         보고되었습니다. 같은 FLOPs 아래에서 파라미터를 절반으로 줄인 looped 모델이
         non-looped 기준선의 추론 성능을 넘습니다.
+      text_en: >-
+        Evidence that depth, more than parameters, drives reasoning has been reported separately for
+        language and for vision. At equal FLOPs, a looped model with half the parameters beats the
+        reasoning of a non-looped baseline.
       table:
         head: ["모델 (층 ⊗ loop)", "파라미터", "Val. PPL ↓", "수학 문장제 ↑", "추론 프리미티브 ↑"]
         rows:
@@ -74,10 +116,23 @@
           Saunshi et al., Reasoning with Latent Thoughts (ICLR 2025, arXiv:2502.17416),
           1B 규모 · 동일 FLOPs. looped 모델은 perplexity가 더 나쁜데도 추론 과제에서는
           파라미터가 2–4배인 non-looped 기준선을 넘습니다.
+      table_en:
+        head: ["Model (layers ⊗ loops)", "Params", "Val. PPL ↓", "Math word problems ↑", "Reasoning primitives ↑"]
+        rows:
+          - ["24 ⊗ 1 — non-looped baseline", "24x", "**7.40**", "29.3", "47.5"]
+          - ["12 ⊗ 2 — looped", "12x", "7.90", "**34.3**", "51.2"]
+          - ["6 ⊗ 4 — looped", "6x", "8.42", "29.8", "**56.1**"]
+        caption: >-
+          Saunshi et al., Reasoning with Latent Thoughts (ICLR 2025, arXiv:2502.17416), 1B scale · equal
+          FLOPs. The looped models have worse perplexity, yet on reasoning tasks they beat non-looped
+          baselines with 2–4× the parameters.
 
     - text: >-
         비전·언어 쪽에서도 같은 경향이 나타납니다. LoopVL-1B는 학습 토큰이 수십 배
         적은데도 추론 벤치마크에서 2–4B급 모델들을 앞섭니다.
+      text_en: >-
+        The same holds for vision-language. LoopVL-1B is trained on tens of times fewer tokens, yet it
+        beats 2–4B models on reasoning benchmarks.
       table:
         head: ["모델", "학습 토큰", "MathVision ↑", "MMK12-Math ↑", "MMMU-Pro ↑", "MMStar ↑"]
         rows:
@@ -86,12 +141,25 @@
           - ["InternVL3.5-4B", "36.38T", "22.04", "54.80", "38.30", "63.20"]
           - ["gemma-4 E4B-it", "11T", "19.64", "37.40", "33.06", "51.13"]
           - ["LFM2.5-VL-1.6B", "28.1T", "16.51", "30.80", "24.22", "48.53"]
+      table_en:
+        head: ["Model", "Training tokens", "MathVision ↑", "MMK12-Math ↑", "MMMU-Pro ↑", "MMStar ↑"]
+        rows:
+          - ["**LoopVL-1B**", "0.14T", "**38.49**", "**61.60**", "**38.67**", "**63.47**"]
+          - ["Qwen3.5-2B", "36T", "38.40", "35.00", "24.90", "55.10"]
+          - ["InternVL3.5-4B", "36.38T", "22.04", "54.80", "38.30", "63.20"]
+          - ["gemma-4 E4B-it", "11T", "19.64", "37.40", "33.06", "51.13"]
+          - ["LFM2.5-VL-1.6B", "28.1T", "16.51", "30.80", "24.22", "48.53"]
 
     - label: 벤치마크
+      label_en: Benchmark
       text: >-
         MLLM-CL(arXiv:2506.05453)을 씁니다. 두 트랙으로 나뉘는데, DCL은 서로 다른
         도메인 지식을 차례로 쌓는 IID 설정이고, ACL은 모델의 기본 능력 자체를 차례로
         키우는 non-IID 설정입니다. 학습 순서는 표의 위에서 아래 순입니다.
+      text_en: >-
+        We use MLLM-CL (arXiv:2506.05453). It has two tracks: DCL adds knowledge of different domains in
+        turn (IID), and ACL grows the model's core skills in turn (non-IID). Tasks are learned from the
+        top of each table down.
       table:
         head: ["DCL — 도메인", "과제", "학습 / 평가", "출처"]
         rows:
@@ -100,6 +168,14 @@
           - ["AD — 자율주행", "주행 장면 QA", "60k / 10k", "DriveLM"]
           - ["Sci — 과학", "도표·지도 과학 QA", "33.4k / 8.2k", "AI2D, SciVerse, MapQA, TQA"]
           - ["Fin — 금융", "주식 차트 QA", "60k / 10k", "StockQA (FinVis 재작성)"]
+      table_en:
+        head: ["DCL — domain", "Task", "Train / test", "Source"]
+        rows:
+          - ["RS — remote sensing", "Satellite and aerial image VQA", "60k / 10k", "RSVQA"]
+          - ["Med — medical", "Pathology image VQA", "22.8k / 9.8k", "PathVQA"]
+          - ["AD — autonomous driving", "Driving-scene QA", "60k / 10k", "DriveLM"]
+          - ["Sci — science", "Science QA on diagrams and maps", "33.4k / 8.2k", "AI2D, SciVerse, MapQA, TQA"]
+          - ["Fin — finance", "Stock-chart QA", "60k / 10k", "StockQA (rewritten from FinVis)"]
 
     - table:
         head: ["ACL — 능력", "과제", "학습", "평가셋"]
@@ -112,19 +188,43 @@
           지표는 네 가지입니다. MFT는 각 task를 막 배운 직후 정확도의 평균, MFN은
           전체 순차 학습을 끝낸 뒤 모든 task 정확도의 평균, MAA는 매 단계마다의 평균
           정확도를 다시 평균한 값, BWT는 최종 정확도와 학습 직후 정확도의 차이입니다.
+      table_en:
+        head: ["ACL — skill", "Task", "Train", "Test set"]
+        rows:
+          - ["OCR", "Text recognition", "128.1k", "OCRBench"]
+          - ["M&L — math & logic", "Math and logical reasoning", "526.1k", "MathVista"]
+          - ["VP — visual perception", "Perception tasks such as counting", "119.9k", "CV-Bench (Counting)"]
+          - ["GUI — agent", "Screen understanding and operation", "147.3k", "MMTBench-GUI"]
+        caption: >-
+          Four metrics: MFT averages each task's accuracy right after it is learned; MFN averages every
+          task's accuracy after the whole sequence; MAA averages the mean accuracy over learned tasks
+          after each step; BWT is the change from just-learned to final accuracy.
 
     - label: 학습 설정
+      label_en: Training setup
       text: >-
         LoopVL 백본을 얼리고 어텐션의 q, k, v, o 투영에만 LoRA(r = 32)를 걸어 task를
         차례로 학습합니다. looped 구조에서는 같은 어댑터가 반복 호출마다 다시 적용되므로,
         non-looped 백본과 같은 rank라도 실제로 관여하는 횟수가 다릅니다.
+      text_en: >-
+        We freeze the LoopVL backbone and train LoRA (r = 32) only on the attention q, k, v and o
+        projections, one task after another. In a looped model the same adapter is applied again at
+        every iteration, so at the same rank it acts a different number of times than in a non-looped
+        backbone.
 
     - label: 결과 — DCL (진행 중)
+      label_en: Results — DCL (ongoing)
       text: >-
         5개 도메인을 RS → Med → AD → Sci → Fin 순서로 차례로 학습한 뒤, 마지막 Fin 체크포인트로 전 도메인을 평가했습니다.
         순차 학습 방법은 두 가지를 비교했습니다. LoRA-FT는 하나의 LoRA 어댑터를 task마다 이어서 학습하는
         가장 기본적인 방법이고, O-LoRA는 새 task의 LoRA를 이전 task들의 LoRA 부분공간과 직교하도록 학습해
         task 사이의 간섭을 줄이는 continual learning 방법입니다.
+      text_en: >-
+        We trained the five domains in the order RS → Med → AD → Sci → Fin and evaluated all of them
+        with the final Fin checkpoint. We compared two sequential methods: LoRA-FT, the basic approach
+        that keeps training one LoRA adapter task after task, and O-LoRA, a continual learning method
+        that learns each new task's LoRA orthogonal to the earlier tasks' LoRA subspaces to reduce
+        interference between tasks.
       table:
         head: ["Method", "RS", "Med", "AD", "Sci", "Fin", "MFT ↑", "MFN ↑", "MAA ↑", "BWT ↑"]
         rows:
@@ -137,8 +237,14 @@
           LLaVA 두 행은 MLLM-CL 논문 Table 2의 보고값이고, LoopVL 세 행이 우리 실측값입니다.
           도메인 칸은 순차 학습을 모두 끝낸 뒤의 점수(Last Accuracy)이며 그 평균이 MFN입니다.
           BWT는 점수 차이(%p)로 0에 가까울수록 좋고, 굵게는 LoopVL 실측 중 최고값입니다.
+        caption_en: >-
+          The two LLaVA rows are reported in Table 2 of the MLLM-CL paper; the three LoopVL rows are our
+          measurements. Domain columns are scores after the whole sequence (Last Accuracy), and their mean
+          is MFN. BWT is a score difference (%p), better closer to 0; bold marks the best of our LoopVL
+          runs.
 
     - label: 분석 — stability가 다음 과제
+      label_en: Analysis — stability is next
       text: >-
         LoopVL은 새 도메인을 잘 받아들입니다. 각 task를 막 배운 직후의 평균(MFT)은 LoRA-FT 기준 70.54이고,
         순차 학습을 모두 끝낸 뒤의 평균(MFN)도 60.24로 7배 큰 LLaVA-1.5-7B(53.00)보다 7.2점 높습니다.
@@ -148,11 +254,26 @@
         구조처럼 다룹니다. task 간 간섭을 막도록 설계된 O-LoRA도 BWT를 개선하지 못했습니다.
         새 지식을 받아들이는 plasticity는 충분하고, 이전 지식을 지키는 stability를 보완하는 loop-aware
         continual learning 방법이 다음 단계입니다.
+      text_en: >-
+        LoopVL takes in new domains well. The average right after learning each task (MFT) is 70.54 with
+        LoRA-FT, and the average after the whole sequence (MFN) is 60.24, 7.2 points above LLaVA-1.5-7B
+        (53.00), a model seven times larger. BWT, however, is −12.87 for LoRA-FT and −13.53 for O-LoRA:
+        earlier domains lose about 13 points by the end. Neither method is loop-aware. In a looped model
+        the same adapter is reapplied at every iteration, so an update for a new task lands on every
+        iteration at once, yet existing methods treat the model as if each layer were passed only once.
+        Even O-LoRA, built to prevent interference between tasks, did not improve BWT. Plasticity,
+        taking in new knowledge, is sufficient; the next step is a loop-aware continual learning method
+        that adds stability, keeping what was learned.
 
     - label: 결과 — ACL (진행 중)
+      label_en: Results — ACL (ongoing)
       text: >-
         능력 트랙은 순차 학습 전의 zero-shot 결과입니다. 학습을 시작하기도 전에
         4개 능력 평균이 LLaVA-1.5-7B보다 22.6점 높고, 특히 OCR과 수학·논리에서 차이가 큽니다.
+      text_en: >-
+        The skill track shows zero-shot results before sequential training. Even before any training,
+        the four-skill average is 22.6 points above LLaVA-1.5-7B, with the largest gaps in OCR and math
+        & logic.
       table:
         head: ["Method", "OCR", "M&L", "VP", "GUI", "MFT ↑"]
         rows:
@@ -160,12 +281,20 @@
           - ["**LoopVL · Zero-shot**", "**70.30**", "**58.90**", "65.48", "**27.88**", "**55.64**"]
         caption: >-
           LLaVA 행은 MLLM-CL 논문 Table 3의 보고값, LoopVL 행이 우리 실측값입니다.
+        caption_en: >-
+          The LLaVA row is reported in Table 3 of the MLLM-CL paper; the LoopVL row is our measurement.
 
   note: 진행 중인 프로젝트입니다.
+  note_en: This project is ongoing.
 
 - title: Omni-modal LLM을 위한 Token Pruning
   slug: omnimodal-token-pruning
+  title_en: "Token Pruning for Omni-modal LLMs"
+  summary_en: "Drops the tokens their neighbours can already reconstruct, keeping accuracy while cutting audio and video tokens to under half."
   period: 2026.03 – 2026.09
+  subtitle: "Training-free token pruning for omni-modal LLMs by reconstructing layer-wise orthogonal updates"
+  thumb: /assets/images/projects/omni-token-pruning/overview.png
+  category: research
   summary: 주변 토큰으로 복원되는 토큰을 골라 버려, 오디오·비디오 토큰을 절반 이하로 줄이면서 성능을 지킵니다.
   stack: ["OmniLLM", "Token Pruning", "Qwen2.5-Omni", "Training-free"]
 
@@ -206,13 +335,23 @@
 
 - title: Missing Modality에도 강건한 Audio-Visual QA
   slug: missing-modality-avqa
+  title_en: "Robust Audio-Visual QA under a Missing Modality"
+  summary_en: "When audio or video drops out at inference, it finds the missing side in paired prototypes and reconstructs it for the question before answering."
   period: 2026.03 – 2026.09
+  subtitle: "Robust audio-visual question answering when a modality goes missing at inference"
+  thumb: /assets/images/projects/missing-modality-avqa/overview.png
+  category: research
   summary: 추론 중 오디오나 영상이 빠져도, 페어로 저장한 프로토타입(paired prototype)에서 빠진 쪽을 찾아 질문에 맞게 복원해 답합니다.
   stack: ["Audio-Visual QA", "Missing Modality", "Prototype Retrieval", "Mixture of Experts"]
 
 - title: 로컬 LLM 육아 상담 챗봇
   slug: local-llm-parenting-chatbot
+  title_en: "Local LLM Parenting Chatbot"
+  summary_en: "A parenting chatbot aimed at on-device use: a parenting QA set built from public data, LoRA tuning, and a comparison with four commercial APIs under the same conditions."
   period: 2026.05
+  subtitle: "A parenting assistant built to run on-device, answering from the child’s own records"
+  thumb: /assets/images/projects/chatbot-thumb.jpg
+  category: application
   summary: 온디바이스를 목표로 만든 육아 상담 챗봇. 공개 QA로 데이터셋을 만들어 LoRA로 튜닝하고, 상용 API 4종과 같은 조건에서 비교했습니다.
   stack: ["Gemma 4 E4B", "LoRA", "Q4_0 양자화", "RAG", "PyTorch"]
 
@@ -257,7 +396,12 @@
 
 - title: 단일 이미지로부터의 3D 장면 복원
   slug: single-image-3d-scene
+  title_en: "3D Scene Reconstruction from a Single Image"
+  summary_en: "Splits one photo into foreground, background and sky and rebuilds each layer, recovering even the background hidden behind objects."
   period: 2025.12 – 2026.04
+  subtitle: "Layer-wise 3D scene reconstruction from a single image"
+  thumb: /assets/images/projects/3d-qualitative.jpg
+  category: research
   summary: 사진 한 장을 전경·배경·하늘로 나눠 층별로 복원해, 가려져 있던 배경까지 살린 3D 장면을 만듭니다.
   stack: ["3D Gaussian Splatting", "Diffusion Inpainting", "SAM3", "LLaVA-OneVision"]
 
@@ -266,6 +410,11 @@
     아예 없습니다. 기존의 학습 없이 동작하는 3DGS 방법들은 장면 전체를 하나의
     가우시안 집합으로 최적화하기 때문에, 가려졌던 배경이 끝내 복원되지 않고
     카메라를 옆으로 옮기면 물체와 배경의 경계가 무너집니다.
+  problem_en: >-
+    When a 3D scene is built from a single photo, the background hidden behind people or objects
+    carries no information at all. Existing training-free 3DGS methods optimize the whole scene as
+    one set of Gaussians, so the occluded background is never recovered and the boundary between
+    objects and background breaks down as the camera moves sideways.
 
   approach: >-
     장면을 전경·배경·하늘 세 개의 층으로 먼저 나눕니다. 전경을 지우고 그 자리에
@@ -273,26 +422,43 @@
     독립적인 3D 가우시안 장면으로 재구성합니다. 층끼리 간섭하지 않으므로 경계가
     뭉개지지 않습니다. 마지막에 세 층을 하나로 병합하고 원본 시점을 기준으로 다시
     정합해 novel-view 렌더링에 사용합니다. 별도의 대규모 3D 학습은 필요하지 않습니다.
+  approach_en: >-
+    The scene is first split into three layers: foreground, background and sky. The foreground is
+    removed and the background it hid is filled in by inpainting; then each layer is reconstructed
+    as an independent set of 3D Gaussians with no shared parameters. Because the layers do not
+    interfere, boundaries stay sharp. Finally the three layers are merged, re-aligned to the
+    original view and used for novel-view rendering. No large-scale 3D training is needed.
 
   metrics:
     - value: "79.32"
       label: "WorldScore 평균 (2위 77.16)"
+      label_en: "WorldScore average (runner-up 77.16)"
     - value: "90.55"
       label: "3D 일관성 — 1위"
+      label_en: "3D consistency — 1st"
     - value: "92.33"
       label: "광학 일관성 — 1위"
+      label_en: "Photometric consistency — 1st"
     - value: "91.93"
       label: "스타일 일관성 — 1위"
+      label_en: "Style consistency — 1st"
 
   result: >-
     WorldScore 벤치마크에서 기존 3D 장면 생성 방법 6종과 비교해 평균 79.32로 가장
     높았습니다. 특히 시점을 옮겼을 때의 일관성을 보는 세 지표에서 모두 1위였습니다.
     정성적으로도 가려짐 때문에 생기던 구멍이 줄고, 전경과 배경의 경계와 깊이가
     더 안정적으로 유지됩니다.
+  result_en: >-
+    On the WorldScore benchmark it scored the highest average, 79.32, against six existing 3D scene
+    generation methods, and ranked first on all three metrics of consistency under camera motion.
+    Qualitatively, holes from occlusion shrink and the boundary and depth between foreground and
+    background stay more stable.
 
 
   figures:
     - src: /assets/images/projects/3d-pipeline.jpg
       caption: 2단계 파이프라인 — 층 분해와 가려진 배경 복원(Stage 1), 층별 가우시안 재구성과 병합(Stage 2)
+      caption_en: "Two-stage pipeline: layer decomposition and recovery of the hidden background (Stage 1), per-layer Gaussian reconstruction and merging (Stage 2)"
     - src: /assets/images/projects/3d-qualitative.jpg
       caption: 기존 방법과의 정성 비교. 빨간 상자가 전경–배경 경계이며, 오른쪽이 제안 방법
+      caption_en: "Qualitative comparison with existing methods. Red boxes mark foreground–background boundaries; ours is on the right."

@@ -1,0 +1,23 @@
+{%- comment -%}
+  The project cards as a filterable grid. Filter chips appear only once
+  main.js is running, so without it every card simply shows.
+{%- endcomment -%}
+{%- assign cats = site.data.projects | map: "category" | uniq -%}
+<div class="pgrid" data-pgrid>
+  {%- if cats.size > 1 %}
+  <div class="pfilter" role="group" aria-label="Project type" hidden>
+    <button type="button" class="pfilter-chip" data-filter="all" aria-pressed="true"><span data-l="en">All</span><span data-l="ko">전체</span></button>
+    {%- if cats contains "research" %}
+    <button type="button" class="pfilter-chip" data-filter="research" aria-pressed="false"><span data-l="en">Research</span><span data-l="ko">연구</span></button>
+    {%- endif %}
+    {%- if cats contains "application" %}
+    <button type="button" class="pfilter-chip" data-filter="application" aria-pressed="false"><span data-l="en">Application</span><span data-l="ko">응용</span></button>
+    {%- endif %}
+  </div>
+  {%- endif %}
+  <ul class="pcards">
+    {%- for p in site.data.projects %}
+      {% include project-card.html p=p compact=true %}
+    {%- endfor %}
+  </ul>
+</div>

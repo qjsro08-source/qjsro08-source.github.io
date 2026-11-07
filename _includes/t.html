@@ -1,0 +1,12 @@
+{%- comment -%}
+  Print a ko/en pair: {% include t.html ko=x en=y tag="p" class="..." %}.
+  With no English (or the same text) it prints the value once, shown in
+  both languages. tag defaults to span.
+{%- endcomment -%}
+{%- assign t_tag = include.tag | default: "span" -%}
+{%- if include.class -%}{%- capture t_cls %} class="{{ include.class }}"{% endcapture -%}{%- else -%}{%- assign t_cls = "" -%}{%- endif -%}
+{%- if include.en and include.en != include.ko -%}
+<{{ t_tag }}{{ t_cls }} data-l="ko">{{ include.ko }}</{{ t_tag }}><{{ t_tag }}{{ t_cls }} data-l="en">{{ include.en }}</{{ t_tag }}>
+{%- else -%}
+<{{ t_tag }}{{ t_cls }}>{{ include.ko }}</{{ t_tag }}>
+{%- endif -%}

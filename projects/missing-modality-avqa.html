@@ -12,15 +12,15 @@ extra_css: [/public/css/project-rich.css]
   <div class="glow" aria-hidden="true"></div>
   <div class="wrap rp-wrap">
     <p class="crumb"><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a></p>
-    <h1 class="rp-title">Missing Modality에도 강건한 <span class="rp-nowrap">Audio-Visual QA</span></h1>
+    <h1 class="rp-title"><span data-l="ko">Missing Modality에도 강건한 <span class="rp-nowrap">Audio-Visual QA</span></span><span data-l="en">Robust Audio-Visual QA under a <span class="rp-nowrap">Missing Modality</span></span></h1>
     <p class="rp-subtitle">Robust audio-visual question answering when a modality goes missing at inference</p>
     <p class="rp-meta">2026.03 – 2026.09</p>
     <ul class="tags">
       <li>Audio-Visual QA</li><li>Missing Modality</li><li>Prototype Retrieval</li><li>Mixture of Experts</li>
     </ul>
     <div class="rp-actions">
-      <a class="btn btn-primary" href="#method">방법 보기 &darr;</a>
-      <a class="btn btn-ghost" href="#results">결과 표 &darr;</a>
+      <a class="btn btn-primary" href="#method"><span data-l="ko">방법 보기 &darr;</span><span data-l="en">See the method &darr;</span></a>
+      <a class="btn btn-ghost" href="#results"><span data-l="ko">결과 표 &darr;</span><span data-l="en">Results &darr;</span></a>
     </div>
   </div>
 </header>
@@ -30,8 +30,8 @@ extra_css: [/public/css/project-rich.css]
   <!-- Hero: how one audio-missing question is answered. Ships on the last step. -->
   <section class="rp-hero qr-hero" data-hero data-step="4" aria-label="오디오가 빠졌을 때의 추론 과정">
     <div class="ch-head">
-      <p class="rp-eyebrow">동작 방식 &middot; 추론 중에 오디오가 빠진 상황</p>
-      <p class="qr-headline" data-step-text="오디오·영상·질문이 함께 들어옵니다.|추론 시점에 오디오가 통째로 빠집니다.|남은 영상 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, 그와 페어인 오디오 프로토타입을 꺼냅니다.|꺼낸 오디오 프로토타입을 질문에 맞게 다듬어 빠진 오디오 표현을 복원합니다.|복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%.">복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%.</p>
+      <p class="rp-eyebrow"><span data-l="ko">동작 방식 &middot; 추론 중에 오디오가 빠진 상황</span><span data-l="en">How it works &middot; audio goes missing during inference</span></p>
+      <p class="qr-headline" data-step-text-en="Audio, video and the question come in together.|At inference the audio drops out entirely.|The remaining video finds the most similar prototype in memory and takes out its paired audio prototype.|The retrieved audio prototype is refined for the question to rebuild the missing audio representation.|It answers from the rebuilt audio and the remaining video: 73.49% accuracy with the audio missing." data-step-text="오디오·영상·질문이 함께 들어옵니다.|추론 시점에 오디오가 통째로 빠집니다.|남은 영상 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, 그와 페어인 오디오 프로토타입을 꺼냅니다.|꺼낸 오디오 프로토타입을 질문에 맞게 다듬어 빠진 오디오 표현을 복원합니다.|복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%."><span data-l="ko">복원한 오디오와 남은 영상으로 답합니다. 오디오가 빠져도 정확도 73.49%.</span><span data-l="en">It answers from the rebuilt audio and the remaining video: 73.49% accuracy with the audio missing.</span></p>
     </div>
 
     <div class="qr-svg-wrap">
@@ -39,64 +39,64 @@ extra_css: [/public/css/project-rich.css]
     </div>
 
     <ul class="rp-steps ch-steps">
-      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="2200">1 · 입력</button></li>
-      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="2400">2 · 오디오 누락</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="2200"><span data-l="ko">1 · 입력</span><span data-l="en">1 · Input</span></button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="2400"><span data-l="ko">2 · 오디오 누락</span><span data-l="en">2 · Audio missing</span></button></li>
       <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="3800">3 · Paired Retrieval</button></li>
       <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="false" data-hold="3600">4 · Reconstruction</button></li>
-      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="true" data-hold="4400">5 · 답변</button></li>
+      <li><button class="rp-step rp-step-ours" type="button" data-step-btn aria-pressed="true" data-hold="4400"><span data-l="ko">5 · 답변</span><span data-l="en">5 · Answer</span></button></li>
     </ul>
 
     <div class="rp-hero-foot">
       <p class="rp-hero-caption">
-        영상이 빠진 경우도 같은 방식으로, 남은 오디오로 메모리를 찾아 영상 표현을 복원합니다. 정확도는 MUSIC-AVQA의 오디오-비주얼 질문 5,096개 기준입니다.
+        <span data-l="ko">영상이 빠진 경우도 같은 방식으로, 남은 오디오로 메모리를 찾아 영상 표현을 복원합니다. 정확도는 MUSIC-AVQA의 오디오-비주얼 질문 5,096개 기준입니다.</span><span data-l="en">Missing video works the same way: the remaining audio searches the memory and the video representation is rebuilt. Accuracy is over the 5,096 audio-visual questions of MUSIC-AVQA.</span>
       </p>
       <div class="rp-controls">
-        <button class="btn btn-ghost" type="button" data-toggle>일시정지</button>
-        <button class="btn btn-ghost" type="button" data-replay>처음부터</button>
+        <button class="btn btn-ghost" type="button" data-toggle><span data-l="ko">일시정지</span><span data-l="en">Pause</span></button>
+        <button class="btn btn-ghost" type="button" data-replay><span data-l="ko">처음부터</span><span data-l="en">Replay</span></button>
       </div>
     </div>
   </section>
 
   <ul class="rp-numbers">
-    <li><span class="rp-num">73.49%</span><span class="rp-num-label">오디오가 빠졌을 때 (MUSIC-AVQA)</span></li>
-    <li><span class="rp-num">71.59%</span><span class="rp-num-label">영상이 빠졌을 때 (MUSIC-AVQA)</span></li>
-    <li><span class="rp-num">85.74%</span><span class="rp-num-label">AVQA 세 입력 조건 평균 (기존 최고 76.35%)</span></li>
-    <li><span class="rp-num">78.07%</span><span class="rp-num-label">모든 입력이 있을 때 (MUSIC-AVQA 전체)</span></li>
+    <li><span class="rp-num">73.49%</span><span class="rp-num-label"><span data-l="ko">오디오가 빠졌을 때 (MUSIC-AVQA)</span><span data-l="en">With audio missing (MUSIC-AVQA)</span></span></li>
+    <li><span class="rp-num">71.59%</span><span class="rp-num-label"><span data-l="ko">영상이 빠졌을 때 (MUSIC-AVQA)</span><span data-l="en">With video missing (MUSIC-AVQA)</span></span></li>
+    <li><span class="rp-num">85.74%</span><span class="rp-num-label"><span data-l="ko">AVQA 세 입력 조건 평균 (기존 최고 76.35%)</span><span data-l="en">AVQA, average over three input conditions (previous best 76.35%)</span></span></li>
+    <li><span class="rp-num">78.07%</span><span class="rp-num-label"><span data-l="ko">모든 입력이 있을 때 (MUSIC-AVQA 전체)</span><span data-l="en">With every input present (MUSIC-AVQA overall)</span></span></li>
   </ul>
 
   <!-- 1 · Problem and goal ---------------------------------------------------------- -->
   <section class="rp-section" id="problem">
-    <p class="rp-kicker">문제</p>
-    <h2 class="rp-h2">현장의 멀티모달 입력은 불완전하다</h2>
+    <p class="rp-kicker"><span data-l="ko">문제</span><span data-l="en">Problem</span></p>
+    <h2 class="rp-h2"><span data-l="ko">현장의 멀티모달 입력은 불완전하다</span><span data-l="en">Multimodal input in the real world is incomplete</span></h2>
     <p class="rp-lead">
-      실제 멀티모달 추론 현장에서는 입력이 항상 온전하지 않습니다. 마이크가 꺼지거나, 카메라가 가려지거나, 전송 중에 끊기면
-      <strong>오디오나 영상 한쪽이 통째로 빠집니다.</strong>
+      <span data-l="ko">실제 멀티모달 추론 현장에서는 입력이 항상 온전하지 않습니다. 마이크가 꺼지거나, 카메라가 가려지거나, 전송 중에 끊기면
+      <strong>오디오나 영상 한쪽이 통째로 빠집니다.</strong></span><span data-l="en">In real multimodal inference, input is not always whole. When a microphone is off, a camera is blocked or a stream drops, <strong>the audio or the video goes missing entirely.</strong></span>
     </p>
     <div class="rp-prose">
       <p>
-        그런데 질문은 빠진 쪽에 기대는 경우가 많습니다. 소리를 내는 악기가 몇 개인지, 짧은 사건이 언제 일어났는지, 두 모달리티의 단서를 비교해야 하는 질문이 그렇습니다.
+        <span data-l="ko">그런데 질문은 빠진 쪽에 기대는 경우가 많습니다. 소리를 내는 악기가 몇 개인지, 짧은 사건이 언제 일어났는지, 두 모달리티의 단서를 비교해야 하는 질문이 그렇습니다.
         기존 오디오-비주얼 QA 모델은 주어진 입력에서 질문과 관련된 단서를 고르는 데 강하지만, 없는 모달리티의 정보를 채워 주지는 못합니다.
-        의미가 비슷한 다른 샘플을 찾아오는 방식도 있지만, 의미가 비슷하다고 해서 소리의 개수나 시간 구성 같은 구조까지 같지는 않습니다.
+        의미가 비슷한 다른 샘플을 찾아오는 방식도 있지만, 의미가 비슷하다고 해서 소리의 개수나 시간 구성 같은 구조까지 같지는 않습니다.</span><span data-l="en">Yet questions often depend on the missing side: how many instruments are making sound, when a short event happened, or questions that compare cues across the two modalities. Existing audio-visual QA models are good at picking question-relevant cues from the input they are given, but they cannot fill in a modality that is absent. Retrieving a semantically similar sample is another option, but similar meaning does not mean the same structure, such as the number of sounds or their timing.</span>
       </p>
     </div>
 
     <div class="qr-goal">
-      <p class="rp-kicker">목표</p>
+      <p class="rp-kicker"><span data-l="ko">목표</span><span data-l="en">Goal</span></p>
       <p>
-        한 모달리티가 빠져도 <strong>남은 입력과 질문만으로 빠진 쪽의 표현을 되살려</strong>, 모든 입력이 있을 때에 가깝게 답하는
-        <strong>불완전한 입력에 강건한 멀티모달 구조</strong>를 만드는 것이 이 연구의 목표입니다.
+        <span data-l="ko">한 모달리티가 빠져도 <strong>남은 입력과 질문만으로 빠진 쪽의 표현을 되살려</strong>, 모든 입력이 있을 때에 가깝게 답하는
+        <strong>불완전한 입력에 강건한 멀티모달 구조</strong>를 만드는 것이 이 연구의 목표입니다.</span><span data-l="en">The goal is a <strong>multimodal architecture robust to incomplete input</strong>: when one modality is missing, it <strong>rebuilds that modality's representation from the remaining input and the question alone</strong>, and answers close to how it would with every input present.</span>
       </p>
     </div>
   </section>
 
   <!-- 2 · Method ------------------------------------------------------------------------ -->
   <section class="rp-section" id="method">
-    <p class="rp-kicker">방법</p>
-    <h2 class="rp-h2">남은 모달리티로 페어를 찾고, 질문에 맞게 복원한다</h2>
+    <p class="rp-kicker"><span data-l="ko">방법</span><span data-l="en">Method</span></p>
+    <h2 class="rp-h2"><span data-l="ko">남은 모달리티로 페어를 찾고, 질문에 맞게 복원한다</span><span data-l="en">Find the pair with what remains, rebuild it for the question</span></h2>
     <div class="rp-prose">
       <p>
-        학습 데이터의 온전한 오디오·영상 표현을 <strong>paired prototype으로 저장</strong>해 두고, 추론 중 한쪽이 빠지면 남은 쪽으로 가장 비슷한 페어를 찾아
-        빠진 쪽의 출발점으로 씁니다. 찾아온 표현은 다른 샘플들의 평균이므로, <strong>현재 질문에 맞게 다듬어</strong> reasoning model에 넣습니다.
+        <span data-l="ko">학습 데이터의 온전한 오디오·영상 표현을 <strong>paired prototype으로 저장</strong>해 두고, 추론 중 한쪽이 빠지면 남은 쪽으로 가장 비슷한 페어를 찾아
+        빠진 쪽의 출발점으로 씁니다. 찾아온 표현은 다른 샘플들의 평균이므로, <strong>현재 질문에 맞게 다듬어</strong> reasoning model에 넣습니다.</span><span data-l="en">Complete audio and video representations from the training data are <strong>stored as paired prototypes</strong>. When one side goes missing at inference, the remaining side finds the most similar pair, which becomes the starting point for the missing side. The retrieved representation is an average over other samples, so it is <strong>refined for the current question</strong> before entering the reasoning model.</span>
       </p>
     </div>
 
@@ -104,57 +104,57 @@ extra_css: [/public/css/project-rich.css]
       <a class="rp-figure-frame" href="{{ img }}overview.png" target="_blank" rel="noopener">
         <img src="{{ img }}overview.png" alt="전체 구조: Question-Guided Modality Encoding, Paired Prototype Construction, Paired Prototype Retrieval과 Question-Guided Reconstruction, Temporal Experts" width="2200" height="1040" loading="lazy">
       </a>
-      <figcaption><b>Figure 1.</b> 전체 구조. 영상이 빠진 예시로, 남은 오디오 표현으로 가장 비슷한 프로토타입을 찾고 그와 페어인 영상 프로토타입을 질문과 함께 복원합니다.</figcaption>
+      <figcaption><span data-l="ko"><b>Figure 1.</b> 전체 구조. 영상이 빠진 예시로, 남은 오디오 표현으로 가장 비슷한 프로토타입을 찾고 그와 페어인 영상 프로토타입을 질문과 함께 복원합니다.</span><span data-l="en"><b>Figure 1.</b> Overall structure, shown for missing video: the remaining audio representation finds the most similar prototype, and its paired video prototype is reconstructed together with the question.</span></figcaption>
     </figure>
 
     <div class="rp-stages qr-stages">
       <article class="rp-stage">
         <span class="rp-stage-tag">1 · Paired Prototype Construction</span>
-        <h3>오디오와 영상을 페어로 저장</h3>
-        <p>온전한 학습 데이터의 오디오·영상 표현을 모달리티별로 군집한 뒤, 두 군집 결과를 샘플 단위로 겹쳐 묶음을 만듭니다. 묶음마다 오디오와 영상의 시간열을 평균해 <strong>같은 번호의 paired prototype</strong>으로 저장합니다.</p>
-        <p>페어 대응은 유지하면서 저장할 페어를 28.8%로 줄여도 정확도 차이는 0.23p에 그칩니다.</p>
+        <h3><span data-l="ko">오디오와 영상을 페어로 저장</span><span data-l="en">Store audio and video as pairs</span></h3>
+        <p><span data-l="ko">온전한 학습 데이터의 오디오·영상 표현을 모달리티별로 군집한 뒤, 두 군집 결과를 샘플 단위로 겹쳐 묶음을 만듭니다. 묶음마다 오디오와 영상의 시간열을 평균해 <strong>같은 번호의 paired prototype</strong>으로 저장합니다.</span><span data-l="en">Audio and video representations of the complete training data are clustered per modality, and the two clusterings are intersected sample by sample into groups. Each group's audio and video sequences are averaged and stored as <strong>a paired prototype under the same index</strong>.</span></p>
+        <p><span data-l="ko">페어 대응은 유지하면서 저장할 페어를 28.8%로 줄여도 정확도 차이는 0.23p에 그칩니다.</span><span data-l="en">Keeping the pairing but cutting the stored pairs to 28.8% changes accuracy by only 0.23p.</span></p>
       </article>
       <article class="rp-stage">
         <span class="rp-stage-tag">2 · Paired Prototype Retrieval</span>
-        <h3>남은 쪽으로 찾고, 페어를 꺼낸다</h3>
-        <p>작은 상태 예측기가 어느 모달리티가 빠졌는지 먼저 판단합니다. 남은 모달리티의 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, <strong>같은 번호의 페어인 빠진 쪽 프로토타입</strong>을 꺼냅니다.</p>
+        <h3><span data-l="ko">남은 쪽으로 찾고, 페어를 꺼낸다</span><span data-l="en">Search with what remains, take its pair</span></h3>
+        <p><span data-l="ko">작은 상태 예측기가 어느 모달리티가 빠졌는지 먼저 판단합니다. 남은 모달리티의 표현으로 메모리에서 가장 비슷한 프로토타입을 찾고, <strong>같은 번호의 페어인 빠진 쪽 프로토타입</strong>을 꺼냅니다.</span><span data-l="en">A small state predictor first decides which modality is missing. The remaining modality's representation finds the most similar prototype in memory, and <strong>the missing side's prototype paired with it under the same index</strong> is retrieved.</span></p>
       </article>
       <article class="rp-stage">
         <span class="rp-stage-tag">3 · Question-Guided Reconstruction</span>
-        <h3>질문에 맞게 다듬는다</h3>
-        <p>꺼낸 프로토타입을 질문 벡터와 함께 시점마다 복원해, 지금의 질문이 필요로 하는 단서를 살리고 reasoning model이 기대하는 특징 공간에 맞춥니다.</p>
-        <p>복원에서 질문 조건을 빼면 누락 상황 평균 정확도가 8.96p, 오디오·영상의 페어 대응을 깨면 4.25p 떨어집니다.</p>
+        <h3><span data-l="ko">질문에 맞게 다듬는다</span><span data-l="en">Refine it for the question</span></h3>
+        <p><span data-l="ko">꺼낸 프로토타입을 질문 벡터와 함께 시점마다 복원해, 지금의 질문이 필요로 하는 단서를 살리고 reasoning model이 기대하는 특징 공간에 맞춥니다.</span><span data-l="en">The retrieved prototype is reconstructed step by step together with the question vector, bringing out the cues the current question needs and matching the feature space the reasoning model expects.</span></p>
+        <p><span data-l="ko">복원에서 질문 조건을 빼면 누락 상황 평균 정확도가 8.96p, 오디오·영상의 페어 대응을 깨면 4.25p 떨어집니다.</span><span data-l="en">Removing the question condition from reconstruction drops average accuracy under missing modalities by 8.96p; breaking the audio–video pairing drops it by 4.25p.</span></p>
       </article>
       <article class="rp-stage">
         <span class="rp-stage-tag">Reasoning Model</span>
-        <h3>질문 조건 인코딩과 시간 전문가</h3>
-        <p>오디오와 영상은 처음부터 질문에 맞춰 인코딩해, 같은 영상이라도 질문마다 다른 단서를 강조합니다. 추론은 구간·변화·비교·전체를 보는 네 시간 전문가를 질문에 따라 섞어 답합니다.</p>
-        <p>먼저 온전한 입력으로 reasoning model을 학습해 고정한 뒤, 복원 부분만 온전한 입력의 특징과 답변 분포를 따라가도록 학습합니다.</p>
+        <h3><span data-l="ko">질문 조건 인코딩과 시간 전문가</span><span data-l="en">Question-conditioned encoding and temporal experts</span></h3>
+        <p><span data-l="ko">오디오와 영상은 처음부터 질문에 맞춰 인코딩해, 같은 영상이라도 질문마다 다른 단서를 강조합니다. 추론은 구간·변화·비교·전체를 보는 네 시간 전문가를 질문에 따라 섞어 답합니다.</span><span data-l="en">Audio and video are encoded for the question from the start, so the same video highlights different cues for different questions. Reasoning mixes four temporal experts, for segments, changes, comparisons and the whole clip, according to the question.</span></p>
+        <p><span data-l="ko">먼저 온전한 입력으로 reasoning model을 학습해 고정한 뒤, 복원 부분만 온전한 입력의 특징과 답변 분포를 따라가도록 학습합니다.</span><span data-l="en">The reasoning model is first trained on complete input and frozen; then only the reconstruction part is trained to follow the features and answer distribution of complete input.</span></p>
       </article>
     </div>
   </section>
 
   <!-- 3 · Results ----------------------------------------------------------------------- -->
   <section class="rp-section" id="results">
-    <p class="rp-kicker">결과</p>
-    <h2 class="rp-h2">어느 쪽이 빠져도 가장 높은 정확도</h2>
+    <p class="rp-kicker"><span data-l="ko">결과</span><span data-l="en">Results</span></p>
+    <h2 class="rp-h2"><span data-l="ko">어느 쪽이 빠져도 가장 높은 정확도</span><span data-l="en">Highest accuracy whichever side is missing</span></h2>
     <div class="rp-prose">
       <p>
-        MUSIC-AVQA의 오디오-비주얼 질문에서 영상이 빠지면 71.59%, 오디오가 빠지면 73.49%로 기존 최고 방법(69.37%, 72.06%)을 넘고,
+        <span data-l="ko">MUSIC-AVQA의 오디오-비주얼 질문에서 영상이 빠지면 71.59%, 오디오가 빠지면 73.49%로 기존 최고 방법(69.37%, 72.06%)을 넘고,
         세 입력 조건 평균은 <strong>73.00%</strong>입니다. AVQA에서는 세 조건 평균 <strong>85.74%</strong>로 기존 최고 76.35%보다 9.4p 높습니다.
-        모든 입력이 있을 때도 MUSIC-AVQA 전체 정확도 78.07%로, 완전한 입력용으로 만든 전용 모델들과 같은 수준입니다.
+        모든 입력이 있을 때도 MUSIC-AVQA 전체 정확도 78.07%로, 완전한 입력용으로 만든 전용 모델들과 같은 수준입니다.</span><span data-l="en">On MUSIC-AVQA's audio-visual questions, accuracy is 71.59% with video missing and 73.49% with audio missing, above the best existing methods (69.37%, 72.06%), and <strong>73.00%</strong> averaged over the three input conditions. On AVQA the three-condition average is <strong>85.74%</strong>, 9.4p above the previous best of 76.35%. With every input present, overall MUSIC-AVQA accuracy is 78.07%, on par with dedicated models built for complete input.</span>
       </p>
     </div>
 
     <div class="rp-table-block">
-      <h3 class="rp-table-title">Table 1 · 모달리티 누락 상황 (MUSIC-AVQA, AVQA)</h3>
-      <p class="rp-table-note"><span class="qr-dot is-on"></span> 입력 있음, <span class="qr-dot"></span> 빠짐. 질문은 항상 주어집니다. Average는 세 입력 조건의 평균입니다.</p>
+      <h3 class="rp-table-title"><span data-l="ko">Table 1 · 모달리티 누락 상황 (MUSIC-AVQA, AVQA)</span><span data-l="en">Table 1 · Missing modalities (MUSIC-AVQA, AVQA)</span></h3>
+      <p class="rp-table-note"><span data-l="ko"><span class="qr-dot is-on"></span> 입력 있음, <span class="qr-dot"></span> 빠짐. 질문은 항상 주어집니다. Average는 세 입력 조건의 평균입니다.</span><span data-l="en"><span class="qr-dot is-on"></span> present, <span class="qr-dot"></span> missing. The question is always given. Average is the mean over the three input conditions.</span></p>
       {% include missing-modality-avqa/table1.html %}
     </div>
 
     <div class="rp-table-block">
-      <h3 class="rp-table-title">Table F1 · 모든 입력이 있을 때 (MUSIC-AVQA)</h3>
-      <p class="rp-table-note">Avg는 질문 수 가중 정확도입니다. 전용 모델 중 <b>굵게</b>는 최고, <u>밑줄</u>은 차선.</p>
+      <h3 class="rp-table-title"><span data-l="ko">Table F1 · 모든 입력이 있을 때 (MUSIC-AVQA)</span><span data-l="en">Table F1 · With every input present (MUSIC-AVQA)</span></h3>
+      <p class="rp-table-note"><span data-l="ko">Avg는 질문 수 가중 정확도입니다. 전용 모델 중 <b>굵게</b>는 최고, <u>밑줄</u>은 차선.</span><span data-l="en">Avg is accuracy weighted by question count. Among dedicated models, <b>bold</b> is best and <u>underline</u> second.</span></p>
       {% include missing-modality-avqa/tablef1.html %}
     </div>
   </section>

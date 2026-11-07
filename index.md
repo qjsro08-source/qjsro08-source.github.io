@@ -5,9 +5,9 @@ title: Home
 
 <section id="about" class="section reveal">
   <div class="wrap">
-    <h2 class="section-title">About</h2>
+    <h2 class="section-title"><span data-l="en">About</span><span data-l="ko">소개</span></h2>
 
-    <p class="section-lead">
+    <p class="section-lead" data-l="en">
       I am an M.S. student in Applied AI at SeoulTech, primarily focusing on
       multimodal large language models (MLLMs). My research aims to develop
       efficient MLLMs that reduce computational costs while preserving strong
@@ -17,6 +17,13 @@ title: Home
       perceive and model different aspects of the real world. Through these
       experiences, my broader research goal is to develop AI systems that can
       understand and reason about the world through diverse modalities.
+    </p>
+    <p class="section-lead" data-l="ko">
+      서울과학기술대학교 인공지능응용학과 석사과정에서 멀티모달 대형 언어 모델(MLLM)을
+      중심으로 연구하고 있습니다. 강한 성능은 유지하면서 연산 비용을 줄이는 효율적인 MLLM을 만드는 것이
+      목표이며, 특히 모델 구조 설계와 최적화에 관심이 많습니다. 3D 복원과 시계열 데이터 연구도 진행하며
+      AI가 실제 세계의 여러 측면을 어떻게 인식하고 모델링하는지에 대한 시야를 넓혔습니다. 이러한 경험을
+      바탕으로, 다양한 모달리티를 통해 세상을 이해하고 추론하는 AI 시스템을 만드는 것이 더 큰 연구 목표입니다.
     </p>
 
     <ul class="tags">
@@ -29,7 +36,7 @@ title: Home
 
 <section id="research" class="section reveal">
   <div class="wrap">
-    <h2 class="section-title">Research</h2>
+    <h2 class="section-title"><span data-l="en">Research</span><span data-l="ko">연구</span></h2>
 
     <ul class="research-grid">
       <li>
@@ -37,7 +44,7 @@ title: Home
           <span class="research-badge" aria-hidden="true"><svg class="research-icon" viewBox="0 0 24 24"><path d="M12 3.5 20.5 8 12 12.5 3.5 8z" class="ri-fill"/><path d="M3.5 12 12 16.5 20.5 12"/><path d="M3.5 16 12 20.5 20.5 16"/></svg></span>
           <svg class="research-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           <h3>Efficient Architectures</h3>
-          <p>1-bit attention and linear attention.</p>
+          <p><span data-l="en">1-bit attention and linear attention.</span><span data-l="ko">1-bit attention과 linear attention.</span></p>
         </a>
       </li>
       <li>
@@ -45,7 +52,7 @@ title: Home
           <span class="research-badge" aria-hidden="true"><svg class="research-icon" viewBox="0 0 24 24"><rect class="ri-on" x="3.50" y="3.50" width="4.5" height="4.5" rx="1.1"/><rect class="ri-off" x="9.75" y="3.50" width="4.5" height="4.5" rx="1.1"/><rect class="ri-on" x="16.00" y="3.50" width="4.5" height="4.5" rx="1.1"/><rect class="ri-off" x="3.50" y="9.75" width="4.5" height="4.5" rx="1.1"/><rect class="ri-on" x="9.75" y="9.75" width="4.5" height="4.5" rx="1.1"/><rect class="ri-off" x="16.00" y="9.75" width="4.5" height="4.5" rx="1.1"/><rect class="ri-on" x="3.50" y="16.00" width="4.5" height="4.5" rx="1.1"/><rect class="ri-off" x="9.75" y="16.00" width="4.5" height="4.5" rx="1.1"/><rect class="ri-on" x="16.00" y="16.00" width="4.5" height="4.5" rx="1.1"/></svg></span>
           <svg class="research-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           <h3>Efficient Algorithms</h3>
-          <p>Token pruning for omni-modal models, PEFT, and continual learning.</p>
+          <p><span data-l="en">Token pruning for omni-modal models, PEFT, and continual learning.</span><span data-l="ko">옴니모달 모델의 token pruning, PEFT, continual learning.</span></p>
         </a>
       </li>
       <li>
@@ -53,7 +60,7 @@ title: Home
           <span class="research-badge" aria-hidden="true"><svg class="research-icon" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.5" class="ri-fill"/><circle cx="15" cy="12" r="5.5" class="ri-off"/></svg></span>
           <svg class="research-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           <h3>Adaptive Algorithms</h3>
-          <p>Robust reasoning even when a modality goes missing.</p>
+          <p><span data-l="en">Robust reasoning even when a modality goes missing.</span><span data-l="ko">모달리티가 빠져도 강건한 추론.</span></p>
         </a>
       </li>
     </ul>
@@ -62,7 +69,7 @@ title: Home
 
 <section id="publications" class="section reveal">
   <div class="wrap">
-    <h2 class="section-title">Publications</h2>
+    <h2 class="section-title"><span data-l="en">Publications</span><span data-l="ko">논문</span></h2>
 
     {%- comment -%}
       Every visible paper, regrouped by year, newest year first. Hidden
@@ -91,7 +98,7 @@ title: Home
               {% endif %}
 
               {% if pub.summary %}
-              <p class="pub-summary">{{ pub.summary }}</p>
+              {% include t.html tag="p" class="pub-summary" ko=pub.summary_ko en=pub.summary %}
               {% endif %}
 
               {% if pub.paper or pub.code or pub.project or pub.poster or pub.video %}
@@ -136,35 +143,25 @@ title: Home
 
 <section id="projects" class="section reveal">
   <div class="wrap">
-    <h2 class="section-title">Projects</h2>
+    <div class="section-head">
+      <h2 class="section-title"><span data-l="en">Projects</span><span data-l="ko">프로젝트</span></h2>
+      <a class="section-head-link" href="{{ '/projects/' | relative_url }}"><span data-l="en">All projects</span><span data-l="ko">전체 프로젝트</span> <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <p class="section-sub"><span data-l="en">One page per project: the problem, the method and the results.</span><span data-l="ko">연구와 응용 프로젝트마다 한 페이지씩, 문제와 방법, 결과를 정리했습니다.</span></p>
 
-    <ul class="card-list">
-      {% for p in site.data.projects limit: 3 %}
-        {% include project-card.html p=p compact=true %}
-      {% endfor %}
-    </ul>
-
-    {% if site.data.projects.size > 3 %}
-    <p class="section-more">
-      <a href="{{ '/projects/' | relative_url }}">View all {{ site.data.projects.size }} projects &rarr;</a>
-    </p>
-    {% else %}
-    <p class="section-more">
-      <a href="{{ '/projects/' | relative_url }}">All projects &rarr;</a>
-    </p>
-    {% endif %}
+    {% include project-grid.html %}
   </div>
 </section>
 
 <section id="education" class="section reveal">
   <div class="wrap">
-    <h2 class="section-title">Education</h2>
+    <h2 class="section-title"><span data-l="en">Education</span><span data-l="ko">학력</span></h2>
 
     <ul class="card-list">
       {% for edu in site.data.education %}
       <li class="card">
-        <h3 class="entry-title">{{ edu.degree }}</h3>
-        <p class="entry-meta">{{ edu.school }}{% if edu.period %} &middot; {{ edu.period }}{% endif %}</p>
+        <h3 class="entry-title">{% include t.html ko=edu.degree_ko en=edu.degree %}</h3>
+        <p class="entry-meta">{% include t.html ko=edu.school_ko en=edu.school %}{% if edu.period %} &middot; {{ edu.period }}{% endif %}</p>
       </li>
       {% endfor %}
     </ul>
@@ -173,24 +170,24 @@ title: Home
 
 <section id="skills" class="section reveal">
   <div class="wrap">
-    <h2 class="section-title">Skills</h2>
+    <h2 class="section-title"><span data-l="en">Skills</span><span data-l="ko">기술</span></h2>
 
     <div class="card rows">
       <div>
-        <div class="row-label">Programming Languages</div>
+        <div class="row-label"><span data-l="en">Programming Languages</span><span data-l="ko">프로그래밍 언어</span></div>
         <div class="row-value">Python</div>
       </div>
       <div>
-        <div class="row-label">AI / ML Frameworks and Tools</div>
+        <div class="row-label"><span data-l="en">AI / ML Frameworks and Tools</span><span data-l="ko">AI / ML 프레임워크 및 도구</span></div>
         <div class="row-value">PyTorch, TensorFlow, ONNX, Transformers, Accelerate, DeepSpeed</div>
       </div>
       <div>
-        <div class="row-label">Infrastructure and Development Tools</div>
+        <div class="row-label"><span data-l="en">Infrastructure and Development Tools</span><span data-l="ko">인프라 및 개발 도구</span></div>
         <div class="row-value">Docker, Linux, Git</div>
       </div>
       <div>
-        <div class="row-label">Languages</div>
-        <div class="row-value">Korean, English</div>
+        <div class="row-label"><span data-l="en">Languages</span><span data-l="ko">언어</span></div>
+        <div class="row-value"><span data-l="en">Korean, English</span><span data-l="ko">한국어, 영어</span></div>
       </div>
     </div>
   </div>

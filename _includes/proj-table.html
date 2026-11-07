@@ -2,7 +2,7 @@
   A small results table inside a project card. Pass it as `t`:
     head     list of column headers
     rows     list of rows, each a list of cells
-    caption  optional line under the table
+    caption  optional line under the table (caption_en in English)
   Cells go through markdownify so **…** marks the row being highlighted.
 {%- endcomment -%}
 {%- assign t = include.t -%}
@@ -27,4 +27,4 @@
     </tbody>
   </table>
 </div>
-{% if t.caption %}<p class="proj-table-caption">{{ t.caption }}</p>{% endif %}
+{% if t.caption %}{% include t.html tag="p" class="proj-table-caption" ko=t.caption en=t.caption_en %}{% endif %}

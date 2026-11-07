@@ -22,7 +22,7 @@
   <meta property="og:image" content="{{ '/assets/images/profile.jpg' | absolute_url }}">
   <meta name="twitter:card" content="summary">
 
-  <!-- Pick the theme before first paint so the page never flashes the wrong one. -->
+  <!-- Pick the theme and language before first paint so the page never flashes the wrong one. -->
   <script>
     (function () {
       var root = document.documentElement
@@ -33,6 +33,13 @@
           root.classList.add('dark')
         }
       } catch (e) {}
+      var lang = 'en'
+      try {
+        lang = localStorage.getItem('lang') ||
+          (/^ko\b/i.test(navigator.language || '') ? 'ko' : 'en')
+      } catch (e) {}
+      root.setAttribute('data-lang', lang === 'ko' ? 'ko' : 'en')
+      root.lang = lang === 'ko' ? 'ko' : 'en'
     })()
   </script>
   <meta name="color-scheme" content="light dark">

@@ -24,11 +24,11 @@ layout: default
     <p class="crumb"><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a></p>
 
     {%- if p -%}
-    <h1 class="section-title">{{ p.title }}</h1>
+    {% include t.html tag="h1" class="section-title" ko=p.title en=p.title_en %}
 
     {% if p.period or p.role %}
     <p class="entry-meta">
-      {%- if p.period %}{{ p.period }}{% endif -%}
+      {%- if p.period %}{% include t.html ko=p.period en=p.period_en %}{% endif -%}
       {%- if p.period and p.role %} &middot; {% endif -%}
       {%- if p.role %}{{ p.role }}{% endif -%}
     </p>

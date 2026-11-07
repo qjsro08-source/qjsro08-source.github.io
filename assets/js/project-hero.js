@@ -7,6 +7,10 @@
 //   [data-at=i]  gets is-past / is-now / is-next relative to the step
 //   [data-step-text="a|b|c"]   text for each step
 //   [data-step-width="1,2,3"]  width (%) for each step
+// Text that changes with the step can come in both languages: give the
+// element a [data-l="ko"] and a [data-l="en"] child, and the English twin
+// of the data (data-sub-en, data-step-text-en). The site's language toggle
+// shows one child and hides the other.
 // CSS keys everything else off the hero's data-step attribute, and the
 // markup ships the final step, so the page reads correctly without this file.
 (function () {
@@ -32,6 +36,15 @@
   var widthEls = Array.prototype.slice.call(hero.querySelectorAll('[data-step-width]'))
   var countFrame = null
   var countSettle = null
+
+  // Fill an element that may hold a ko/en pair of children.
+  function setText(el, ko, en) {
+    var k = el.querySelector('[data-l="ko"]')
+    var e = el.querySelector('[data-l="en"]')
+    if (k && e) { k.textContent = ko; e.textContent = en || ko }
+    else el.textContent = ko
+  }
+  function isEn() { return document.documentElement.getAttribute('data-lang') !== 'ko' }
 
   function countTo(target, dec) {
     if (!outAcc) return
@@ -63,7 +76,7 @@
     hero.style.setProperty('--hold', (b.dataset.hold || 2000) + 'ms')
     btns.forEach(function (x, j) { x.setAttribute('aria-pressed', j === i ? 'true' : 'false') })
     if (outName) outName.textContent = b.dataset.name
-    if (outSub) outSub.textContent = b.dataset.sub
+    if (outSub) setText(outSub, b.dataset.sub, b.dataset.subEn)
     countTo(parseFloat(b.dataset.acc), parseInt(b.dataset.dec || '1', 10))
     atEls.forEach(function (el) {
       var k = parseInt(el.dataset.at, 10)
@@ -71,7 +84,10 @@
       el.classList.toggle('is-now', k === i)
       el.classList.toggle('is-next', k > i)
     })
-    textEls.forEach(function (el) { el.textContent = el.dataset.stepText.split('|')[i] })
+    textEls.forEach(function (el) {
+      var en = el.dataset.stepTextEn
+      setText(el, el.dataset.stepText.split('|')[i], en && en.split('|')[i])
+    })
     widthEls.forEach(function (el) { el.style.width = el.dataset.stepWidth.split(',')[i] + '%' })
     // Restart the progress bar on the active step.
     hero.classList.remove('is-ticking')
@@ -91,8 +107,10 @@
   function setPlaying(on) {
     playing = on
     hero.classList.toggle('is-paused', !on)
-    toggle.textContent = on ? '일시정지' : '재생'
-    toggle.setAttribute('aria-label', on ? '애니메이션 일시정지' : '애니메이션 재생')
+    setText(toggle, on ? '일시정지' : '재생', on ? 'Pause' : 'Play')
+    toggle.setAttribute('aria-label', isEn()
+      ? (on ? 'Pause the animation' : 'Play the animation')
+      : (on ? '애니메이션 일시정지' : '애니메이션 재생'))
     if (on && visible) hero.classList.add('is-ticking')
     else hero.classList.remove('is-ticking')
     schedule()

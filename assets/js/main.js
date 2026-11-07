@@ -31,6 +31,46 @@
     })
   }
 
+  /* --- Language --------------------------------------------------------- */
+  // The language is chosen in <head> before paint; here we sync the switch
+  // and keep the reader's choice.
+  var langBtns = document.querySelectorAll('[data-set-lang]')
+  var syncLang = function () {
+    var cur = root.getAttribute('data-lang')
+    Array.prototype.forEach.call(langBtns, function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === cur ? 'true' : 'false')
+    })
+  }
+  syncLang()
+  Array.prototype.forEach.call(langBtns, function (b) {
+    b.addEventListener('click', function () {
+      var lang = b.getAttribute('data-set-lang')
+      root.setAttribute('data-lang', lang)
+      root.lang = lang
+      syncLang()
+      try { localStorage.setItem('lang', lang) } catch (e) {}
+    })
+  })
+
+  /* --- Project filter ---------------------------------------------------- */
+  // The chips ship hidden so the grid reads complete without this script.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pgrid]'), function (grid) {
+    var bar = grid.querySelector('.pfilter')
+    if (!bar) return
+    var chips = bar.querySelectorAll('[data-filter]')
+    var cards = grid.querySelectorAll('.pcard')
+    bar.hidden = false
+    Array.prototype.forEach.call(chips, function (chip) {
+      chip.addEventListener('click', function () {
+        var f = chip.getAttribute('data-filter')
+        Array.prototype.forEach.call(chips, function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false') })
+        Array.prototype.forEach.call(cards, function (card) {
+          card.hidden = !(f === 'all' || card.getAttribute('data-cat') === f)
+        })
+      })
+    })
+  })
+
   /* --- Reveal on scroll -------------------------------------------------- */
   var revealables = document.querySelectorAll('.reveal')
 
