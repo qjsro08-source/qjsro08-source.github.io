@@ -1,8 +1,13 @@
 {%- comment -%}
   The project cards as a filterable grid. Filter chips appear only once
   main.js is running, so without it every card simply shows.
+
+  limit  optional: show only the first N projects (the home page uses 6;
+         /projects/ shows them all).
 {%- endcomment -%}
-{%- assign cats = site.data.projects | map: "category" | uniq -%}
+{%- assign plist = site.data.projects -%}
+{%- if include.limit -%}{%- assign plist = site.data.projects | slice: 0, include.limit -%}{%- endif -%}
+{%- assign cats = plist | map: "category" | uniq -%}
 <div class="pgrid" data-pgrid>
   {%- if cats.size > 1 %}
   <div class="pfilter" role="group" aria-label="Project type" hidden>
@@ -16,7 +21,7 @@
   </div>
   {%- endif %}
   <ul class="pcards">
-    {%- for p in site.data.projects %}
+    {%- for p in plist %}
       {% include project-card.html p=p compact=true %}
     {%- endfor %}
   </ul>

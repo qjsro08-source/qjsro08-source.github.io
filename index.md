@@ -149,7 +149,7 @@ title: Home
     </div>
     <p class="section-sub"><span data-l="en">One page per project: the problem, the method and the results.</span><span data-l="ko">연구와 응용 프로젝트마다 한 페이지씩, 문제와 방법, 결과를 정리했습니다.</span></p>
 
-    {% include project-grid.html %}
+    {% include project-grid.html limit=6 %}
   </div>
 </section>
 
