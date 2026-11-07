@@ -1,0 +1,132 @@
+---
+layout: project
+slug: sidc-kws
+permalink: /projects/sidc-kws/
+title: 저전력 키워드 인식을 위한 Spiking Conformer
+description: Inception-Dilated 블록과 spike self-attention으로, 40만 파라미터의 SNN이 키워드 인식에서 SNN 최고 정확도를 내고 같은 구조의 ANN보다 에너지를 75% 덜 쓰는 모델.
+extra_css: [/public/css/project-rich.css]
+---
+{%- assign img = '/assets/images/projects/sidc-kws/' | relative_url -%}
+
+<header class="rp-header">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap rp-wrap">
+    <p class="crumb"><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a></p>
+    <h1 class="rp-title"><span data-l="ko">저전력 키워드 인식을 위한 <span class="rp-nowrap">Spiking Conformer</span></span><span data-l="en">A Spiking Conformer for <span class="rp-nowrap">Low-Power Keyword Spotting</span></span></h1>
+    <p class="rp-subtitle">SIDC-KWS: Efficient Spiking Inception-Dilated Conformer with Self-Attention for Keyword Spotting</p>
+    <p class="rp-meta">Interspeech 2025</p>
+    <ul class="tags">
+      <li>Spiking Neural Network</li><li>Keyword Spotting</li><li>Conformer</li><li>Dilated Convolution</li>
+    </ul>
+    <div class="rp-actions">
+      <a class="btn btn-primary" href="#architecture"><span data-l="ko">구조 보기 &darr;</span><span data-l="en">See the architecture &darr;</span></a>
+      <a class="btn btn-ghost" href="#results"><span data-l="ko">결과 표 &darr;</span><span data-l="en">Results &darr;</span></a>
+      <a class="btn btn-ghost" href="https://www.isca-archive.org/interspeech_2025/lim25_interspeech.pdf" target="_blank" rel="noopener">Paper</a>
+      <a class="btn btn-ghost" href="{{ '/assets/images/publications/interspeech-poster.pdf' | relative_url }}" target="_blank" rel="noopener">Poster</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap rp-wrap">
+
+  <ul class="rp-numbers">
+    <li><span class="rp-num">96.8%</span><span class="rp-num-label"><span data-l="ko">GSC V2 12-class, SNN 최고 (401.5K 파라미터)</span><span data-l="en">GSC V2 12-class, best among SNNs (401.5K parameters)</span></span></li>
+    <li><span class="rp-num">94.7%</span><span class="rp-num-label"><span data-l="ko">GSC V2 35-class, SNN 최고(95.3%)보다 6배 작은 모델</span><span data-l="en">GSC V2 35-class, with a model 6× smaller than the best SNN (95.3%)</span></span></li>
+    <li><span class="rp-num">−75.59%</span><span class="rp-num-label"><span data-l="ko">같은 구조 ANN 대비 에너지</span><span data-l="en">Energy vs. the same architecture as an ANN</span></span></li>
+    <li><span class="rp-num">21.36%</span><span class="rp-num-label"><span data-l="ko">평균 spike 발화율</span><span data-l="en">Average spike firing rate</span></span></li>
+  </ul>
+
+  <!-- 1 · Problem ----------------------------------------------------------------- -->
+  <section class="rp-section" id="problem">
+    <p class="rp-kicker"><span data-l="ko">문제</span><span data-l="en">Problem</span></p>
+    <h2 class="rp-h2"><span data-l="ko">항상 켜져 있는 기기에서, 정확하게 그리고 적게 쓰며</span><span data-l="en">Always on, on the device: accurate and frugal</span></h2>
+    <p class="rp-lead">
+      <span data-l="ko">키워드 인식(KWS)은 짧은 음성에서 정해진 단어를 찾는 일로, 엣지 기기에서 항상 켜진 채 실시간으로 돌아야 합니다. Transformer 기반 KWS는 정확하지만 연산과 메모리가 커서 기기에 올리기 어렵습니다.</span><span data-l="en">Keyword spotting (KWS) finds set words in short speech and has to run in real time, always on, on edge devices. Transformer-based KWS is accurate, but its compute and memory make it hard to put on a device.</span>
+    </p>
+    <div class="rp-prose">
+      <p><span data-l="ko">Spiking Neural Network(SNN)는 0/1 spike로 정보를 주고받아 곱셈 대신 덧셈만으로 계산하므로 에너지가 적게 듭니다. 이 프로젝트는 <strong>Conformer 구조를 SNN으로 옮겨</strong>, 작은 모델로 SNN 최고 정확도와 낮은 에너지를 함께 얻습니다.</span><span data-l="en">Spiking neural networks (SNNs) pass 0/1 spikes, so they compute with additions instead of multiplications and use far less energy. This project <strong>brings the Conformer design into an SNN</strong> to reach the best SNN accuracy and low energy with a small model.</span></p>
+    </div>
+  </section>
+
+  <!-- 2 · Architecture ------------------------------------------------------------ -->
+  <section class="rp-section" id="architecture">
+    <p class="rp-kicker"><span data-l="ko">구조</span><span data-l="en">Architecture</span></p>
+    <h2 class="rp-h2"><span data-l="ko">시간과 주파수를 나눠 보고, spike로 다시 합친다</span><span data-l="en">Split time and frequency, merge them back as spikes</span></h2>
+    <div class="rp-prose">
+      <p><span data-l="ko">Mel 스펙트로그램을 Conv2D 블록으로 읽은 뒤, Projection 블록에서 <strong>시간 경로와 주파수 경로</strong>로 나눕니다. 두 경로는 각각 Inception-Dilated 블록과 Spike Self-Attention 블록 4개를 거치고, Spike Addition으로 다시 하나가 됩니다.</span><span data-l="en">A Conv2D block reads the Mel spectrogram, and the projection block splits it into <strong>a time path and a frequency path</strong>. Each path passes through an Inception-Dilated block and four Spike Self-Attention blocks, and Spike Addition merges them back into one.</span></p>
+    </div>
+    <figure class="rp-figure">
+      <a class="rp-figure-frame" href="{{ img }}architecture.png" target="_blank" rel="noopener">
+        <img src="{{ img }}architecture.png" alt="SIDC-KWS 전체 구조: Conv2d block, Projection block, ID-block, Spike Self-Attention block, Spike Addition, Fusion block, Classification Head" width="2200" height="1172" loading="lazy">
+      </a>
+      <figcaption><span data-l="ko"><b>SIDC-KWS.</b> Conv2D 블록 → Projection 블록(시간·주파수 두 경로) → ID 블록 → Spike Self-Attention ×4 → Spike Addition → Fusion 블록 → 분류 헤드.</span><span data-l="en"><b>SIDC-KWS.</b> Conv2D block → projection block (time and frequency paths) → ID block → Spike Self-Attention ×4 → Spike Addition → fusion block → classification head.</span></figcaption>
+    </figure>
+    <div class="rp-stages">
+      <article class="rp-stage">
+        <span class="rp-stage-tag">Conv2D · Projection</span>
+        <h3><span data-l="ko">넓게 보고, 두 경로로 나눈다</span><span data-l="en">See wide, then split in two</span></h3>
+        <p><span data-l="ko">5×5 커널 두 번으로 넓은 시간–주파수 패턴을 잡고 3×3 커널로 다듬으며, skip 연결로 큰 커널의 정보를 보존합니다. Projection 블록은 MaxPool을 시간 경로에 (8,1)·(5,1), 주파수 경로에 (1,8)·(1,4)로 걸어 두 표현으로 나눕니다.</span><span data-l="en">Two 5×5 convolutions catch broad time–frequency patterns and a 3×3 one refines them, with a skip connection keeping what the large kernels found. The projection block applies MaxPool of (8,1) and (5,1) on the time path and (1,8) and (1,4) on the frequency path, splitting the two views.</span></p>
+      </article>
+      <article class="rp-stage">
+        <span class="rp-stage-tag">Spike Self-Attention · Spike Addition</span>
+        <h3><span data-l="ko">spike로 고르고, spike로 합친다</span><span data-l="en">Select with spikes, merge with spikes</span></h3>
+        <p><span data-l="ko">각 경로에서 Q, K, V를 모두 spike로 만들어 self-attention으로 중요한 특징을 고릅니다. 두 경로의 spike는 원소별로 더해 0…K 값의 신호가 되고, 여러 spike가 겹친 곳일수록 막전위가 빨리 차 발화가 강해집니다. Conv1d(k=5) Fusion 블록을 거쳐 분류합니다.</span><span data-l="en">Each path builds Q, K and V entirely from spikes and selects important features with self-attention. Spikes from the two paths are added element-wise into a 0…K signal; where several spikes overlap, the membrane potential fills faster and firing is stronger. A Conv1d (k=5) fusion block then feeds the classifier.</span></p>
+      </article>
+    </div>
+
+    <h3 class="rp-h3" id="id-block"><span data-l="ko">Inception-Dilated 블록</span><span data-l="en">The Inception-Dilated block</span></h3>
+    <div class="rp-prose">
+      <p><span data-l="ko">키워드는 짧은 음소와 긴 단어 흐름이 함께 단서가 됩니다. ID 블록은 커널 1·3·5의 1D convolution을 <strong>병렬로</strong> 두고 dilation을 1·2·4로 키워, 파라미터는 작은 커널 그대로 두면서 <strong>수용 영역(RF)을 1, 5, 17로 넓힙니다.</strong> 세 갈래의 spike 출력을 더한 뒤 입력을 skip으로 더해 정보 손실을 막습니다.</span><span data-l="en">Keywords are cued both by short phonemes and by the longer flow of a word. The ID block runs 1D convolutions with kernels 1, 3 and 5 <strong>in parallel</strong> and dilations of 1, 2 and 4, keeping the parameters of small kernels while <strong>widening the receptive field (RF) to 1, 5 and 17</strong>. The three branches' spike outputs are summed, and the input is added back through a skip connection so nothing is lost.</span></p>
+    </div>
+    <div class="idb-wrap">
+      {% include sidc-kws/id-block.html %}
+    </div>
+    <p class="rp-table-note"><span data-l="ko">칸은 시간 축의 위치, 색칠된 칸은 한 출력이 보는 입력 위치입니다. ID 블록을 커널 3 또는 5의 단일 Conv1d로 바꾸면 35-class 정확도가 94.7%에서 94.1%, 94.3%로 내려갑니다.</span><span data-l="en">Cells are positions on the time axis; filled cells are the inputs one output sees. Replacing the ID block with a single Conv1d of kernel 3 or 5 drops 35-class accuracy from 94.7% to 94.1% and 94.3%.</span></p>
+  </section>
+
+  <!-- 3 · Results ------------------------------------------------------------------ -->
+  <section class="rp-section" id="results">
+    <p class="rp-kicker"><span data-l="ko">결과</span><span data-l="en">Results</span></p>
+    <h2 class="rp-h2"><span data-l="ko">작은 모델로 SNN 최고 수준</span><span data-l="en">Top SNN accuracy from a small model</span></h2>
+    <div class="rp-prose">
+      <p><span data-l="ko">Google Speech Commands V2 12-class에서 401.5K 파라미터로 <strong>96.8%</strong>, SNN 최고입니다. 35-class에서는 94.7%로, 2,500K인 DCLS-Delays(95.3%)와 0.6p 차이를 6배 작은 모델로 냅니다.</span><span data-l="en">On Google Speech Commands V2 12-class it reaches <strong>96.8%</strong> with 401.5K parameters, the best among SNNs. On 35-class it reaches 94.7%, within 0.6p of the 2,500K DCLS-Delays (95.3%) with a model 6× smaller.</span></p>
+    </div>
+    <div class="rp-table-block">
+      <h3 class="rp-table-title"><span data-l="ko">Table 1 · Google Speech Commands V2</span><span data-l="en">Table 1 · Google Speech Commands V2</span></h3>
+      <p class="rp-table-note"><span data-l="ko">SNN 기반 KWS 모델과의 비교. <b>굵게</b>는 제안 모델.</span><span data-l="en">Comparison with SNN-based KWS models. <b>Bold</b> is ours.</span></p>
+      <div class="rp-table-wrap" tabindex="0" role="region" aria-label="Table 1">
+        <table class="rp-table">
+          <thead><tr><th scope="col">Model</th><th scope="col">Model size (K)</th><th scope="col">Accuracy (%)</th></tr></thead>
+          <tbody class="rp-model"><tr><th colspan="3" scope="colgroup">GSC V2 · 12 classes</th></tr></tbody>
+          <tbody>
+            <tr><th scope="row">SNN-KWS</th><td>70.1</td><td>94.4</td></tr>
+            <tr><th scope="row">SpikeGRU</th><td>111</td><td>94.9</td></tr>
+            <tr><th scope="row">SLAYER-RF-CNN</th><td>280</td><td>91.4</td></tr>
+            <tr><th scope="row">ST-Attention-SNN</th><td>2170</td><td>95.1</td></tr>
+            <tr class="is-ours"><th scope="row">SIDC-KWS (Ours)</th><td>401.5</td><td class="is-best">96.8</td></tr>
+          </tbody>
+          <tbody class="rp-model"><tr><th colspan="3" scope="colgroup">GSC V2 · 35 classes</th></tr></tbody>
+          <tbody>
+            <tr><th scope="row">WaveSense</th><td>N/A</td><td>79.5</td></tr>
+            <tr><th scope="row">LSTMs-SNN</th><td>N/A</td><td>91.5</td></tr>
+            <tr><th scope="row">SNN-KWS</th><td>80.2</td><td>92.9</td></tr>
+            <tr><th scope="row">SRNN+ALIF</th><td>222.1</td><td>92.5</td></tr>
+            <tr><th scope="row">ED-sKWS</th><td>306.8</td><td>93.1</td></tr>
+            <tr><th scope="row">Speech2Spikes</th><td>410</td><td>89.5</td></tr>
+            <tr><th scope="row">DCLS-Delays</th><td>2500</td><td>95.3</td></tr>
+            <tr class="is-ours"><th scope="row">SIDC-KWS (Ours)</th><td>402.8</td><td class="is-best">94.7</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 class="rp-h3" id="energy"><span data-l="ko">에너지</span><span data-l="en">Energy</span></h3>
+    <div class="rp-prose">
+      <p><span data-l="ko">SNN은 곱셈-누산(MAC) 대신 누산(AC)만 쓰고, spike가 발화한 곳에서만 연산합니다. 누산 한 번은 곱셈-누산의 7분의 1 에너지이며, time step 8과 평균 발화율 21.36%를 넣으면 같은 구조의 ANN 대비 에너지가 <strong>75.59% 줄어듭니다.</strong></span><span data-l="en">An SNN uses accumulates (AC) instead of multiply-accumulates (MAC), and only computes where a spike fired. One AC costs a seventh of a MAC; with 8 time steps and an average firing rate of 21.36%, energy drops <strong>75.59%</strong> against the same architecture as an ANN.</span></p>
+    </div>
+    <div class="rp-eq" role="math" aria-label="SNN to ANN energy ratio">
+      <span><i>E</i><sub>SNN</sub> / <i>E</i><sub>ANN</sub> = (<i>E</i><sub>AC</sub> / <i>E</i><sub>MAC</sub>) × <i>T</i> × <i>R</i> = 1/7 × 8 × 0.2136 ≈ 0.244<small><span data-l="ko">GSC V2 35-class 기준</span><span data-l="en">on GSC V2 35-class</span></small></span>
+    </div>
+  </section>
+
+</div>

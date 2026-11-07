@@ -40,7 +40,7 @@ title: Home
 
     <ul class="research-grid">
       <li>
-        <a class="research-card" href="{{ '/#publications' | relative_url }}">
+        <a class="research-card" href="{{ '/projects/spike-dice-attention/' | relative_url }}">
           <span class="research-badge" aria-hidden="true"><svg class="research-icon" viewBox="0 0 24 24"><path d="M12 3.5 20.5 8 12 12.5 3.5 8z" class="ri-fill"/><path d="M3.5 12 12 16.5 20.5 12"/><path d="M3.5 16 12 20.5 20.5 16"/></svg></span>
           <svg class="research-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           <h3>Efficient Architectures</h3>

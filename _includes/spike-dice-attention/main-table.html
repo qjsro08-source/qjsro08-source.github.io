@@ -1,0 +1,43 @@
+{%- comment -%} Main results from the ICML 2026 poster. Ours rows are highlighted; bold is the best score per dataset. {%- endcomment -%}
+<div class="rp-table-wrap" tabindex="0" role="region" aria-label="Main results">
+<table class="rp-table">
+<thead><tr><th scope="col">Model</th><th scope="col">Type</th><th scope="col">Direct training</th><th scope="col">Params (M)</th><th scope="col">Energy (mJ)</th><th scope="col">Time step</th><th scope="col">Score</th></tr></thead>
+<tbody class="rp-model"><tr><th colspan="7" scope="colgroup">AudioSet-20K — mAP</th></tr></tbody>
+<tbody>
+<tr><th scope="row">AST</th><td>ANN</td><td>–</td><td>88.1</td><td>475.64</td><td>–</td><td>0.148</td></tr>
+<tr><th scope="row">SSAST-S</th><td>ANN</td><td>–</td><td>23</td><td>176.82</td><td>–</td><td>0.165</td></tr>
+<tr><th scope="row">DTF-AT</th><td>ANN</td><td>–</td><td>69</td><td>153.18</td><td>–</td><td>0.187</td></tr>
+</tbody>
+<tbody>
+<tr><th scope="row">Spikformer</th><td>SNN</td><td>✓</td><td>65.9</td><td>18.82</td><td>4</td><td>0.136</td></tr>
+<tr><th scope="row">Spike-driven Transformer</th><td>SNN</td><td>✓</td><td>65.9</td><td>8.15</td><td>4</td><td>0.130</td></tr>
+<tr><th scope="row">Spike-driven Transformer V2</th><td>SNN</td><td>✓</td><td>55.0</td><td>14.92</td><td>4</td><td>0.138</td></tr>
+<tr><th scope="row">QKFormer</th><td>SNN</td><td>✓</td><td>64.5</td><td>43.43</td><td>4</td><td>0.147</td></tr>
+<tr class="is-ours"><th scope="row">DiceFormer-10-S (Ours)</th><td>SNN</td><td>✓</td><td>13.7</td><td>5.34</td><td>4</td><td>0.145</td></tr>
+<tr class="is-ours"><th scope="row">DiceFormer-10-M (Ours)</th><td>SNN</td><td>✓</td><td>24.2</td><td>9.55</td><td>4</td><td>0.157</td></tr>
+<tr class="is-ours"><th scope="row">DiceFormer-10-L (Ours)</th><td>SNN</td><td>✓</td><td>54.3</td><td>6.18</td><td>1</td><td>0.153</td></tr>
+<tr class="is-ours"><th scope="row">DiceFormer-10-L (Ours)</th><td>SNN</td><td>✓</td><td>54.3</td><td>17.80</td><td>4</td><td class="is-best">0.161</td></tr>
+</tbody>
+<tbody class="rp-model"><tr><th colspan="7" scope="colgroup">ESC-50 — Acc (%)</th></tr></tbody>
+<tbody>
+<tr><th scope="row">AST</th><td>ANN</td><td>–</td><td>87.2</td><td>260.54</td><td>–</td><td>88.7*</td></tr>
+<tr><th scope="row">SSAST-S</th><td>ANN</td><td>–</td><td>23</td><td>72.63</td><td>–</td><td>85.4*</td></tr>
+<tr><th scope="row">DTF-AT</th><td>ANN</td><td>–</td><td>68.6</td><td>77.28</td><td>–</td><td>89.19*</td></tr>
+</tbody>
+<tbody>
+<tr class="is-ours"><th scope="row">DiceFormer-10-S (Ours)</th><td>SNN</td><td>✓</td><td>13.5</td><td>5.17</td><td>4</td><td>85.37</td></tr>
+<tr class="is-ours"><th scope="row">DiceFormer-10-M (Ours)</th><td>SNN</td><td>✓</td><td>24.0</td><td>7.95</td><td>4</td><td>85.47</td></tr>
+</tbody>
+<tbody class="rp-model"><tr><th colspan="7" scope="colgroup">Speech Commands V2 — Acc (%)</th></tr></tbody>
+<tbody>
+<tr><th scope="row">AST</th><td>ANN</td><td>–</td><td>86.9</td><td>44.11</td><td>–</td><td>98.11*</td></tr>
+<tr><th scope="row">SSAST-S</th><td>ANN</td><td>–</td><td>23</td><td>11.32</td><td>–</td><td>97.70*</td></tr>
+<tr><th scope="row">DTF-AT</th><td>ANN</td><td>–</td><td>68.6</td><td>19.32</td><td>–</td><td>98.30*</td></tr>
+</tbody>
+<tbody>
+<tr><th scope="row">DCLS-Delays</th><td>SNN</td><td>✓</td><td>2.5</td><td>–</td><td>–</td><td>95.35</td></tr>
+<tr><th scope="row"><a href="{{ '/projects/sidc-kws/' | relative_url }}">SIDC-KWS</a></th><td>SNN</td><td>✓</td><td>0.4</td><td>–</td><td>8</td><td>94.70</td></tr>
+<tr class="is-ours"><th scope="row">DiceFormer-10-S (Ours)</th><td>SNN</td><td>✓</td><td>13.5</td><td>5.31</td><td>4</td><td class="is-best">97.27</td></tr>
+</tbody>
+</table>
+</div>

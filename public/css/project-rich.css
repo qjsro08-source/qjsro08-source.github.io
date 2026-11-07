@@ -706,3 +706,31 @@ html.dark .qr-veil { fill: #111; }
   .qr-hero .is-now .qr-flow-q { animation: none; }
   .rp-hero.is-ticking .rp-step[aria-pressed="true"]::after { animation: none; }
 }
+
+/* Subsection heading inside a section ----------------------------------------- */
+.rp-h3 {
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -.015em;
+  margin: 2.5rem 0 .75rem;
+}
+
+/* Inception-Dilated block diagram (SIDC-KWS) ----------------------------------- */
+.idb-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.25rem 0 .5rem; padding: 1rem; border: 1px solid var(--border); border-radius: 16px; background: var(--bg-elevated); }
+.idb-svg { display: block; width: 100%; min-width: 620px; height: auto; }
+.idb-svg text { font-family: inherit; }
+.idb-in { fill: var(--chip); stroke: var(--border-strong); }
+.idb-box { fill: var(--bg-elevated); stroke: var(--border-strong); }
+.idb-t { font-size: 13px; font-weight: 600; fill: var(--text); }
+.idb-sub { font-size: 9.5px; font-weight: 500; }
+.idb-s { font-size: 11px; fill: var(--text-secondary); }
+.idb-rf { font-size: 11px; font-weight: 600; fill: var(--rp-ours); }
+.idb-line { fill: none; stroke: var(--text-secondary); stroke-width: 1.4; }
+.idb-ah { fill: var(--text-secondary); }
+.idb-ah2 { fill: var(--rp-ours); }
+.idb-cell { fill: var(--chip); }
+.idb-cell.on { fill: var(--rp-ours); }
+.idb-sum { fill: var(--bg-elevated); stroke: var(--text-secondary); stroke-width: 1.4; }
+.idb-plus { stroke: var(--text); stroke-width: 1.6; }
+.idb-skip { fill: none; stroke: var(--rp-ours); stroke-width: 1.4; stroke-dasharray: 4 3; }
+.idb-skipt { font-size: 11px; fill: var(--rp-ours); }

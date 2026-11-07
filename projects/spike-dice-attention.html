@@ -1,0 +1,133 @@
+---
+layout: project
+slug: spike-dice-attention
+permalink: /projects/spike-dice-attention/
+title: Spiking Transformer를 위한 1-bit Attention
+description: Spike 패턴을 집합으로 보고 Dice 유사도로 attention을 계산해 spike 밀도 편향을 없애고, 나눗셈 없는 선형 버전까지 만든 Spiking Transformer.
+extra_css: [/public/css/project-rich.css]
+---
+{%- assign img = '/assets/images/projects/spike-dice-attention/' | relative_url -%}
+
+<header class="rp-header">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap rp-wrap">
+    <p class="crumb"><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a></p>
+    <h1 class="rp-title"><span data-l="ko">Spiking Transformer를 위한 1-bit Attention</span><span data-l="en">1-bit Attention for Spiking Transformers</span></h1>
+    <p class="rp-subtitle">Rethinking Attention in Spiking Transformers: Overcoming Density Bias with Set Similarity</p>
+    <p class="rp-meta">ICML 2026</p>
+    <ul class="tags">
+      <li>Spiking Neural Network</li><li>Spiking Transformer</li><li>1-bit Attention</li><li>Audio Classification</li>
+    </ul>
+    <div class="rp-actions">
+      <a class="btn btn-primary" href="#method"><span data-l="ko">방법 보기 &darr;</span><span data-l="en">See the method &darr;</span></a>
+      <a class="btn btn-ghost" href="#results"><span data-l="ko">결과 표 &darr;</span><span data-l="en">Results &darr;</span></a>
+      <a class="btn btn-ghost" href="https://openreview.net/pdf?id=8clCPAImE3" target="_blank" rel="noopener">Paper</a>
+      <a class="btn btn-ghost" href="{{ '/assets/images/publications/icml-poster.pdf' | relative_url }}" target="_blank" rel="noopener">Poster</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap rp-wrap">
+
+  <ul class="rp-numbers">
+    <li><span class="rp-num">0.161</span><span class="rp-num-label"><span data-l="ko">AudioSet-20K mAP, SNN 최고 (QKFormer 0.147)</span><span data-l="en">AudioSet-20K mAP, best among SNNs (QKFormer 0.147)</span></span></li>
+    <li><span class="rp-num">97.27%</span><span class="rp-num-label"><span data-l="ko">Speech Commands V2 정확도</span><span data-l="en">Speech Commands V2 accuracy</span></span></li>
+    <li><span class="rp-num">5.34 mJ</span><span class="rp-num-label"><span data-l="ko">AudioSet 추론 에너지, DiceFormer-10-S (AST 475.64 mJ)</span><span data-l="en">AudioSet inference energy, DiceFormer-10-S (AST: 475.64 mJ)</span></span></li>
+    <li><span class="rp-num">0.159</span><span class="rp-num-label"><span data-l="ko">나눗셈 없는 Lin-SDA의 mAP (SDA 0.161)</span><span data-l="en">mAP of the division-free Lin-SDA (SDA: 0.161)</span></span></li>
+  </ul>
+
+  <!-- 1 · Problem ----------------------------------------------------------------- -->
+  <section class="rp-section" id="problem">
+    <p class="rp-kicker"><span data-l="ko">문제</span><span data-l="en">Problem</span></p>
+    <h2 class="rp-h2"><span data-l="ko">내적 attention은 spike 밀도를 구분하지 못한다</span><span data-l="en">Dot-product attention is blind to spike density</span></h2>
+    <p class="rp-lead">
+      <span data-l="ko">Spiking Transformer에서 query와 key는 0 또는 1의 spike, 곧 <strong>1-bit 값</strong>입니다. 이때 내적 <i>QK</i><sup>⊤</sup>는 두 패턴에서 <strong>함께 켜진 spike의 개수</strong>만 셉니다.</span><span data-l="en">In a spiking transformer, queries and keys are spikes of 0 or 1, that is, <strong>1-bit values</strong>. The dot product <i>QK</i><sup>⊤</sup> then only counts <strong>spikes that fire in both patterns</strong>.</span>
+    </p>
+    <div class="rp-prose">
+      <p><span data-l="ko">그래서 같은 query에 대해, 겹치는 spike는 같고 나머지 spike만 더 많은 key들이 모두 같은 점수를 받습니다. 겹치지 않는 spike가 아무리 많아도 점수에 반영되지 않습니다. 이 <strong>density bias</strong> 때문에 attention은 패턴이 얼마나 닮았는지를 제대로 가려내지 못합니다.</span><span data-l="en">So for the same query, keys that share the same matching spikes but carry more extra spikes all receive the same score; however many unmatched spikes a key has, the score ignores them. Because of this <strong>density bias</strong>, attention cannot properly tell how alike two patterns are.</span></p>
+    </div>
+    <figure class="rp-figure">
+      <a class="rp-figure-frame" href="{{ img }}density-bias.jpg" target="_blank" rel="noopener">
+        <img src="{{ img }}density-bias.jpg" alt="Spiking Self Attention: spike 수가 다른 세 key가 같은 attention 점수를 받는 예" width="1600" height="879" loading="lazy">
+      </a>
+      <figcaption><span data-l="ko"><b>Density bias.</b> 세 key는 spike 수가 2, 3, 4개로 다르지만, query와 겹치는 spike가 2개로 같아 내적 attention 점수가 모두 같습니다.</span><span data-l="en"><b>Density bias.</b> The three keys have 2, 3 and 4 spikes, but each shares the same 2 spikes with the query, so dot-product attention gives them identical scores.</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- 2 · Method ------------------------------------------------------------------ -->
+  <section class="rp-section" id="method">
+    <p class="rp-kicker"><span data-l="ko">방법</span><span data-l="en">Method</span></p>
+    <h2 class="rp-h2"><span data-l="ko">Attention을 집합 유사도로 계산한다</span><span data-l="en">Compute attention as set similarity</span></h2>
+    <p class="rp-lead">
+      <span data-l="ko">Spike 패턴을 <strong>켜진 위치의 집합</strong>으로 보면, 두 패턴의 유사도는 Dice 계수로 잴 수 있습니다. 겹친 spike 수를 두 패턴의 전체 spike 수로 정규화하므로, <strong>겹침이 같아도 빽빽한 key일수록 점수가 낮아집니다.</strong></span><span data-l="en">Viewing a spike pattern as <strong>the set of positions that fire</strong>, the similarity of two patterns can be measured with the Dice coefficient. Matched spikes are normalized by the total spikes of both patterns, so <strong>with the same overlap, a denser key scores lower.</strong></span>
+    </p>
+
+    <div class="rp-eq" role="math" aria-label="Spike Dice Similarity">
+      <span><i>I</i>(<i>q</i>, <i>k</i>) = ‖<i>q</i> ⊙ <i>k</i>‖<sub>1</sub>,&ensp; <i>C</i>(<i>q</i>) = ‖<i>q</i>‖<sub>1</sub>,&ensp; <i>S</i>(<i>q</i>, <i>k</i>) = <i>C</i>(<i>q</i>) + <i>C</i>(<i>k</i>)<small><span data-l="ko">겹친 spike 수 <i>I</i>와 전체 spike 수 <i>S</i></span><span data-l="en">matched spikes <i>I</i> and total spikes <i>S</i></span></small></span>
+      <span>SDS(<i>q</i>, <i>k</i>) = 2<i>I</i>(<i>q</i>, <i>k</i>) / (<i>S</i>(<i>q</i>, <i>k</i>) + <i>ε</i>)<small><span data-l="ko">Spike Dice Similarity — 밀도를 반영한 점수</span><span data-l="en">Spike Dice Similarity, a density-aware score</span></small></span>
+    </div>
+
+    <figure class="rp-figure">
+      <a class="rp-figure-frame" href="{{ img }}sda.jpg" target="_blank" rel="noopener">
+        <img src="{{ img }}sda.jpg" alt="Spike Dice Attention: 세 key의 점수가 1.00, 0.80, 0.67로 갈리는 예" width="1600" height="893" loading="lazy">
+      </a>
+      <figcaption><span data-l="ko"><b>Spike Dice Attention (SDA).</b> 같은 세 key가 1.00, 0.80, 0.67로 구분됩니다. 겹치지 않는 spike가 많을수록 점수가 내려갑니다.</span><span data-l="en"><b>Spike Dice Attention (SDA).</b> The same three keys now score 1.00, 0.80 and 0.67; the more unmatched spikes, the lower the score.</span></figcaption>
+    </figure>
+
+    <h3 class="rp-h3" id="lin-sda"><span data-l="ko">나눗셈 없는 선형 버전: Lin-SDA</span><span data-l="en">A division-free linear version: Lin-SDA</span></h3>
+    <div class="rp-prose">
+      <p><span data-l="ko">Dice 점수는 query–key 쌍마다 나눗셈이 필요합니다. 이를 1차 Taylor 근사로 펴면 <i>F</i>(<i>I</i>, <i>S</i>) ≈ <i>α</i>(<i>I</i> − <i>λS</i>) + <i>β</i>가 되고, 양수 배율 <i>α</i>와 상수 <i>β</i>는 점수의 순위를 바꾸지 않으므로 떼어낼 수 있습니다. 남는 것은 <strong>겹친 spike 수에서 spike 활동량을 빼는 선형식</strong>이며, 벌점 계수 <i>λ</i>는 학습합니다.</span><span data-l="en">The Dice score needs a division for every query–key pair. A first-order Taylor expansion turns it into <i>F</i>(<i>I</i>, <i>S</i>) ≈ <i>α</i>(<i>I</i> − <i>λS</i>) + <i>β</i>; the positive scale <i>α</i> and the constant <i>β</i> do not change the ranking of scores, so both are dropped. What remains is <strong>a linear form: matched spikes minus spike activity</strong>, with a learnable penalty <i>λ</i>.</span></p>
+    </div>
+    <div class="rp-eq" role="math" aria-label="Linearized Spike Dice Similarity">
+      <span>SDS<sub>Lin</sub>(<i>q</i>, <i>k</i>) = <i>I</i>(<i>q</i>, <i>k</i>) − <i>λ</i> (<i>C</i>(<i>q</i>) + <i>C</i>(<i>k</i>))<small><span data-l="ko">나눗셈 없이 밀도에 벌점을 주는 점수</span><span data-l="en">penalizes density with no division</span></small></span>
+    </div>
+    <figure class="rp-figure">
+      <a class="rp-figure-frame" href="{{ img }}lin-sda.jpg" target="_blank" rel="noopener">
+        <img src="{{ img }}lin-sda.jpg" alt="Lin-SDS: 세 key의 점수가 2−4λ, 2−5λ, 2−6λ로 SDA와 같은 순위를 유지하는 예" width="2000" height="943" loading="lazy">
+      </a>
+      <figcaption><span data-l="ko"><b>Lin-SDA.</b> 세 key의 점수가 2−4λ &gt; 2−5λ &gt; 2−6λ로, SDA와 같은 순위를 나눗셈 없이 만듭니다. DiceFormer-10-L에서 mAP 0.159로 SDA(0.161)에 근접합니다.</span><span data-l="en"><b>Lin-SDA.</b> The three keys score 2−4λ &gt; 2−5λ &gt; 2−6λ: the same ranking as SDA, with no division. On DiceFormer-10-L it reaches 0.159 mAP, close to SDA's 0.161.</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- 3 · Architecture ------------------------------------------------------------- -->
+  <section class="rp-section" id="architecture">
+    <p class="rp-kicker"><span data-l="ko">구조</span><span data-l="en">Architecture</span></p>
+    <h2 class="rp-h2"><span data-l="ko">오디오용 Spiking Transformer, DiceFormer</span><span data-l="en">DiceFormer, a spiking transformer for audio</span></h2>
+    <div class="rp-prose">
+      <p><span data-l="ko">스펙트로그램을 입력받아, 앞 단계에서는 <strong>주파수 축과 시간 축을 따로</strong> Dice attention으로 보고, 뒤 단계에서는 모든 시간–주파수 토큰을 함께 봅니다.</span><span data-l="en">It takes a spectrogram; early stages apply Dice attention <strong>along the frequency and time axes separately</strong>, and later stages attend over all time–frequency tokens together.</span></p>
+    </div>
+    <figure class="rp-figure">
+      <a class="rp-figure-frame" href="{{ img }}architecture.jpg" target="_blank" rel="noopener">
+        <img src="{{ img }}architecture.jpg" alt="DiceFormer 전체 구조: Initialization block, Projection block, Spike Audio Dice Attention, Spike Dice Attention, Classification head" width="2000" height="1000" loading="lazy">
+      </a>
+      <figcaption><span data-l="ko"><b>DiceFormer.</b> Initialization → Projection 1 → SADA → Projection 2 → SDA → 분류 헤드.</span><span data-l="en"><b>DiceFormer.</b> Initialization → Projection 1 → SADA → Projection 2 → SDA → classification head.</span></figcaption>
+    </figure>
+    <div class="rp-stages">
+      <article class="rp-stage">
+        <span class="rp-stage-tag">Initialization · Projection</span>
+        <h3><span data-l="ko">스펙트로그램을 토큰으로</span><span data-l="en">From spectrogram to tokens</span></h3>
+        <p><span data-l="ko">Initialization block이 입력을 <i>C</i>에서 <i>E</i> 채널로 바꾸며 해상도를 4배 줄이고, 두 Projection block이 차원을 키우면서 시간–주파수 해상도를 단계적으로 줄입니다.</span><span data-l="en">The initialization block projects the input from <i>C</i> to <i>E</i> channels and downsamples it 4×; two projection blocks then grow the feature dimension while shrinking the time–frequency resolution step by step.</span></p>
+      </article>
+      <article class="rp-stage">
+        <span class="rp-stage-tag">SADA · SDA</span>
+        <h3><span data-l="ko">축별로, 그다음 전체로</span><span data-l="en">Per axis, then all together</span></h3>
+        <p><span data-l="ko">SADA(Spike Audio Dice Attention)는 특징을 주파수 흐름과 시간 흐름으로 나눠 각 축에 Dice attention을 적용합니다. SDA block은 줄어든 특징 맵을 펼쳐 모든 시간–주파수 토큰에 Dice self-attention을 적용하고, global average pooling 뒤 분류합니다.</span><span data-l="en">SADA (Spike Audio Dice Attention) splits features into frequency and time streams and applies Dice attention along each axis. The SDA block flattens the downsampled map and applies Dice self-attention over all time–frequency tokens, then classifies after global average pooling.</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4 · Results ------------------------------------------------------------------ -->
+  <section class="rp-section" id="results">
+    <p class="rp-kicker"><span data-l="ko">결과</span><span data-l="en">Results</span></p>
+    <h2 class="rp-h2"><span data-l="ko">더 작은 모델로 SNN 최고 성능</span><span data-l="en">Best SNN results with smaller models</span></h2>
+    <div class="rp-prose">
+      <p><span data-l="ko">AudioSet-20K에서 DiceFormer-10-L은 mAP 0.161로 기존 SNN 최고인 QKFormer(0.147)를 넘습니다. 가장 작은 DiceFormer-10-S(13.7M)도 0.145로 64.5M인 QKFormer에 근접하며, 에너지는 5.34 mJ로 QKFormer(43.43 mJ)의 8분의 1 수준입니다. Speech Commands V2에서는 97.27%입니다.</span><span data-l="en">On AudioSet-20K, DiceFormer-10-L reaches 0.161 mAP, above the previous best SNN, QKFormer (0.147). The smallest DiceFormer-10-S (13.7M) scores 0.145, close to the 64.5M QKFormer, at 5.34 mJ, about an eighth of QKFormer's 43.43 mJ. On Speech Commands V2 it reaches 97.27%.</span></p>
+    </div>
+    <div class="rp-table-block">
+      <h3 class="rp-table-title"><span data-l="ko">Main results · AudioSet-20K, ESC-50, Speech Commands V2</span><span data-l="en">Main results · AudioSet-20K, ESC-50, Speech Commands V2</span></h3>
+      <p class="rp-table-note"><span data-l="ko">Score는 AudioSet에서 mAP, 나머지에서 정확도(%)입니다. <b>굵게</b>는 각 데이터셋 최고.</span><span data-l="en">Score is mAP on AudioSet and accuracy (%) elsewhere. <b>Bold</b> is the best on each dataset.</span></p>
+      {% include spike-dice-attention/main-table.html %}
+    </div>
+  </section>
+
+</div>

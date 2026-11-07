@@ -462,3 +462,25 @@
     - src: /assets/images/projects/3d-qualitative.jpg
       caption: 기존 방법과의 정성 비교. 빨간 상자가 전경–배경 경계이며, 오른쪽이 제안 방법
       caption_en: "Qualitative comparison with existing methods. Red boxes mark foreground–background boundaries; ours is on the right."
+
+- title: Spiking Transformer를 위한 1-bit Attention
+  slug: spike-dice-attention
+  title_en: "1-bit Attention for Spiking Transformers"
+  period: ICML 2026
+  subtitle: "Spike Dice Attention: density-aware set similarity for spiking transformers"
+  thumb: /assets/images/projects/spike-dice-attention/sda.jpg
+  category: research
+  summary: Spike 패턴을 집합으로 보고 Dice 유사도로 attention을 계산해 밀도 편향을 없애고, 나눗셈 없는 선형 버전까지 만들었습니다. AudioSet-20K에서 SNN 최고 성능입니다.
+  summary_en: "Treats spike patterns as sets and scores attention with Dice similarity, removing density bias, plus a division-free linear version. Best SNN on AudioSet-20K."
+  stack: ["Spiking Neural Network", "Spiking Transformer", "1-bit Attention", "Audio Classification"]
+
+- title: 저전력 키워드 인식을 위한 Spiking Conformer
+  slug: sidc-kws
+  title_en: "A Spiking Conformer for Low-Power Keyword Spotting"
+  period: Interspeech 2025
+  subtitle: "SIDC-KWS: a spiking Inception-Dilated Conformer for keyword spotting"
+  thumb: /assets/images/projects/sidc-kws/architecture.png
+  category: research
+  summary: Inception-Dilated 블록과 spike self-attention으로, 40만 파라미터 SNN이 키워드 인식 SNN 최고 정확도 96.8%를 내고 같은 구조 ANN보다 에너지를 75% 덜 씁니다.
+  summary_en: "With an Inception-Dilated block and spike self-attention, a 400K-parameter SNN reaches 96.8%, the best SNN keyword-spotting accuracy, using 75% less energy than the same ANN."
+  stack: ["Spiking Neural Network", "Keyword Spotting", "Conformer", "Dilated Convolution"]
