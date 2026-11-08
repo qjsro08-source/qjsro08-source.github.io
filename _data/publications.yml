@@ -42,8 +42,6 @@
         product with Spike Dice Attention; the resulting DiceFormer reaches SNN
         state of the art on AudioSet-20K.
       summary_ko: "Spiking attention에서 spike 밀도 편향을 찾아내고 내적을 Spike Dice Attention으로 바꿔, DiceFormer로 AudioSet-20K에서 SNN 최고 성능을 달성했습니다."
-      image: /assets/images/publications/icml-poster.jpg
-      image_href: /assets/images/publications/icml-poster.pdf
       paper: https://openreview.net/pdf?id=8clCPAImE3
       poster: /assets/images/publications/icml-poster.pdf
 
@@ -56,8 +54,6 @@
         A spiking Conformer for keyword spotting: 96.8% on Google Speech Commands
         V2 at 401.5K parameters, with 75% less energy than an equivalent ANN.
       summary_ko: "키워드 인식용 spiking Conformer로, Google Speech Commands V2에서 401.5K 파라미터로 96.8%를 달성하며 같은 구조의 ANN보다 에너지를 75% 덜 씁니다."
-      image: /assets/images/publications/interspeech-poster.jpg
-      image_href: /assets/images/publications/interspeech-poster.pdf
       paper: https://www.isca-archive.org/interspeech_2025/lim25_interspeech.pdf
       poster: /assets/images/publications/interspeech-poster.pdf
 
