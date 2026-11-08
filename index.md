@@ -90,7 +90,11 @@ title: Home
           {% for pub in yg.items %}
           <li class="pub-item">
             <div class="pub-main">
-              <span class="pub-venue">{{ pub.venue }}</span>
+              <div class="pub-tags">
+                <span class="pub-venue">{{ pub.venue }}</span>
+                {%- if pub.role == "first" %}<span class="pub-role is-first">First Author</span>
+                {%- elsif pub.role == "co" %}<span class="pub-role">Co-Author</span>{% endif %}
+              </div>
               <h4 class="pub-title">{{ pub.title }}</h4>
 
               {% if pub.authors %}

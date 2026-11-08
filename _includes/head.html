@@ -35,8 +35,8 @@
       } catch (e) {}
       var lang = 'en'
       try {
-        lang = localStorage.getItem('lang') ||
-          (/^ko\b/i.test(navigator.language || '') ? 'ko' : 'en')
+        // English unless the visitor picked Korean with the toggle.
+        lang = localStorage.getItem('lang') || 'en'
       } catch (e) {}
       root.setAttribute('data-lang', lang === 'ko' ? 'ko' : 'en')
       root.lang = lang === 'ko' ? 'ko' : 'en'

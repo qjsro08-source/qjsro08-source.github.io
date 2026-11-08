@@ -477,10 +477,28 @@ html.dark .theme-toggle .icon-sun  { display: block; }
    unbreakable word, which would push long paper titles out of the row. */
 .pub-main { flex: 1 1 auto; min-width: 0; }
 
+.pub-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: .55rem;
+}
+.pub-role {
+  display: inline-block;
+  padding: calc(.12rem - 1px) .55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 550;
+  letter-spacing: .01em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.pub-role.is-first { border-color: var(--accent); color: var(--accent); }
 .pub-venue {
   display: inline-block;
   padding: .12rem .55rem;
-  margin-bottom: .55rem;
   border-radius: 6px;
   background: var(--chip);
   font-size: .75rem;
