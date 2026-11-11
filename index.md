@@ -71,16 +71,30 @@ title: Home
   <div class="wrap">
     <h2 class="section-title"><span data-l="en">News</span><span data-l="ko">소식</span></h2>
 
+    {%- comment -%}
+      The three newest items show; the rest sit in a panel that slides open
+      from the button under the list (open by default without JavaScript).
+    {%- endcomment -%}
+    {%- assign news_top = site.data.news | slice: 0, 3 -%}
+    {%- assign news_rest = site.data.news | slice: 3, 999 %}
     <ul class="news-list">
-      {%- for n in site.data.news %}
-      {%- assign nlink = n.link %}
-      {%- unless nlink contains '://' %}{% assign nlink = n.link | relative_url %}{% endunless %}
-      <li class="news-item">
-        <time class="news-date">{{ n.date }}</time>
-        <a class="news-text" href="{{ nlink }}"{% if n.link contains '://' %} target="_blank" rel="noopener"{% endif %}>{% include t.html ko=n.text_ko en=n.text %}</a>
-      </li>
-      {%- endfor %}
+      {%- for n in news_top %}{% include news-item.html n=n %}{% endfor %}
     </ul>
+
+    {%- if news_rest.size > 0 %}
+    <div class="news-more" id="news-more">
+      <div class="news-more-inner">
+        <ul class="news-list">
+          {%- for n in news_rest %}{% include news-item.html n=n %}{% endfor %}
+        </ul>
+      </div>
+    </div>
+    <button class="news-toggle" type="button" aria-expanded="false" aria-controls="news-more">
+      <span class="news-toggle-more"><span data-l="en">Show {{ news_rest.size }} more</span><span data-l="ko">{{ news_rest.size }}개 더 보기</span></span>
+      <span class="news-toggle-less"><span data-l="en">Show less</span><span data-l="ko">접기</span></span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    {%- endif %}
   </div>
 </section>
 

@@ -71,6 +71,23 @@
     })
   })
 
+  /* --- News: show more ---------------------------------------------------- */
+  // The older items ship visible; collapse them here and let the button
+  // slide them open. `inert` keeps the hidden links out of the tab order.
+  var newsBtn = document.querySelector('.news-toggle')
+  var newsMore = document.getElementById('news-more')
+  if (newsBtn && newsMore) {
+    var setNews = function (open) {
+      newsMore.classList.toggle('open', open)
+      newsMore.inert = !open
+      newsBtn.setAttribute('aria-expanded', open ? 'true' : 'false')
+    }
+    setNews(false)
+    newsBtn.addEventListener('click', function () {
+      setNews(newsBtn.getAttribute('aria-expanded') !== 'true')
+    })
+  }
+
   /* --- Reveal on scroll -------------------------------------------------- */
   var revealables = document.querySelectorAll('.reveal')
 

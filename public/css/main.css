@@ -456,6 +456,39 @@ html.dark .theme-toggle .icon-sun  { display: block; }
 .news-text { color: var(--text); text-decoration: none; line-height: 1.55; }
 .news-text:hover { color: var(--accent); }
 
+/* Older items: a panel that slides open (0fr -> 1fr) from the button below.
+   Without JavaScript it stays open and the button stays hidden. */
+.news-more { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .4s ease; }
+.js .news-more:not(.open) { grid-template-rows: 0fr; }
+.news-more-inner { min-height: 0; overflow: hidden; }
+.news-more .news-item:first-child { border-top: 1px solid var(--border); }
+.news-toggle { display: none; }
+.js .news-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .6rem;
+  padding: .45rem .9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 550;
+  cursor: pointer;
+}
+.js .news-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.news-toggle svg {
+  width: 1rem; height: 1rem;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .3s ease;
+}
+.news-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.news-toggle[aria-expanded="true"] .news-toggle-more,
+.news-toggle[aria-expanded="false"] .news-toggle-less { display: none; }
+
 /* Publications ------------------------------------------------------------ */
 /* One row per year: the year on the left, that year's papers on the right. */
 .pub-year {
