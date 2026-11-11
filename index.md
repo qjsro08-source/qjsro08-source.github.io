@@ -67,6 +67,23 @@ title: Home
   </div>
 </section>
 
+<section id="news" class="section reveal">
+  <div class="wrap">
+    <h2 class="section-title"><span data-l="en">News</span><span data-l="ko">소식</span></h2>
+
+    <ul class="news-list">
+      {%- for n in site.data.news %}
+      {%- assign nlink = n.link %}
+      {%- unless nlink contains '://' %}{% assign nlink = n.link | relative_url %}{% endunless %}
+      <li class="news-item">
+        <time class="news-date">{{ n.date }}</time>
+        <a class="news-text" href="{{ nlink }}"{% if n.link contains '://' %} target="_blank" rel="noopener"{% endif %}>{% include t.html ko=n.text_ko en=n.text %}</a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
 <section id="publications" class="section reveal">
   <div class="wrap">
     <h2 class="section-title"><span data-l="en">Publications</span><span data-l="ko">논문</span></h2>

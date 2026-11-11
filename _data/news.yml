@@ -1,0 +1,40 @@
+# News on the home page, newest first; the list is shown in this order.
+#
+# Required : date ("YYYY.MM"), text (English)
+# Optional : text_ko  Korean text for KO mode (falls back to text)
+#            link     where the line points: a site path (/projects/...) or a full URL
+
+- date: "2026.09"
+  text: "Completed the project: Token Pruning for Omni-modal LLMs"
+  text_ko: "프로젝트 완료: Omni-modal LLM을 위한 Token Pruning"
+  link: /projects/omnimodal-token-pruning/
+
+- date: "2026.09"
+  text: "Completed the project: Robust Audio-Visual QA under a Missing Modality"
+  text_ko: "프로젝트 완료: Missing Modality에도 강건한 Audio-Visual QA"
+  link: /projects/missing-modality-avqa/
+
+- date: "2026.05"
+  text: "Paper accepted at ICML 2026"
+  text_ko: "ICML 2026 논문 게재 승인"
+  link: /projects/spike-dice-attention/
+
+- date: "2026.05"
+  text: "Completed the project: Local LLM Parenting Chatbot"
+  text_ko: "프로젝트 완료: 로컬 LLM 육아 상담 챗봇"
+  link: /projects/local-llm-parenting-chatbot/
+
+- date: "2026.04"
+  text: "Completed the project: 3D Scene Reconstruction from a Single Image"
+  text_ko: "프로젝트 완료: 단일 이미지로부터의 3D 장면 복원"
+  link: /projects/single-image-3d-scene/
+
+- date: "2026.02"
+  text: "Paper published in IEEE Transactions on Instrumentation and Measurement (TIM)"
+  text_ko: "IEEE Transactions on Instrumentation and Measurement (TIM) 논문 게재"
+  link: https://ieeexplore.ieee.org/abstract/document/11421516/
+
+- date: "2025.05"
+  text: "Paper accepted at Interspeech 2025"
+  text_ko: "Interspeech 2025 논문 게재 승인"
+  link: /projects/sidc-kws/

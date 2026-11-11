@@ -4,9 +4,9 @@
 #            slug  the detail page's URL (/projects/<slug>/). Adding a project
 #                  also needs a stub page at projects/<slug>.md — Liquid cannot
 #                  create pages on its own, and GitHub Pages allows no plugins.
-# Optional : period, role, stack (list)
+# Optional : role, stack (list)
 #            subtitle  English one-liner under the title on the list card
-#            title_en / summary_en / period_en  English text for EN mode;
+#            title_en / summary_en  English text for EN mode;
 #                      any field with an _en twin shows that twin in EN mode
 #            thumb     list-card image (a figure from the project page)
 #            category  research | application — drives the list filter
@@ -21,8 +21,6 @@
   slug: looped-transformer-continual-learning
   title_en: "Continual Learning on a Visual Looped Transformer"
   summary_en: "A looped VLM gains depth by reusing the same blocks instead of adding parameters. With one as the backbone, we measure forgetting as it learns domains and skills in sequence."
-  period_en: "2026.10 – present"
-  period: 2026.10 – 진행 중
   subtitle: "Continual learning on a looped vision-language model"
   thumb: /assets/images/projects/loopvl-arch.png
   category: research
@@ -291,7 +289,6 @@
   slug: omnimodal-token-pruning
   title_en: "Token Pruning for Omni-modal LLMs"
   summary_en: "Drops the tokens their neighbours can already reconstruct, keeping accuracy while cutting audio and video tokens to under half."
-  period: 2026.03 – 2026.09
   subtitle: "Training-free token pruning for omni-modal LLMs by reconstructing layer-wise orthogonal updates"
   thumb: /assets/images/projects/omni-token-pruning/overview.png
   category: research
@@ -337,7 +334,6 @@
   slug: missing-modality-avqa
   title_en: "Robust Audio-Visual QA under a Missing Modality"
   summary_en: "When audio or video drops out at inference, it finds the missing side in paired prototypes and reconstructs it for the question before answering."
-  period: 2026.03 – 2026.09
   subtitle: "Robust audio-visual question answering when a modality goes missing at inference"
   thumb: /assets/images/projects/missing-modality-avqa/overview.png
   category: research
@@ -348,7 +344,6 @@
   slug: local-llm-parenting-chatbot
   title_en: "Local LLM Parenting Chatbot"
   summary_en: "A parenting chatbot aimed at on-device use: a parenting QA set built from public data, LoRA tuning, and a comparison with four commercial APIs under the same conditions."
-  period: 2026.05
   subtitle: "A parenting assistant built to run on-device, answering from the child’s own records"
   thumb: /assets/images/projects/chatbot-thumb.jpg
   category: application
@@ -398,7 +393,6 @@
   slug: single-image-3d-scene
   title_en: "3D Scene Reconstruction from a Single Image"
   summary_en: "Splits one photo into foreground, background and sky and rebuilds each layer, recovering even the background hidden behind objects."
-  period: 2025.12 – 2026.04
   subtitle: "Layer-wise 3D scene reconstruction from a single image"
   thumb: /assets/images/projects/3d-qualitative.jpg
   category: research
@@ -466,7 +460,6 @@
 - title: Spiking Transformer를 위한 1-bit Attention
   slug: spike-dice-attention
   title_en: "1-bit Attention for Spiking Transformers"
-  period: ICML 2026
   subtitle: "Spike Dice Attention: density-aware set similarity for spiking transformers"
   thumb: /assets/images/projects/spike-dice-attention/sda.jpg
   category: research
@@ -477,7 +470,6 @@
 - title: 저전력 키워드 인식을 위한 Spiking Conformer
   slug: sidc-kws
   title_en: "A Spiking Conformer for Low-Power Keyword Spotting"
-  period: Interspeech 2025
   subtitle: "SIDC-KWS: a spiking Inception-Dilated Conformer for keyword spotting"
   thumb: /assets/images/projects/sidc-kws/architecture.png
   category: research

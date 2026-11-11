@@ -437,6 +437,25 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   color: var(--text-secondary);
 }
 
+/* News -------------------------------------------------------------------- */
+/* One line per item: the month in the accent color, then what happened. */
+.news-list { margin: 0; padding: 0; list-style: none; }
+.news-item {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0 1.25rem;
+  align-items: baseline;
+  padding: .7rem 0;
+}
+.news-item + .news-item { border-top: 1px solid var(--border); }
+.news-date {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+.news-text { color: var(--text); text-decoration: none; line-height: 1.55; }
+.news-text:hover { color: var(--accent); }
+
 /* Publications ------------------------------------------------------------ */
 /* One row per year: the year on the left, that year's papers on the right. */
 .pub-year {
@@ -988,6 +1007,7 @@ html.dark .theme-toggle .icon-sun  { display: block; }
   .pub-year-label { position: static; font-size: 1.35rem; }
   .pub-item { flex-direction: column; gap: .9rem; }
   .research-grid { grid-template-columns: 1fr; gap: .5rem; }
+  .news-item { grid-template-columns: 4.3rem minmax(0, 1fr); gap: 0 .75rem; font-size: .95rem; }
   .pcards { grid-template-columns: 1fr; }
   .section-sub { font-size: .9rem; }
   .pub-figure { flex: none; width: 100%; justify-content: flex-start; }
